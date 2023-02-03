@@ -1,0 +1,211 @@
+.login__page {
+  background: linear-gradient(
+    116.82deg,
+    #ffd8c1 0%,
+    rgba(11, 230, 230, 0.5) 100%
+  );
+  height: 100vh;
+  display: flex;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.login__login-item {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid #ffffff;
+  box-shadow: 2px 8px 30px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+  border-radius: 12px;
+
+  width: 578px;
+  height: 600px;
+  margin: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .login__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+    top: 0;
+    margin: 64px auto 32px;
+
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 120px;
+    color: #7396ff;
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+
+    transition: all 0.3s ease-in-out;
+  }
+
+  .signup__title {
+    height: 76px;
+    margin: 32px auto;
+
+    font-weight: 700;
+    font-size: 60px;
+  }
+
+  .login__input-box {
+    position: relative;
+    margin: 0 auto 32px;
+
+    width: 420px;
+    height: 54px;
+    transition: all 0.5s ease;
+
+    .login__input {
+      width: 100%;
+      height: 100%;
+      padding: 12px 24px;
+
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      outline: none;
+
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 30px;
+      color: rgba(115, 150, 255, 0.6);
+
+      transition: all 0.5s ease;
+
+      &:hover {
+        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(0, 0, 0, 0.15);
+
+        & ~ label {
+          color: rgba(115, 150, 255, 0.8);
+        }
+      }
+
+      &:focus {
+        border: 1px solid #7396ff !important;
+        color: rgba(115, 150, 255, 0.8);
+      }
+    }
+
+    .login__text {
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 30px;
+      color: rgba(115, 150, 255, 0.6);
+
+      pointer-events: none;
+      opacity: 1;
+      transition: all 0.5s ease-in-out;
+    }
+  }
+
+  .login__button {
+    width: 225px;
+    height: 56px;
+
+    background: #668cff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 32px;
+
+    margin: 20px auto 47px;
+
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
+    .login__button-text {
+      width: 74px;
+      height: 42px;
+
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 42px;
+
+      color: #ffffff;
+
+      text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    &:hover {
+      background: #4d79fb;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+      transform: scale(1.01);
+
+      .login__button-text {
+        text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    &:active {
+      background: #7e9dfc;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      transform: scale(1);
+
+      .login__button-text {
+        text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .signup__button {
+    margin: 0 auto 12px;
+  }
+
+  .login__bottom-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 420px;
+    height: 42px;
+    margin: 0 auto;
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.25));
+
+    .login-bottom-left {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 42px;
+
+      color: rgba(0, 0, 0, 0.6);
+
+      pointer-events: none;
+    }
+
+    .login-bottom-right {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 42px;
+
+      color: #7396ff;
+
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        color: #3163fb;
+        text-shadow: 4px 4px 8px #fff;
+      }
+    }
+  }
+
+  .signup__bottom-text {
+    .login-bottom-left {
+      font-size: 20px;
+      line-height: 20px;
+    }
+
+    .login-bottom-right {
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+}
