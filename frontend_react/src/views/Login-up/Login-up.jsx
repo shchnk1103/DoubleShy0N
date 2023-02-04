@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { HiOutlineMail } from "react-icons/hi";
+import { BsPerson } from "react-icons/bs";
+import { CgPassword } from "react-icons/cg";
 import api from "../../api";
 import "./Login-up.scss";
 
@@ -14,6 +17,10 @@ const Login = () => {
   const [password2Valid, setPassword2Valid] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate();
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
@@ -31,8 +38,9 @@ const Login = () => {
         storage.setItem("refresh.doubleshy0n", response.data.refresh);
         storage.setItem("expiredTime.doubleshy0n", expiredTime);
         storage.setItem("email.doubleshy0n", email);
-        // if success, jump to the home page
+        // Jump to the home page
         navigate("/", { state: { email } });
+
         console.log("login success");
       })
       .catch((error) => {
@@ -43,19 +51,26 @@ const Login = () => {
   const handleSignupSubmit = (event) => {
     event.preventDefault();
 
-    api
-      .post("users/", {
-        email: email,
-        name: username,
-        password: password,
-      })
-      .then((response) => {
-        console.log(response);
-        setIsLoggedIn(true);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    if (!passwordValid) {
+      alert(
+        "密码至少包含 8 个字符，并且必须包含至少一个小写字母、一个大写字母、一个数字和一个特殊字符"
+      );
+    } else if (password !== password2) {
+      alert("两次输入的密码不一致！");
+    } else {
+      api
+        .post("users/", {
+          email: email,
+          name: username,
+          password: password,
+        })
+        .then((response) => {
+          setIsLoggedIn(true);
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
   };
 
   const handleChange = (event) => {
@@ -73,7 +88,7 @@ const Login = () => {
         if (value === "") {
           setEmailValid(false);
         } else {
-          setEmailValid(true);
+          setEmailValid(re.test(String(value).toLowerCase()));
         }
         break;
       case "username":
@@ -91,7 +106,7 @@ const Login = () => {
         if (value === "") {
           setPasswordValid(false);
         } else {
-          setPasswordValid(true);
+          setPasswordValid(passwordRegex.test(value));
         }
         break;
       case "password2":
@@ -100,7 +115,7 @@ const Login = () => {
         if (value === "") {
           setPassword2Valid(false);
         } else {
-          setPassword2Valid(true);
+          setPassword2Valid(passwordRegex.test(value));
         }
         break;
       default:
@@ -132,15 +147,19 @@ const Login = () => {
             style={{
               border: emailValid
                 ? "1px solid #7396ff"
-                : "1px solid rgba(0, 0, 0, 0.05)",
+                : !email
+                ? "1px solid rgba(0, 0, 0, 0.05)"
+                : "1px solid #ff0000",
             }}
           />
           <label
             htmlFor="email"
             className="login__text"
-            style={{ opacity: emailValid ? "0" : "1" }}
+            style={{
+              opacity: email || emailValid ? "0" : "1",
+            }}
           >
-            Email
+            <HiOutlineMail className="icon" /> Email
           </label>
         </div>
 
@@ -166,7 +185,7 @@ const Login = () => {
               className="login__text"
               style={{ opacity: usernameValid ? "0" : "1" }}
             >
-              Username
+              <BsPerson className="icon" /> Username
             </label>
           </div>
         )}
@@ -182,15 +201,17 @@ const Login = () => {
             style={{
               border: passwordValid
                 ? "1px solid #7396ff"
-                : "1px solid rgba(0, 0, 0, 0.05)",
+                : !password
+                ? "1px solid rgba(0, 0, 0, 0.05)"
+                : "1px solid #ff0000",
             }}
           />
           <label
             htmlFor="password"
             className="login__text"
-            style={{ opacity: passwordValid ? "0" : "1" }}
+            style={{ opacity: password || passwordValid ? "0" : "1" }}
           >
-            Password
+            <CgPassword className="icon" /> Password
           </label>
         </div>
 
@@ -208,15 +229,17 @@ const Login = () => {
               style={{
                 border: password2Valid
                   ? "1px solid #7396ff"
-                  : "1px solid rgba(0, 0, 0, 0.05)",
+                  : !password2
+                  ? "1px solid rgba(0, 0, 0, 0.05)"
+                  : "1px solid #ff0000",
               }}
             />
             <label
               htmlFor="password2"
               className="login__text"
-              style={{ opacity: password2Valid ? "0" : "1" }}
+              style={{ opacity: password2 || password2Valid ? "0" : "1" }}
             >
-              Confirm Password
+              <CgPassword className="icon" /> Confirm Password
             </label>
           </div>
         )}
