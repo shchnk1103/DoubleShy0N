@@ -1,0 +1,44 @@
+import instagram from "../../assets/instagram.svg";
+import twitter from "../../assets/twitter.svg";
+import discord from "../../assets/discord.svg";
+import arrow from "../../assets/arrow.svg";
+import homeImage from "../../assets/home-image.jpg";
+import { BsInstagram, BsTwitter } from "react-icons/bs";
+import { SiDiscord } from "react-icons/si";
+import "./Home.scss";
+
+export const Home = () => {
+  return (
+    <div className="home">
+      <ul className="social-icon-list">
+        <li className="social-icon ins">
+          <BsInstagram className="social-icon-img" />
+        </li>
+        <li className="social-icon twitter">
+          <BsTwitter className="social-icon-img" />
+        </li>
+        <li className="social-icon discord">
+          <SiDiscord className="social-icon-img" />
+        </li>
+      </ul>
+
+      <div className="home-center">
+        <span className="title">
+          展现不一样的自己，祝愿你在这里
+          <br />
+          找到属于你的那一份美好!
+        </span>
+        <div className="btn-background">
+          <button className="home-btn">
+            <span>点击开始探索</span>
+            <img src={arrow} alt="arrow" />
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <img src={homeImage} alt="" className="home-image" />
+      </div>
+    </div>
+  );
+};
