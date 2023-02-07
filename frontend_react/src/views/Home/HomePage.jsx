@@ -1,6 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { NavBar } from "../../components/NavBar/NavBar";
 import { Home } from "../../components/HomePage/Home";
+import { Article } from "../Article/Article";
+import { UIUX } from "../UI/UIUX";
+import { Development } from "../Development/Development";
 import "./HomePage.scss";
 
 const HomePage = () => {
@@ -12,6 +15,12 @@ const HomePage = () => {
       <NavBar />
 
       <Home />
+
+      <Article />
+
+      <UIUX />
+
+      <Development />
     </div>
   );
 };

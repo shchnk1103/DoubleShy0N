@@ -15,32 +15,34 @@ export const NavBar = () => {
 
   return (
     <nav className="navbar">
-      <div className="nav-logo">
-        <img src={Logo} alt="logo" className="logo-img" />
-        <span className="logo-name">Doubleshy0N</span>
-      </div>
+      <div className="nav-detail">
+        <div className="nav-logo">
+          <img src={Logo} alt="logo" className="logo-img" />
+          <span className="logo-name">Doubleshy0N</span>
+        </div>
 
-      <div>
-        <ul className="nav-item">
-          {navItems.map((item, index) => (
-            <li
-              key={index}
-              className={
-                selected === index
-                  ? "nav-item-detail selected"
-                  : "nav-item-detail"
-              }
-              onClick={() => setSelected(index)}
-            >
-              {item.name}
-            </li>
-          ))}
-        </ul>
-        <div className="underline"></div>
-      </div>
+        <div>
+          <ul className="nav-item">
+            {navItems.map((item, index) => (
+              <li
+                key={index}
+                className={
+                  selected === index
+                    ? "nav-item-detail selected"
+                    : "nav-item-detail"
+                }
+                onClick={() => setSelected(index)}
+              >
+                {item.name}
+              </li>
+            ))}
+          </ul>
+          <div className="underline"></div>
+        </div>
 
-      <div className="profile-image">
-        <img src={Avatar} alt="avatar" className="avatar" />
+        <div className="profile-image">
+          <img src={Avatar} alt="avatar" className="avatar" />
+        </div>
       </div>
     </nav>
   );
