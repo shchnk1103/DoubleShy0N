@@ -1,10 +1,12 @@
-import { useState } from "react";
-import Avatar from "../../assets/avatar.jpg";
+import { useEffect, useRef, useState } from "react";
+import { ProfileImage } from "../ProfileImage/ProfileImage";
 import Logo from "../../assets/logo.svg";
 import "./NavBar.scss";
 
 export const NavBar = () => {
   const [selected, setSelected] = useState(0);
+  const [underlineStyle, setUnderlineStyle] = useState("");
+  const navRef = useRef(null);
   const navItems = [
     { name: "首页" },
     { name: "文章" },
@@ -12,6 +14,19 @@ export const NavBar = () => {
     { name: "开发" },
     { name: "联系我们" },
   ];
+
+  useEffect(() => {
+    if (navRef.current) {
+      const selectedElement = navRef.current.querySelector(".selected");
+      if (selectedElement) {
+        const { offsetLeft, offsetWidth } = selectedElement;
+        setUnderlineStyle({
+          width: offsetWidth,
+          transform: `translateX(${offsetLeft}px)`,
+        });
+      }
+    }
+  }, [selected]);
 
   return (
     <nav className="navbar">
@@ -21,7 +36,7 @@ export const NavBar = () => {
           <span className="logo-name">Doubleshy0N</span>
         </div>
 
-        <div>
+        <div className="nav" ref={navRef}>
           <ul className="nav-item">
             {navItems.map((item, index) => (
               <li
@@ -37,12 +52,12 @@ export const NavBar = () => {
               </li>
             ))}
           </ul>
-          <div className="underline"></div>
+          {navRef.current && (
+            <hr className="underline" style={underlineStyle} />
+          )}
         </div>
 
-        <div className="profile-image">
-          <img src={Avatar} alt="avatar" className="avatar" />
-        </div>
+        <ProfileImage />
       </div>
     </nav>
   );

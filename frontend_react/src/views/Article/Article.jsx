@@ -66,18 +66,24 @@ export const Article = () => {
 
         <div className="article-list">
           {articleItem.map((item, index) => (
-            <div className="article-item">
-              <div className={index === 0 ? "number selected" : "number"}>
+            <div className="article-item" key={index}>
+              <div
+                className={index === 0 ? "number selected" : "number"}
+                key={"number-${index}"}
+              >
                 <span>{index + 1}</span>
               </div>
 
-              <div className="detail">
+              <div className="detail" key={"detail-${index}"}>
                 <span className="detail-title">{item.title}</span>
                 <span className="detail-author">{item.author}</span>
                 <span className="detail-content">{item.content}</span>
               </div>
 
-              <div className={index === 0 ? "date selected" : "date"}>
+              <div
+                className={index === 0 ? "date selected" : "date"}
+                key={"date-${index}"}
+              >
                 <span>{item.date}</span>
               </div>
             </div>

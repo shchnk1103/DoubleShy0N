@@ -1,0 +1,179 @@
+.contact-page {
+  height: 640px;
+
+  .contact-title {
+    width: fit-content;
+    margin: 0 auto 32px;
+    padding-top: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .contact-title-detail {
+      font-family: "Poppins";
+      font-style: normal;
+      height: 48px;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 48px;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    .contact-line {
+      position: absolute;
+      bottom: 0;
+      height: 5px;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  .contact-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 130px;
+
+    .content-left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      .content-detail {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 343px;
+        height: 140px;
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 16px;
+
+        .content-icon {
+          width: 32px;
+          height: 32px;
+          color: rgba(0, 0, 0, 0.6);
+        }
+
+        .content-header {
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 24px;
+          color: rgba(0, 0, 0, 0.6);
+          pointer-events: none;
+        }
+
+        .content-number {
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 24px;
+          color: rgba(0, 0, 0, 0.4);
+          pointer-events: none;
+        }
+
+        .content-btn {
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 24px;
+          color: rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+
+    .content-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 402px;
+      height: 460px;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 16px;
+
+      .content-title {
+        width: 96px;
+        height: 36px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: rgba(0, 0, 0, 0.6);
+        margin: 24px auto;
+      }
+
+      .content-detail {
+        width: 338px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        position: relative;
+        margin-bottom: 32px;
+
+        .content-username-input {
+          width: 100%;
+          background-color: transparent;
+        }
+
+        .content-label {
+          width: 100%;
+          position: absolute;
+          left: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-style: normal;
+          font-weight: 700;
+          font-size: 12px;
+          line-height: 18px;
+          color: rgba(0, 0, 0, 0.5);
+        }
+      }
+
+      .content-lg {
+        width: 338px;
+        height: 130px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+
+        .content-label {
+          top: 20px;
+        }
+      }
+
+      .content-btn {
+        width: 338px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.15);
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        border: none;
+        transition: all 0.5s ease-in-out;
+        cursor: pointer;
+
+        span {
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 24px;
+          color: rgba(0, 0, 0, 0.3);
+          text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+          transition: all 0.5s ease-in-out;
+        }
+
+        &:hover {
+          background: #7396ff;
+          color: rgb(255, 255, 255);
+          box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+          scale: 1.05;
+
+          span {
+            color: rgba(255, 255, 255, 0.8);
+          }
+        }
+      }
+    }
+  }
+}

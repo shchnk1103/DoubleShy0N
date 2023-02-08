@@ -24,9 +24,9 @@ export const Home = () => {
 
       <div className="home-center">
         <span className="title">
-          展现不一样的自己，祝愿你在这里
+          展现不一样的自己，祝愿你
           <br />
-          找到属于你的那一份美好!
+          在这里找到属于你的那一份美好!
         </span>
         <div className="btn-background">
           <button className="home-btn">
