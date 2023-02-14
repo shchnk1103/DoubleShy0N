@@ -27,7 +27,7 @@ export const Article = () => {
   ];
 
   return (
-    <div className="article-page">
+    <div className="article-page" id="article">
       <div className="article-cards">
         <div className="card">
           <div className="article-card">

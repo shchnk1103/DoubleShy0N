@@ -1,3 +1,5 @@
+@use "../../utils/color";
+
 .development-page {
   height: 570px;
   margin-top: 52px;
@@ -11,13 +13,11 @@
     position: relative;
 
     .development-title-detail {
-      font-family: "Poppins";
-      font-style: normal;
       height: 48px;
       font-weight: 700;
       font-size: 32px;
       line-height: 48px;
-      color: rgba(0, 0, 0, 0.6);
+      color: color.$black-6;
     }
 
     .development-line {
@@ -25,7 +25,7 @@
       bottom: 0;
       height: 5px;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: color.$black-6;
     }
   }
 
@@ -42,9 +42,9 @@
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      background: #ffffff;
-      border: 1px solid rgba(0, 0, 0, 0.7);
-      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+      background: color.$white;
+      border: 1px solid color.$black-7;
+      box-shadow: 4px 4px 8px color.$black-2;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -52,8 +52,32 @@
       font-weight: 400;
       font-size: 32px;
       line-height: 48px;
-      color: rgba(0, 0, 0, 0.6);
-      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+      color: color.$black-6;
+      text-shadow: 0px 2px 4px color.$black-2;
+    }
+  }
+}
+
+.dark-mode {
+  .development-page {
+    .development-title {
+      .development-title-detail {
+        color: color.$white-6;
+      }
+
+      .development-line {
+        background-color: color.$white-6;
+      }
+    }
+
+    .development-content {
+      .development-item {
+        background: color.$black;
+        border: 1px solid color.$white-7;
+        box-shadow: 4px 4px 8px color.$white-2;
+        text-shadow: 0px 2px 4px color.$white-2;
+        color: color.$white-6;
+      }
     }
   }
 }

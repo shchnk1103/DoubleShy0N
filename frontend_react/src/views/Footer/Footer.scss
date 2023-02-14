@@ -1,11 +1,13 @@
+@use "../../utils/color";
+
 .footer {
   width: 100%;
   max-width: 1440px;
   height: 484px;
   padding: 0 79px;
-  background: rgba(0, 0, 0, 0.05);
+  background: color.$black-1;
   border-radius: 12px;
-  box-shadow: 2px -2px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 2px -2px 16px color.$black-2;
 
   .footer-content {
     display: flex;
@@ -20,11 +22,11 @@
       font-weight: 600;
       font-size: 16px;
       line-height: 24px;
-      color: rgba(0, 0, 0, 0.4);
+      color: color.$black-4;
       cursor: pointer;
 
       .footer-title {
-        color: rgba(0, 0, 0, 0.7);
+        color: color.$black-7;
       }
     }
   }
@@ -32,7 +34,7 @@
   .footer-line {
     height: 1px;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: color.$black-3;
   }
 
   .footer-copyright {
@@ -42,8 +44,33 @@
     margin-top: 24px;
 
     font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    line-height: 20px;
+    color: color.$black-3;
+  }
+}
+
+.dark-mode {
+  .footer {
+    background: color.$white-1;
+    box-shadow: 2px -2px 16px color.$white-2;
+
+    .footer-content {
+      .footer-content-detail {
+        color: color.$white-4;
+
+        .footer-title {
+          color: color.$white-7;
+        }
+      }
+    }
+
+    .footer-line {
+      background-color: color.$white-3;
+    }
+
+    .footer-copyright {
+      color: color.$white-3;
+    }
   }
 }

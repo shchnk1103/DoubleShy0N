@@ -8,9 +8,14 @@ import { Development } from "../Development/Development";
 import { Contact } from "../Contact/Contact";
 import { Footer } from "../Footer/Footer";
 
-const HomePage = () => {
+const HomePage = (props) => {
   const location = useLocation();
   const username = location.state ? location.state.email : "";
+  const { darkMode, onToggleDarkMode } = props;
+
+  const handleToggleDarkMode = () => {
+    onToggleDarkMode();
+  };
 
   return (
     <div className="home-page">
@@ -27,6 +32,11 @@ const HomePage = () => {
       <Contact />
 
       <Footer />
+
+      <label className="switch">
+        <input type="checkbox" />
+        <span className="slider" onClick={handleToggleDarkMode}></span>
+      </label>
     </div>
   );
 };

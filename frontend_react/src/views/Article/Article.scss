@@ -1,3 +1,5 @@
+@use "../../utils/color";
+
 .article-page {
   display: flex;
   justify-content: center;
@@ -7,6 +9,7 @@
   max-width: 1440px;
   height: 680px;
   padding: 0 80px;
+  transition: all 0.1s ease-in-out;
 
   .article-cards {
     width: 100%;
@@ -19,10 +22,10 @@
       width: 500px;
       height: 500px;
 
-      background: rgba(255, 255, 255, 0.5);
+      background: color.$white-5;
       backdrop-filter: blur(25px);
       border-radius: 8px;
-      box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.15);
+      box-shadow: 4px 4px 16px color.$black-2;
 
       display: flex;
       flex-direction: column;
@@ -40,7 +43,7 @@
           font-weight: 600;
           font-size: 32px;
           line-height: 48px;
-          color: rgba(0, 0, 0, 0.7);
+          color: color.$black-7;
           margin-bottom: 15px;
         }
 
@@ -49,7 +52,7 @@
           font-size: 20px;
           line-height: 30px;
 
-          color: rgba(0, 0, 0, 0.6);
+          color: color.$black-6;
         }
       }
 
@@ -76,7 +79,7 @@
             font-size: 20px;
             line-height: 30px;
 
-            color: rgba(0, 0, 0, 0.6);
+            color: color.$black-6;
           }
 
           .profile-subname {
@@ -84,7 +87,7 @@
             font-size: 12px;
             line-height: 18px;
 
-            color: rgba(0, 0, 0, 0.6);
+            color: color.$black-6;
           }
         }
       }
@@ -122,7 +125,7 @@
       font-weight: 400;
       font-size: 32px;
       line-height: 48px;
-      color: rgba(0, 0, 0, 0.6);
+      color: color.$black-6;
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -141,8 +144,8 @@
           width: 48px;
           height: 48px;
           border-radius: 50%;
-          background: rgba(0, 0, 0, 0.5);
-          box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+          background: color.$black-5;
+          box-shadow: 2px 2px 8px color.$black-2;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -153,7 +156,7 @@
           font-size: 32px;
           line-height: 48px;
           color: #ffffff;
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+          text-shadow: 2px 2px 4px color.$black-2;
         }
 
         .detail {
@@ -167,7 +170,7 @@
             font-weight: 400;
             font-size: 24px;
             line-height: 36px;
-            color: rgba(0, 0, 0, 0.6);
+            color: color.$black-6;
           }
 
           .detail-author {
@@ -176,7 +179,7 @@
             font-weight: 400;
             font-size: 12px;
             line-height: 18px;
-            color: rgba(0, 0, 0, 0.6);
+            color: color.$black-6;
           }
 
           .detail-content {
@@ -185,15 +188,15 @@
             font-weight: 400;
             font-size: 14px;
             line-height: 21px;
-            color: rgba(0, 0, 0, 0.6);
+            color: color.$black-6;
           }
         }
 
         .date {
           width: 107px;
           height: 36px;
-          background: rgba(0, 0, 0, 0.5);
-          box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+          background: color.$black-5;
+          box-shadow: 2px 2px 8px color.$black-2;
           border-radius: 8px;
           display: flex;
           justify-content: center;
@@ -205,7 +208,7 @@
           font-size: 18px;
           line-height: 27px;
           color: #ffffff;
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+          text-shadow: 2px 2px 4px color.$black-2;
 
           span {
             width: 95px;
@@ -227,8 +230,8 @@
       .btn-detail {
         width: 150px;
         height: 40px;
-        background: rgba(0, 0, 0, 0.3);
-        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+        background: color.$black-3;
+        box-shadow: 2px 2px 8px color.$black-2;
         border-radius: 8px;
         border: none;
 
@@ -236,16 +239,104 @@
         font-size: 18px;
         line-height: 27px;
         color: rgba(255, 255, 255, 0.6);
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+        text-shadow: 2px 2px 8px color.$black-2;
         cursor: pointer;
 
         transition: all 0.5s ease-in-out;
 
         &:hover {
           background: #7396ff;
-          color: rgba(255, 255, 255, 1);
-          box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+          color: color.$white;
+          box-shadow: 4px 4px 8px color.$black-5;
           scale: 1.05;
+        }
+      }
+    }
+  }
+}
+
+.dark-mode {
+  .article-page {
+    .article-cards {
+      .card {
+        background: color.$black-5;
+        box-shadow: 4px 4px 16px color.$white-2;
+        border: 1px solid color.$white-3;
+
+        .article-card {
+          .title {
+            color: color.$white-7;
+          }
+
+          .content {
+            color: color.$white-6;
+          }
+        }
+      }
+
+      .profile-detail {
+        .profile-word {
+          .profile-name {
+            color: color.$white-6;
+          }
+
+          .profile-subname {
+            color: color.$white-6;
+          }
+        }
+      }
+    }
+
+    .latest-articles {
+      .title {
+        color: color.$white-6;
+      }
+
+      .article-list {
+        .article-item {
+          .number {
+            background: color.$white-5;
+            box-shadow: 2px 2px 8px color.$white-2;
+            text-shadow: 2px 2px 4px color.$white-2;
+          }
+
+          .detail {
+            .detail-title {
+              color: color.$white-6;
+            }
+
+            .detail-author {
+              color: color.$white-6;
+            }
+
+            .detail-content {
+              color: color.$white-6;
+            }
+          }
+
+          .date {
+            background: color.$white-5;
+            box-shadow: 2px 2px 8px color.$white-2;
+            text-shadow: 2px 2px 4px color.$white-2;
+          }
+
+          .selected {
+            background: #7396ff;
+          }
+        }
+      }
+
+      .btn {
+        .btn-detail {
+          background: color.$white-3;
+          box-shadow: 2px 2px 8px color.$white-2;
+          text-shadow: 2px 2px 8px color.$white-2;
+
+          &:hover {
+            background: #7396ff;
+            color: color.$black;
+            box-shadow: 4px 4px 8px color.$white-5;
+          }
         }
       }
     }

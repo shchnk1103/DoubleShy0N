@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import "./Login-up.scss";
+import { useContext, useState } from "react";
 import { HiOutlineMail } from "react-icons/hi";
 import { BsPerson } from "react-icons/bs";
 import { CgPassword } from "react-icons/cg";
-import api from "../../api";
-import "./Login-up.scss";
+import api from "../../utils/api";
+import AuthContext from "../../context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,37 +16,12 @@ const Login = () => {
   const [passwordValid, setPasswordValid] = useState(false);
   const [password2Valid, setPassword2Valid] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const navigate = useNavigate();
   const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-  const handleLoginSubmit = (event) => {
-    event.preventDefault();
-
-    api
-      .post("token/", {
-        email: email,
-        password: password,
-      })
-      .then((response) => {
-        const storage = localStorage;
-        const expiredTime = Date.parse(response.headers.date) + 60000;
-        // Set localStorage
-        storage.setItem("access.doubleshy0n", response.data.access);
-        storage.setItem("refresh.doubleshy0n", response.data.refresh);
-        storage.setItem("expiredTime.doubleshy0n", expiredTime);
-        storage.setItem("email.doubleshy0n", email);
-        // Jump to the home page
-        navigate("/", { state: { email } });
-
-        console.log("login success");
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  };
+  let { loginUser } = useContext(AuthContext);
 
   const handleSignupSubmit = (event) => {
     event.preventDefault();
@@ -127,7 +102,7 @@ const Login = () => {
     <div className="login__page">
       <form
         className="login__login-item"
-        onSubmit={isLoggedIn ? handleLoginSubmit : handleSignupSubmit}
+        onSubmit={isLoggedIn ? loginUser : handleSignupSubmit}
       >
         {/* title */}
         <p

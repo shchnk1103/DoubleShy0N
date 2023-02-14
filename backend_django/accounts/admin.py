@@ -12,7 +12,7 @@ class AdminConfig(UserAdmin):
     ordering = ('name',)
 
     fieldsets = (
-        (None, {"fields": ("email", "name", "password")}),
+        (None, {"fields": ("email", "name", "password", "profile_picture")}),
         ("Permissions", {
             "fields": ("is_active", "is_staff", "is_superuser",),
         }),

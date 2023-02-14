@@ -1,3 +1,5 @@
+@use "./utils/color";
+
 .App {
   position: relative;
   width: 100%;
@@ -7,4 +9,11 @@
   align-items: center;
 
   margin: 0 auto;
+  background-color: color.$white;
+}
+
+.dark-mode {
+  .App {
+    background-color: color.$black;
+  }
 }

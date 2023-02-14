@@ -2,7 +2,7 @@ import "./Development.scss";
 
 export const Development = () => {
   return (
-    <div className="development-page">
+    <div className="development-page" id="develop">
       <div className="development-title">
         <span className="development-title-detail">Development</span>
         <div className="development-line"></div>

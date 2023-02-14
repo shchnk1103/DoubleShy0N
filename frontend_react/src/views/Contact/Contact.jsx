@@ -14,7 +14,7 @@ export const Contact = () => {
   ];
 
   return (
-    <div className="contact-page">
+    <div className="contact-page" id="contact">
       <div className="contact-title">
         <span className="contact-title-detail">联系我们</span>
         <div className="contact-line"></div>
@@ -57,14 +57,14 @@ export const Contact = () => {
           <span className="content-title">网站留言</span>
 
           <div className="content-detail">
-            <input type="text" className="content-username-input" />
+            <input type="text" className="content-input" />
             <label htmlFor="username" className="content-label">
               用户名:
             </label>
           </div>
 
           <div className="content-detail">
-            <input type="text" className="content-email-input" />
+            <input type="text" className="content-input" />
             <label htmlFor="email" className="content-label">
               邮箱地址:
             </label>

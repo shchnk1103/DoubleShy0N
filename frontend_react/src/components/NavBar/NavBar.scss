@@ -1,6 +1,8 @@
+@use "../../utils/color";
+
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 16px 0;
   height: 80px;
@@ -11,10 +13,11 @@
   right: 0;
   margin: 0 auto;
 
-  background: rgba(255, 255, 255, 0.8);
+  background: color.$white-8;
   backdrop-filter: blur(2px);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 8px color.$black-1;
   z-index: 999;
+  transition: all 0.15s ease-in-out;
 
   .nav-detail {
     display: flex;
@@ -31,8 +34,8 @@
       align-items: center;
       padding: 1px 13px;
 
-      background: rgba(255, 255, 255, 0.9);
-      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+      background: color.$white-9;
+      box-shadow: 2px 2px 8px color.$black-2;
       border-radius: 8px;
 
       cursor: pointer;
@@ -69,7 +72,7 @@
           font-size: 20px;
           line-height: 30px;
 
-          color: rgba(0, 0, 0, 0.6);
+          color: color.$black-6;
 
           cursor: pointer;
         }
@@ -79,7 +82,7 @@
           font-size: 20px;
           line-height: 30px;
 
-          color: #000000;
+          color: color.$black;
           transition: all 0.3s ease-in-out;
         }
       }
@@ -96,6 +99,54 @@
 
       .selected + .underline {
         transform: translateX(0);
+      }
+    }
+
+    .login-link {
+      text-decoration: none;
+
+      .login-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2px 12px;
+        font-size: 20px;
+        line-height: 30px;
+        color: color.$black-6;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        border-radius: 8px;
+
+        &:hover {
+          color: color.$white-8;
+          background: #7396ff;
+        }
+
+        &:active {
+          color: color.$white-4;
+          background: #6685e3;
+        }
+      }
+    }
+  }
+}
+
+.dark-mode {
+  .navbar {
+    background: color.$black-6;
+    box-shadow: 0 0 8px color.$white-3;
+
+    .nav {
+      .nav-item {
+        .nav-item-detail {
+          color: color.$white-5;
+        }
+
+        .selected {
+          color: color.$white;
+        }
       }
     }
   }

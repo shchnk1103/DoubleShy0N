@@ -5,7 +5,7 @@ import Right from "../../assets/ui-right.jpg";
 
 export const UIUX = () => {
   return (
-    <div className="ui-page">
+    <div className="ui-page" id="UI">
       <div className="ui-title">
         <span className="ui-title-detail">UI / UX 展示</span>
         <div className="ui-line"></div>

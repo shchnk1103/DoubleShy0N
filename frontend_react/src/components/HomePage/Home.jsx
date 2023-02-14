@@ -9,7 +9,7 @@ import "./Home.scss";
 
 export const Home = () => {
   return (
-    <div className="home">
+    <div className="home" id="home">
       <ul className="social-icon-list">
         <li className="social-icon ins">
           <BsInstagram className="social-icon-img" />

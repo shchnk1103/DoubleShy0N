@@ -1,3 +1,5 @@
+@use "../../utils/color";
+
 .contact-page {
   height: 640px;
 
@@ -11,13 +13,11 @@
     position: relative;
 
     .contact-title-detail {
-      font-family: "Poppins";
-      font-style: normal;
       height: 48px;
       font-weight: 700;
       font-size: 32px;
       line-height: 48px;
-      color: rgba(0, 0, 0, 0.6);
+      color: color.$black-6;
     }
 
     .contact-line {
@@ -25,7 +25,7 @@
       bottom: 0;
       height: 5px;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: color.$black-6;
     }
   }
 
@@ -47,22 +47,22 @@
         align-items: center;
         width: 343px;
         height: 140px;
-        background: #ffffff;
-        border: 1px solid rgba(0, 0, 0, 0.25);
-        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+        background: color.$white;
+        border: 1px solid color.$black-2;
+        box-shadow: 4px 4px 4px color.$black-2;
         border-radius: 16px;
 
         .content-icon {
           width: 32px;
           height: 32px;
-          color: rgba(0, 0, 0, 0.6);
+          color: color.$black-6;
         }
 
         .content-header {
           font-weight: 700;
           font-size: 16px;
           line-height: 24px;
-          color: rgba(0, 0, 0, 0.6);
+          color: color.$black-6;
           pointer-events: none;
         }
 
@@ -70,7 +70,7 @@
           font-weight: 700;
           font-size: 16px;
           line-height: 24px;
-          color: rgba(0, 0, 0, 0.4);
+          color: color.$black-4;
           pointer-events: none;
         }
 
@@ -78,7 +78,7 @@
           font-weight: 700;
           font-size: 16px;
           line-height: 24px;
-          color: rgba(0, 0, 0, 0.2);
+          color: color.$black-2;
         }
       }
     }
@@ -89,9 +89,9 @@
       align-items: center;
       width: 402px;
       height: 460px;
-      background: #ffffff;
-      border: 1px solid rgba(0, 0, 0, 0.25);
-      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+      background: color.$white;
+      border: 1px solid color.$black-2;
+      box-shadow: 4px 4px 4px color.$black-2;
       border-radius: 16px;
 
       .content-title {
@@ -100,21 +100,22 @@
         font-weight: 700;
         font-size: 24px;
         line-height: 36px;
-        color: rgba(0, 0, 0, 0.6);
+        color: color.$black-6;
         margin: 24px auto;
       }
 
       .content-detail {
         width: 338px;
         height: 40px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(0, 0, 0, 0.15);
+        background: color.$white-1;
+        border: 1px solid color.$black-1;
         border-radius: 8px;
         position: relative;
         margin-bottom: 32px;
 
-        .content-username-input {
+        .content-input {
           width: 100%;
+          height: 100%;
           background-color: transparent;
         }
 
@@ -128,15 +129,15 @@
           font-weight: 700;
           font-size: 12px;
           line-height: 18px;
-          color: rgba(0, 0, 0, 0.5);
+          color: color.$black-5;
         }
       }
 
       .content-lg {
         width: 338px;
         height: 130px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(0, 0, 0, 0.15);
+        background: color.$white-1;
+        border: 1px solid color.$black-1;
         border-radius: 8px;
 
         .content-label {
@@ -147,8 +148,8 @@
       .content-btn {
         width: 338px;
         height: 40px;
-        background: rgba(0, 0, 0, 0.15);
-        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
+        background: color.$black-1;
+        box-shadow: 2px 4px 8px color.$black-2;
         border-radius: 8px;
         border: none;
         transition: all 0.5s ease-in-out;
@@ -158,19 +159,107 @@
           font-weight: 700;
           font-size: 16px;
           line-height: 24px;
-          color: rgba(0, 0, 0, 0.3);
-          text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+          color: color.$black-3;
+          text-shadow: 2px 2px 8px color.$black-2;
           transition: all 0.5s ease-in-out;
         }
 
         &:hover {
           background: #7396ff;
           color: rgb(255, 255, 255);
-          box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+          box-shadow: 4px 4px 8px color.$black-5;
           scale: 1.05;
 
           span {
-            color: rgba(255, 255, 255, 0.8);
+            color: color.$white-8;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dark-mode {
+  .contact-page {
+    .contact-title {
+      .contact-title-detail {
+        color: color.$white-6;
+      }
+
+      .contact-line {
+        background-color: color.$white-6;
+      }
+    }
+
+    .contact-content {
+      .content-left {
+        .content-detail {
+          background: color.$black;
+          border: 1px solid color.$white-2;
+          box-shadow: 4px 4px 4px color.$white-2;
+
+          .content-icon {
+            color: color.$white-6;
+          }
+
+          .content-header {
+            color: color.$white-6;
+          }
+
+          .content-number {
+            color: color.$white-4;
+          }
+
+          .content-btn {
+            color: color.$white-2;
+          }
+        }
+      }
+
+      .content-right {
+        background: color.$black;
+        border: 1px solid color.$white-2;
+        box-shadow: 4px 4px 4px color.$white-2;
+
+        .content-title {
+          color: color.$white-6;
+        }
+
+        .content-detail {
+          background: color.$black-1;
+          border: 1px solid color.$white-1;
+
+          .content-input {
+            background-color: transparent;
+          }
+
+          .content-label {
+            color: color.$white-5;
+          }
+        }
+
+        .content-lg {
+          background: color.$black-1;
+          border: 1px solid color.$white-1;
+        }
+
+        .content-btn {
+          background: color.$white-1;
+          box-shadow: 2px 4px 8px color.$white-2;
+
+          span {
+            color: color.$white-3;
+            text-shadow: 2px 2px 8px color.$white-2;
+          }
+
+          &:hover {
+            background: #7396ff;
+            color: color.$white;
+            box-shadow: 4px 4px 8px color.$white-5;
+
+            span {
+              color: color.$black-8;
+            }
           }
         }
       }

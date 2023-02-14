@@ -1,3 +1,5 @@
+@use "../../utils/color";
+
 .profile-image {
   position: relative;
   display: flex;
@@ -17,9 +19,9 @@
     position: absolute;
     top: 100%;
     right: 0;
-    background: rgba(255, 255, 255, 0.8);
+    background: color.$white-8;
     backdrop-filter: blur(5px);
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 8px color.$black-1;
     border-radius: 8px;
     z-index: 1;
     opacity: 0;
@@ -32,15 +34,22 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #ffffff;
+      background: color.$white;
+      border: 1px solid color.$black-2;
       border-radius: 8px;
-      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+      box-shadow: 2px 2px 8px color.$black-2;
       cursor: pointer;
 
       font-weight: 400;
       font-size: 16px;
       line-height: 24px;
-      color: rgba(0, 0, 0, 0.6);
+      color: color.$black-6;
+      transition: all 0.25s ease-in-out;
+
+      &:hover {
+        border: 1px solid #7396ff;
+        box-shadow: 2px 2px 8px #7396ff;
+      }
     }
 
     .dropdown-username {
@@ -48,8 +57,9 @@
       background: #7396ff;
       font-size: 20px;
       line-height: 30px;
-      color: #ffffff;
+      color: color.$white;
       pointer-events: none;
+      border: none;
     }
 
     .dropdown-signout {
@@ -59,14 +69,56 @@
       transition: all 0.3s ease-in-out;
 
       &:hover {
+        border: none;
         background: rgba(255, 0, 0, 0.6);
-        color: rgba(255, 255, 255, 0.75);
-        text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.25);
+        color: color.$white-7;
+        text-shadow: 2px 2px 8px color.$black-2;
+        box-shadow: 2px 2px 8px rgba(255, 0, 0, 0.45);
       }
     }
   }
 
   .dropdown-show {
     opacity: 1;
+  }
+}
+
+.dark-mode {
+  .profile-image {
+    .navbar-dropdown {
+      background: color.$black-8;
+      box-shadow: 0 0 8px color.$white-1;
+      border: 1px solid color.$white-2;
+
+      .dropdown-content {
+        background: color.$black;
+        border: 1px solid color.$white-2;
+        box-shadow: 2px 2px 8px color.$white-2;
+        color: color.$white-6;
+
+        &:hover {
+          border: 1px solid #7396ff;
+          box-shadow: 2px 2px 8px #7396ff;
+        }
+      }
+
+      .dropdown-username {
+        background: #7396ff;
+        color: color.$black;
+      }
+
+      .dropdown-signout {
+        border: 1px solid rgba(255, 0, 0, 0.45);
+        color: rgba(255, 0, 0, 0.45);
+        text-shadow: 2px 2px 8px rgba(255, 0, 0, 0.25);
+
+        &:hover {
+          background: rgba(255, 0, 0, 0.6);
+          color: color.$black-7;
+          text-shadow: 2px 2px 8px color.$white-2;
+          box-shadow: 2px 2px 8px rgba(255, 0, 0, 0.45);
+        }
+      }
+    }
   }
 }
