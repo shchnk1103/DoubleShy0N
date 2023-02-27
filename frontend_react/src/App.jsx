@@ -6,18 +6,29 @@ import "./App.scss";
 import { AuthProvider } from "./context/AuthContext";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const getInitialMode = () => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const [darkMode, setDarkMode] = useState(getInitialMode());
 
   useEffect(() => {
+    const htmlElement = document.documentElement;
     if (darkMode) {
-      document.documentElement.classList.add("dark-mode");
+      htmlElement.classList.add("dark-mode");
     } else {
-      document.documentElement.classList.remove("dark-mode");
+      htmlElement.classList.remove("dark-mode");
     }
   }, [darkMode]);
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+    setDarkMode((pre) => {
+      const newMode = !pre;
+      return newMode;
+    });
   };
 
   return (

@@ -2,6 +2,7 @@
 
 .contact-page {
   height: 640px;
+  width: 100%;
 
   .contact-title {
     width: fit-content;
@@ -168,7 +169,7 @@
           background: #7396ff;
           color: rgb(255, 255, 255);
           box-shadow: 4px 4px 8px color.$black-5;
-          scale: 1.05;
+          transform: scale(1.05);
 
           span {
             color: color.$white-8;

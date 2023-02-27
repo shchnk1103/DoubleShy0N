@@ -149,5 +149,176 @@
         }
       }
     }
+
+    .login-link {
+      .login-btn {
+        color: color.$white-6;
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    background: color.$white-8;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 8px color.$black-1;
+    z-index: 999;
+    transition: all 0.15s ease-in-out;
+
+    .nav-detail {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 16px;
+
+      .nav-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1px 13px;
+
+        background: color.$white-9;
+        box-shadow: 2px 2px 8px color.$black-2;
+        border-radius: 8px;
+
+        cursor: pointer;
+
+        .logo-img {
+          width: 36px;
+          height: 36px;
+        }
+
+        .logo-name {
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 36px;
+
+          color: #002b36;
+        }
+      }
+
+      .nav {
+        display: flex;
+        position: relative;
+
+        .nav-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 32px;
+
+          list-style: none;
+          transition: all 0.3s ease-in-out;
+
+          .nav-item-detail {
+            font-weight: 300;
+            font-size: 26px;
+            line-height: 30px;
+
+            color: color.$black-6;
+
+            cursor: pointer;
+          }
+
+          .selected {
+            font-weight: 400;
+            font-size: 26px;
+            line-height: 30px;
+
+            color: color.$black;
+            transition: all 0.3s ease-in-out;
+          }
+        }
+
+        .underline {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background-color: color.$black;
+          transition: transform 0.3s ease-in-out;
+        }
+
+        .selected + .underline {
+          transform: translateX(0);
+        }
+      }
+
+      .login-link {
+        text-decoration: none;
+
+        .login-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 2px 12px;
+          font-size: 18px;
+          line-height: 30px;
+          color: color.$black-6;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
+          border-radius: 8px;
+
+          &:hover {
+            color: color.$white-8;
+            background: #7396ff;
+          }
+
+          &:active {
+            color: color.$white-4;
+            background: #6685e3;
+          }
+        }
+
+        .login-btn-icon {
+          padding: 6px;
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  .dark-mode {
+    .navbar {
+      background: color.$black-6;
+      box-shadow: 0 0 8px color.$white-3;
+
+      .nav {
+        .nav-item {
+          .nav-item-detail {
+            color: color.$white-5;
+          }
+
+          .selected {
+            color: color.$white;
+          }
+        }
+      }
+
+      .login-link {
+        .login-btn {
+          color: color.$white-6;
+        }
+      }
+    }
   }
 }
