@@ -32,15 +32,15 @@ const Articles = () => {
           {articles.map((article, index) => (
             <div
               key={index}
-              className="w-full flex flex-between gap-4 border py-8 px-8 rounded-3xl backdrop-blur-sm shadow-md"
+              className="w-full flex flex-between gap-4 border dark:border-gray-500 py-8 px-8 rounded-3xl backdrop-blur-sm shadow-md dark:shadow-gray-600/95"
             >
-              <div className="flex-start w-full gap-8">
+              <div className="flex-start justify-center items-center w-full gap-8">
                 <Image
                   src={article.image}
                   alt="article_img"
                   width={200}
                   height={200}
-                  className="rounded-xl object-cover w-[200px] h-[100px] shadow-md hidden md:block"
+                  className="rounded-xl object-cover w-[200px] min-h-[100px] h-full shadow-md dark:shadow-gray-600/95 hidden md:block"
                 />
 
                 <div className="flex-start gap-2 flex-col w-full">
@@ -63,7 +63,7 @@ const Articles = () => {
               </div>
 
               <BsArrowRightCircle
-                className="h-8 w-8 text-gray-300 hover:text-gray-500 cursor-pointer transition-colors"
+                className="h-8 w-8 text-gray-300 hover:text-gray-500 cursor-pointer transition-colors dark:text-gray-500 dark:hover:text-gray-400"
                 onClick={() => {
                   router.push(`articles/${article._id}`);
                 }}

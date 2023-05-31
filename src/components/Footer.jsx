@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <div className="w-full my-12 flex flex-col">
-      <div className="h-[1px] w-full bg-slate-200"></div>
+      <div className="h-[1px] w-full bg-slate-200 dark:bg-gray-500"></div>
 
       <div className="mt-4 flex-between relative">
         <span className="text-slate-600 font-light">
@@ -14,7 +14,7 @@ const Footer = () => {
           by DoubleShy0N
         </span>
 
-        <div className="md:flex md:flex-row text-gray-200 hidden">0.0</div>
+        <div className="md:flex md:flex-row hidden dark:text-gray-500">0.0</div>
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
-import Provider from "@/components/Provider";
 import "@/styles/globals.css";
+import Provider from "@/components/Provider";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar/NavBar";
+import TheThemeProvider from "@/components/ThemeProvider";
 
 export const metadata = {
   title: "DoubleShy0N",
@@ -13,17 +14,19 @@ const RootLayout = ({ children }) => {
     <html lang="en">
       <Provider>
         <body>
-          <div className="main">
-            <div className="gradient" />
-          </div>
+          <TheThemeProvider>
+            <div className="main">
+              <div className="gradient" />
+            </div>
 
-          <main className="app font-poppins">
-            <NavBar />
+            <main className="app font-poppins">
+              <NavBar />
 
-            {children}
+              {children}
 
-            <Footer />
-          </main>
+              <Footer />
+            </main>
+          </TheThemeProvider>
         </body>
       </Provider>
     </html>

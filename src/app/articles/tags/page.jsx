@@ -37,9 +37,9 @@ const TagsManagement = () => {
 
       <p className="desc text-left max-w-md">Manage your tags here.</p>
 
-      <div className="w-full h-full mt-8 glassmorphism">
+      <div className="w-full h-full mt-8 glassmorphism dark:bg-gray-500/20 dark:border-gray-500 dark:shadow-gray-600/95">
         <div className="flex gap-2 flex-col">
-          <span className="font-semibold text-base text-gray-700">
+          <span className="font-semibold text-base text-gray-700 dark:text-gray-300">
             Add Tags
           </span>
 
@@ -51,21 +51,21 @@ const TagsManagement = () => {
               onChange={(event) => {
                 setTag(event.target.value);
               }}
-              className="flex-center rounded-lg p-3 text-sm text-gray-500 outline-0 w-full md:w-1/3 h-full shadow-sm"
+              className="flex-center rounded-lg p-3 text-sm text-gray-500 outline-0 w-full md:w-1/3 h-full shadow-sm dark:bg-black/20"
             />
 
             <button
               type="submit"
-              className="bg-blue-600 text-white px-8 py-2 rounded-xl h-[45px] font-semibold text-lg flex-center hover:text-gray-200 hover:bg-blue-700 transition-colors"
+              className="bg-blue-600 text-white px-8 py-2 rounded-lg h-[45px] font-semibold text-lg flex-center hover:text-gray-200 hover:bg-blue-700 transition-colors dark:bg-blue-800 dark:text-gray-300 dark:hover:bg-blue-900 dark:hover:text-gray-400"
             >
               submit
             </button>
           </label>
         </div>
 
-        <hr className="border-gray-300 w-full my-6" />
+        <hr className="border-gray-300 w-full my-6 dark:border-gray-500" />
 
-        <span className="font-semibold text-base text-gray-700">
+        <span className="font-semibold text-base text-gray-700 dark:text-gray-300">
           Already have tags
         </span>
 

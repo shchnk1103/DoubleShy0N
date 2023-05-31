@@ -27,28 +27,32 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 
       <form
         onSubmit={handleSubmit}
-        className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
+        className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism dark:bg-gray-500/20 dark:border-gray-500 dark:shadow-gray-600/95 z-0"
       >
         <label>
-          <span className="font-semibold text-base text-gray-700">Title:</span>
+          <span className="font-semibold text-base text-gray-700 dark:text-gray-300">
+            Title:
+          </span>
 
           <input
             value={post.title}
             onChange={(e) => setPost({ ...post, title: e.target.value })}
             placeholder="write your title here..."
             required
-            className="form_input"
+            className="form_input dark:bg-black/20"
           />
         </label>
 
-        <label>
-          <span className="font-semibold text-base text-gray-700">Tag:</span>
+        <label className="flex flex-col gap-3">
+          <span className="font-semibold text-base text-gray-700 dark:text-gray-300">
+            Tag:
+          </span>
 
           <SelectTag post={post} setPost={setPost} />
         </label>
 
         <label>
-          <span className="font-semibold text-base text-gray-700">
+          <span className="font-semibold text-base text-gray-700 dark:text-gray-300">
             Content:
           </span>
 
@@ -57,12 +61,14 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             onChange={(e) => setPost({ ...post, content: e.target.value })}
             placeholder="write your content here..."
             required
-            className="form_textarea"
+            className="form_textarea dark:bg-black/20"
           />
         </label>
 
         <label>
-          <span className="font-semibold text-base text-gray-700">Image:</span>
+          <span className="font-semibold text-base text-gray-700 dark:text-gray-300">
+            Image:
+          </span>
 
           <UploadImage convertToBase64={convertToBase64} post={post} />
         </label>

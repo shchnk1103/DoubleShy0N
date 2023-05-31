@@ -53,7 +53,7 @@ const ArticleDetail = ({ params }) => {
             alt="article_detail_img"
             width={200}
             height={200}
-            className="w-full max-w-[80%] max-h-[500px] my-8 shadow-xl border rounded-2xl object-cover"
+            className="w-full max-w-[80%] max-h-[500px] my-8 shadow-xl dark:shadow-gray-600/95 border dark:border-gray-500 rounded-2xl object-cover"
           />
 
           <span className="blue_gradient font-bold text-5xl">

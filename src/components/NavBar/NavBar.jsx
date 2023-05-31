@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Avatar from "./Avatar";
+import DarkModeButton from "./DarkModeButton";
 
 const tabs = [
   { index: 0, name: "Home", link: "/" },
@@ -30,8 +31,8 @@ const NavBar = () => {
       <motion.div
         initial={{ opacity: "0%", rotate: "0deg" }}
         animate={{ opacity: "100%", rotate: "360deg" }}
-        transition={{ duration: 1 }}
-        whileHover={{ scale: 1.1 }}
+        transition={{ duration: 0.25 }}
+        whileHover={{ scale: 1.1, rotate: "180deg" }}
       >
         <Image
           alt="logo"
@@ -44,7 +45,7 @@ const NavBar = () => {
       </motion.div>
 
       {/* items */}
-      <div className="flex flex-row px-6 py-0 absolute left-1/2 -translate-x-1/2 w-fit h-10 border rounded-full bg-gray-50 shadow-md">
+      <div className="flex flex-row px-6 py-0 absolute left-1/2 -translate-x-1/2 w-fit h-10 border dark:border-gray-500 rounded-full bg-gray-50 dark:bg-gray-800 shadow-md dark:shadow-gray-600/95 dark:text-gray-500">
         {tabs.map((tab) => (
           <Link
             key={tab.index}
@@ -67,7 +68,11 @@ const NavBar = () => {
         ))}
       </div>
 
-      <Avatar />
+      <div className="flex-center gap-2">
+        <Avatar />
+
+        <DarkModeButton />
+      </div>
     </motion.nav>
   );
 };

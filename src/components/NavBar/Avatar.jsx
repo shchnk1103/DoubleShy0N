@@ -10,13 +10,13 @@ const AvatarImg = ({ session }) => {
     <motion.div
       whileHover={{ scale: 1.04 }}
       whileTap={{ scale: 0.96 }}
-      className="shadow-sm"
+      className="shadow-md dark:shadow-gray-600/95 border rounded-full w-10 h-10 flex-center dark:border-gray-400"
     >
       <Image
         src={session?.user.image}
         width={36}
         height={36}
-        className="rounded-full shadow-md"
+        className="rounded-full w-full h-full"
         alt="profile"
       />
     </motion.div>

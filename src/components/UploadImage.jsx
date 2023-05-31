@@ -30,7 +30,7 @@ const UploadImage = ({ convertToBase64, post }) => {
           key="image"
           src={post.image}
           alt="article-img"
-          className="flex-center w-full h-full rounded-xl shadow-md border mt-4 object-cover"
+          className="flex-center w-full h-full rounded-xl shadow-md dark:shadow-gray-600/95 border dark:border-gray-500 mt-4 object-cover"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
         />
@@ -42,7 +42,7 @@ const UploadImage = ({ convertToBase64, post }) => {
             setIsClicked(true);
             clickInput();
           }}
-          className="flex-center w-full min-h-[250px] rounded-xl shadow-sm mt-4 bg-white"
+          className="flex-center w-full min-h-[250px] rounded-xl shadow-sm mt-4 bg-white dark:bg-black/20"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

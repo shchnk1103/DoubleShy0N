@@ -34,7 +34,7 @@ const ArticleCard = ({
         />
 
         <div className="z-10 flex w-full flex-col gap-2">
-          <h2 className="font-semibold text-base md:text-xl inline-block text-zinc-50">
+          <h2 className="font-semibold text-base md:text-xl inline-block text-zinc-50 dark:text-zinc-300">
             {article.title}
           </h2>
 
