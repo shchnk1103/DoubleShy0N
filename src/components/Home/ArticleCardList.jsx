@@ -38,7 +38,7 @@ const ArticleCardList = () => {
       className="flex flex-col gap-4 h-full w-full"
       variants={staggerContainer}
       initial="hidden"
-      whileInView="show"
+      animate="show"
       viewport={{ once: false, amount: 0.25 }}
     >
       <span className="font-semibold text-xl blue_gradient">
@@ -47,7 +47,7 @@ const ArticleCardList = () => {
 
       {allArticles.length !== 0 ? (
         <div className="flex flex-col gap-2 w-full h-full">
-          {allArticles.map((article, index) => (
+          {Array.from(allArticles).map((article, index) => (
             <ArticleCard
               key={article._id}
               article={{
@@ -67,7 +67,7 @@ const ArticleCardList = () => {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col gap-2 w-[90%] h-full border rounded-3xl p-8 shadow-sm font-semibold text-lg backdrop-blur-md">
+        <div className="flex flex-col gap-2 w-[90%] h-full border rounded-3xl p-8 shadow-sm font-semibold text-lg backdrop-blur-md dark:text-zinc-300 dark:border-gray-500">
           <span>There are no articles at the moment,</span>
           <span>Please give me some time.</span>
         </div>

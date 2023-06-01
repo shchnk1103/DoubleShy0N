@@ -2,6 +2,7 @@
 
 import { quoteVariants, singleWordVariants } from "@/utils/motion";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Tags = () => {
@@ -25,13 +26,13 @@ const Tags = () => {
       animate="show"
       viewport={{ once: false, amount: 0.25 }}
     >
-      {tags.map((tag, index) => (
+      {Array.from(tags).map((tag, index) => (
         <motion.span
           key={tag._id + index}
           variants={singleWordVariants}
           className={`border px-3 py-1 rounded-full hover:bg-blue-600 hover:text-slate-100 transition-colors cursor-pointer inline-block capitalize mr-2 mb-2 bg-transparent text-slate-400 dark:shadow-gray-600/95 dark:border-gray-500 dark:hover:text-slate-300 dark:hover:border-gray-600`}
         >
-          {tag.name}
+          <Link href={`/articles/tags/${tag.name}`}>{tag.name}</Link>
         </motion.span>
       ))}
     </motion.div>

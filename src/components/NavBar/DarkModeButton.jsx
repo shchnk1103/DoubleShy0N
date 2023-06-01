@@ -17,16 +17,20 @@ const DarkModeButton = () => {
           }
         >
           {currentTheme === "light" ? (
-            <BiSun className="w-5 h-5" />
+            <div>
+              <BiSun className="w-5 h-5" />
+            </div>
           ) : (
-            <BiMoon className="w-5 h-5" />
+            <div>
+              <BiMoon className="w-5 h-5" />
+            </div>
           )}
         </button>
       </HoverCard.Trigger>
 
       <HoverCard.Portal>
         <HoverCard.Content sideOffset={10}>
-          <span className="px-2 py-1 rounded-lg dark:bg-gray-900/80 backdrop-blur-sm border dark:border-gray-500 shadow-sm dark:text-gray-400">
+          <span className="z-50 px-2 py-1 rounded-lg dark:bg-gray-900/80 backdrop-blur-sm border dark:border-gray-500 shadow-sm dark:text-gray-400">
             {currentTheme === "light" ? "Light Mode" : "Dark Mode"}
           </span>
         </HoverCard.Content>

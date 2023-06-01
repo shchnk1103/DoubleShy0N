@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import AnimatedText from "../AnimatedText";
 import HomeImage from "./HomeImage";
 
@@ -9,7 +12,20 @@ const HomeComponent = () => {
       </div>
 
       <div className="flex justify-start items-start flex-col w-full md:w-1/2">
-        <AnimatedText text={"Welcome to my site!"} className="!text-left" />
+        <motion.span
+          initial={{ opacity: 0, offsetY: 20 }}
+          animate={{
+            opacity: 1,
+            offsetY: 0,
+            transition: {
+              type: "tween",
+              ease: "easeIn",
+            },
+          }}
+          className="w-full h-auto mx-auto flex-center flex-col overflow-hidden pointer-events-none blue_gradient inline-block font-semibold text-5xl mt-8 capitalize text-left"
+        >
+          Welcome to my site!
+        </motion.span>
 
         <span className="text-base text-left my-8 overflow-hidden pointer-events-none">
           My name is{" "}
