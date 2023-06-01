@@ -1,7 +1,6 @@
 import * as HoverCard from "@radix-ui/react-hover-card";
 import { useTheme } from "next-themes";
-
-import { BiSun, BiMoon } from "react-icons/bi";
+import ThemedImage from "./ThemedImage";
 
 const DarkModeButton = () => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -16,15 +15,7 @@ const DarkModeButton = () => {
             theme == "dark" ? setTheme("light") : setTheme("dark")
           }
         >
-          {currentTheme === "light" ? (
-            <div>
-              <BiSun className="w-5 h-5" />
-            </div>
-          ) : (
-            <div>
-              <BiMoon className="w-5 h-5" />
-            </div>
-          )}
+          <ThemedImage />
         </button>
       </HoverCard.Trigger>
 

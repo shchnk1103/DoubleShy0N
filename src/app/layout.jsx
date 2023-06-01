@@ -13,9 +13,9 @@ export const metadata = {
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
-      <Provider>
-        <body>
-          <TheThemeProvider>
+      <body>
+        <TheThemeProvider>
+          <Provider>
             <div className="main">
               <div className="gradient" />
             </div>
@@ -29,9 +29,9 @@ const RootLayout = ({ children }) => {
 
               <Analytics />
             </main>
-          </TheThemeProvider>
-        </body>
-      </Provider>
+          </Provider>
+        </TheThemeProvider>
+      </body>
     </html>
   );
 };

@@ -5,7 +5,7 @@ export const GET = async (request, { params }) => {
   try {
     await connectToDatabase();
 
-    const articles = await Test.find({ tags: params.id });
+    const articles = await Test.find({ tag: params.id });
 
     return new Response(JSON.stringify(articles), { status: 200 });
   } catch (error) {

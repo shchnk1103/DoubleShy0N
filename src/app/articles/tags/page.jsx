@@ -1,26 +1,22 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Tags from "@/components/Tags";
 
 const TagsManagement = () => {
-  const router = useRouter();
   const [tag, setTag] = useState("");
 
-  const createTag = async (event) => {
-    event.preventDefault();
-
+  const createTag = async () => {
     try {
-      const response = await fetch("api/tags/create", {
+      const response = await fetch("/api/tags/create", {
         method: "POST",
         body: JSON.stringify({
           name: tag,
         }),
       });
 
-      if (response.ok) {
-        router.refresh();
+      if (response.status === 201) {
+        location.reload();
       } else {
         alert("Error adding tags!");
       }
@@ -55,8 +51,8 @@ const TagsManagement = () => {
             />
 
             <button
-              type="submit"
               className="bg-blue-600 text-white px-8 py-2 rounded-lg h-[45px] font-semibold text-lg flex-center hover:text-gray-200 hover:bg-blue-700 transition-colors dark:bg-blue-800 dark:text-gray-300 dark:hover:bg-blue-900 dark:hover:text-gray-400"
+              onClick={createTag}
             >
               submit
             </button>
