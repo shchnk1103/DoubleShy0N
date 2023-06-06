@@ -5,7 +5,7 @@ const Dialog = ({ handleSubmit, data }) => {
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger asChild>
-        <button className="p-1 hover:text-red-600 hover:bg-slate-200 hover:shadow-md hover:rounded-full transition-all">
+        <button className="p-1 text-zinc-400 hover:text-red-600 hover:bg-slate-200 hover:shadow-md hover:rounded-full transition-all">
           <AiFillDelete />
         </button>
       </AlertDialog.Trigger>

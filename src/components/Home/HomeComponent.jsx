@@ -1,15 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import AnimatedText from "../AnimatedText";
 import HomeImage from "./HomeImage";
+import { FiGithub, FiTwitter, FiInstagram } from "react-icons/fi";
+import { SiBilibili } from "react-icons/si";
+import Link from "next/link";
 
 const HomeComponent = () => {
   return (
     <div className="flex-between w-full h-full min-h-screen">
-      <div className="w-1/2 hidden md:flex">
-        <HomeImage />
-      </div>
+      <HomeImage />
 
       <div className="flex justify-start items-start flex-col w-full md:w-1/2">
         <motion.span
@@ -35,12 +35,30 @@ const HomeComponent = () => {
           mistakes, please contact me. Thank you!
         </span>
 
-        <a
-          href="mailto:doubleshy0n@qq.com"
-          className="capitalize bg_blue_gradient text-slate-100 text-xl px-8 py-3 rounded-xl mt-8 shadow-md hover:shadow-xl hover:scale-105 transition active:scale-95"
-        >
-          Contact
-        </a>
+        <div className="flex justify-start items-center flex-row mt-4 gap-4">
+          <a
+            href="mailto:doubleshy0n@qq.com"
+            className="capitalize bg_blue_gradient text-slate-100 text-xl px-8 py-3 rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition active:scale-95"
+          >
+            Contact
+          </a>
+
+          <Link href="https://github.com/shchnk1103">
+            <FiGithub className="hover:scale-105 transition-transform" />
+          </Link>
+
+          <Link href="https://twitter.com/n_shy0">
+            <FiTwitter className="hover:scale-105 transition-transform" />
+          </Link>
+
+          <Link href="https://www.instagram.com/doubleshy0n/">
+            <FiInstagram className="hover:scale-105 transition-transform" />
+          </Link>
+
+          <Link href="https://space.bilibili.com/22571087?spm_id_from=333.1007.0.0">
+            <SiBilibili />
+          </Link>
+        </div>
       </div>
     </div>
   );

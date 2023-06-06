@@ -3,6 +3,7 @@
 .idea
 .vscode
 .env
+.contentlayer
 
 # dependencies
 /node_modules

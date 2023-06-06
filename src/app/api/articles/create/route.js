@@ -2,14 +2,26 @@ import Test from "@/models/articles";
 import { connectToDatabase } from "@/utils/database";
 
 export const POST = async (req, res) => {
-  const { userId, title, tag, date, content, count, image } = await req.json();
+  const {
+    userId,
+    author,
+    title,
+    description,
+    tag,
+    date,
+    content,
+    count,
+    image,
+  } = await req.json();
 
   try {
     await connectToDatabase();
 
     const newArticle = new Test({
       creator: userId,
+      author,
       title,
+      description,
       tag,
       date,
       content,

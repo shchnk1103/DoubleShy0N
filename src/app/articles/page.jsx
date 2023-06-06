@@ -23,7 +23,7 @@ const Articles = () => {
       {articles.length !== 0 ? (
         <div className="flex-start flex-col w-full my-8 min-h-[400px]">
           {articles.map((article, index) => (
-            <div key={index}>
+            <div key={index} className="w-full">
               <Card article={article} />
             </div>
           ))}

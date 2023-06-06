@@ -5,10 +5,18 @@ const articleSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  author: {
+    type: String,
+    required: [true, "Author is required"],
+  },
   title: {
     type: String,
     required: [true, "Title is required"],
     unique: true,
+  },
+  description: {
+    type: String,
+    required: [true, "Description is required"],
   },
   tag: {
     type: String,

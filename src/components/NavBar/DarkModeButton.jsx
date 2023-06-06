@@ -8,8 +8,9 @@ const DarkModeButton = () => {
 
   return (
     <HoverCard.Root>
-      <HoverCard.Trigger>
+      <HoverCard.Trigger className="flex" href="#">
         <button
+          type="button"
           className="bg-gray-50 dark:bg-gray-800 shadow-md dark:shadow-gray-600/95 border dark:border-gray-500 h-10 w-10 rounded-full flex-center transition-colors dark:hover:border-gray-400"
           onClick={() =>
             theme == "dark" ? setTheme("light") : setTheme("dark")
