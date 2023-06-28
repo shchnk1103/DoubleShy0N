@@ -1,4 +1,10 @@
-export const fadeIn = (direction, type, delay, duration) => ({
+import { Variants } from "framer-motion";
+
+type commonType = {
+  [key: string]: string;
+};
+
+export const fadeIn = (direction: string, type, delay, duration) => ({
   hidden: {
     x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
     y: direction === "up" ? 100 : direction === "down" ? -100 : 0,
@@ -17,15 +23,15 @@ export const fadeIn = (direction, type, delay, duration) => ({
   },
 });
 
-export const staggerContainer = (staggerChildren, delayChildren) => ({
+export const staggerContainer: Variants = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren,
-      delayChildren,
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
     },
   },
-});
+};
 
 export const navStaggerContainer = (staggerChildren, delayChildren) => ({
   hidden: {

@@ -1,9 +1,11 @@
 import User from "@/models/user";
 import { connectToDatabase } from "@/utils/database";
+import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
 const handler = NextAuth({
+  // Configure one or more authentication providers
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -14,9 +16,13 @@ const handler = NextAuth({
     async session({ session }) {
       const sessionUser = await User.findOne({ email: session.user.email });
 
-      session.user.id = sessionUser._id.toString();
-
-      return session;
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: sessionUser._id.toString(),
+        },
+      };
     },
     async signIn({ profile }) {
       try {
@@ -30,7 +36,7 @@ const handler = NextAuth({
           await User.create({
             email: profile.email,
             username: profile.name.replace(" ", "").toLowerCase(),
-            image: profile.picture,
+            image: profile.image,
           });
         }
 

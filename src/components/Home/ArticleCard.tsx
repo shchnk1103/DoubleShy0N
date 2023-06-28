@@ -1,18 +1,34 @@
 import "@/styles/article.css";
-import { fadeIn } from "@/utils/motion";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Date from "../Article/Date";
 import Tag from "../Article/Tag";
 import Count from "../Article/Count";
+import { fadeIn } from "@/utils/motion";
+import { FC } from "react";
 
-const ArticleCard = ({
+type ArticleCardProps = {
+  article: article;
+  index: number;
+  active: string;
+  handleHover: (id: string) => void;
+};
+
+type article = {
+  id: string;
+  userId: string;
+  title: string;
+  date: Date;
+  tag: string;
+  count: number;
+  image: string;
+};
+
+const ArticleCard: FC<ArticleCardProps> = ({
   article,
   index,
   active,
-  handleClick,
   handleHover,
-  handleDelete,
 }) => {
   return (
     <>
@@ -21,7 +37,6 @@ const ArticleCard = ({
         className={`article_card_bg ${
           active === article.id ? "flex-[10] min-h-[200px]" : "flex-[1]"
         } transition-[flex] w-full md:w-[90%]`}
-        onClick={handleClick}
         onMouseEnter={() => handleHover(article.id)}
       >
         <Image

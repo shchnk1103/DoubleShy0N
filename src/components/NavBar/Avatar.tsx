@@ -5,6 +5,12 @@ import Link from "next/link";
 import { getProviders, signIn, signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
+type Provider = {
+  id: string;
+  name: string;
+  type: string;
+};
+
 const AvatarImg = ({ session }) => {
   return (
     <motion.div
@@ -26,14 +32,18 @@ const AvatarImg = ({ session }) => {
 const Avatar = () => {
   const { data: session } = useSession();
 
-  const [providers, setProviders] = useState(null);
+  const [providers, setProviders] = useState([]);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
 
   useEffect(() => {
     const setUpProviders = async () => {
       const response = await getProviders();
 
-      setProviders(response);
+      setProviders(response as any);
     };
 
     setUpProviders();
@@ -87,7 +97,7 @@ const Avatar = () => {
                       <DropdownMenu.Item>
                         <button
                           type="button"
-                          onClick={signOut}
+                          onClick={handleSignOut}
                           className="rounded-md w-full text-red-400 hover:text-red-700 transition-colors font-semibold"
                         >
                           SignOut

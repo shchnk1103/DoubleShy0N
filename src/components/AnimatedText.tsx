@@ -1,10 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { FC } from "react";
 import { motion } from "framer-motion";
 import { quoteVariants, singleWordVariants } from "@/utils/motion";
 
-const AnimatedText = ({ text, className = "" }) => {
+type AnimatedTextProps = {
+  text: string;
+  className?: string;
+};
+
+const AnimatedText: FC<AnimatedTextProps> = ({ text, className = "" }) => {
   return (
     <div className="w-full h-auto mx-auto flex-center text-center flex-col overflow-hidden pointer-events-none">
       <motion.h1

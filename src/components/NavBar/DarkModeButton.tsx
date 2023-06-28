@@ -1,10 +1,19 @@
 import * as HoverCard from "@radix-ui/react-hover-card";
 import { useTheme } from "next-themes";
 import ThemedImage from "./ThemedImage";
+import { FC } from "react";
 
-const DarkModeButton = () => {
+const DarkModeButton: FC = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
+
+  const handleThemeToggle = () => {
+    if (theme === "dark") {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
+  };
 
   return (
     <HoverCard.Root>
@@ -12,9 +21,7 @@ const DarkModeButton = () => {
         <button
           type="button"
           className="bg-gray-50 dark:bg-gray-800 shadow-md dark:shadow-gray-600/95 border dark:border-gray-500 h-10 w-10 rounded-full flex-center transition-colors dark:hover:border-gray-400"
-          onClick={() =>
-            theme == "dark" ? setTheme("light") : setTheme("dark")
-          }
+          onClick={handleThemeToggle}
         >
           <ThemedImage />
         </button>

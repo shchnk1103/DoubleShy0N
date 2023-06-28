@@ -1,5 +1,3 @@
-const { withContentlayer } = require("next-contentlayer");
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
@@ -8,12 +6,15 @@ const nextConfig = {
   },
   images: {
     domains: ["lh3.googleusercontent.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        port: "",
+      },
+    ],
   },
   webpack(config) {
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      fs: false,
-    };
     config.experiments = {
       ...config.experiments,
       topLevelAwait: true,
@@ -24,4 +25,4 @@ const nextConfig = {
   swcMinify: true,
 };
 
-module.exports = withContentlayer(nextConfig);
+module.exports = nextConfig;

@@ -3,21 +3,16 @@
 import "@/styles/navbar.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { motion } from "framer-motion";
 import Avatar from "./Avatar";
 import DarkModeButton from "./DarkModeButton";
+import { tabs } from "./Tabs";
 
-const tabs = [
-  { index: 0, name: "Home", link: "/" },
-  { index: 1, name: "Articles", link: "/articles" },
-  { index: 2, name: "About", link: "/user" },
-];
+const NavBar: FC = () => {
+  const [activeItem, setActiveItem] = useState<string>("Home");
 
-const NavBar = () => {
-  const [activeItem, setActiveItem] = useState("Home");
-
-  const clickItem = (item, index) => {
+  const clickItem = (item: string, index: number) => {
     setActiveItem(item);
   };
 

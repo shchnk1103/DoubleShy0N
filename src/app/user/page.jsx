@@ -1,52 +1,22 @@
 import AnimatedText from "@/components/AnimatedText";
 import Link from "next/link";
-import { compareDesc, format, parseISO } from "date-fns";
-import { allPosts } from "contentlayer/generated";
+import { getArticles } from "../../../sanity/utils";
 
-const PostCard = (post) => {
-  return (
-    <div className="mb-8">
-      <h2 className="mb-1 text-xl">
-        <Link
-          href={post.url}
-          className="text-blue-700 hover:text-blue-900 dark:text-blue-400"
-        >
-          {post.title}
-        </Link>
-      </h2>
-      <time dateTime={post.date} className="mb-2 block text-xs text-gray-600">
-        {format(parseISO(post.date), "LLLL d, yyyy")}
-      </time>
-      <div
-        className="text-sm [&>*]:mb-3 [&>*:last-child]:mb-0"
-        dangerouslySetInnerHTML={{ __html: post.body.html }}
-      />
-    </div>
-  );
-};
-
-const User = () => {
-  const posts = allPosts.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date))
-  );
+const User = async () => {
+  const projects = await getArticles();
 
   return (
     <div className="min-h-[400px] flex-center">
-      {posts ? (
-        <div className="mx-auto max-w-xl py-8">
-          <h1 className="mb-8 text-center text-2xl font-black">
-            Next.js + Contentlayer Example
-          </h1>
-          {posts.map((post, idx) => (
-            <PostCard key={idx} {...post} />
-          ))}
-        </div>
-      ) : (
-        <AnimatedText
-          text={"Give me some time..."}
-          className="md:text-5xl !text-4xl"
-        />
-      )}
+      <AnimatedText
+        text={"Give me some time..."}
+        className="md:text-5xl !text-4xl"
+      />
+
+      {projects.map((project) => (
+        <Link href={`/user/${project.slug}`}>
+          <div key={project._id}>{project.title}</div>
+        </Link>
+      ))}
     </div>
   );
 };

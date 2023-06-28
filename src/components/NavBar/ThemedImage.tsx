@@ -3,12 +3,12 @@
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { BiSun, BiMoon } from "react-icons/bi";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
-const ThemedImage = () => {
-  const [mounted, setMounted] = useState(false);
+const ThemedImage: FC = () => {
+  const [mounted, setMounted] = useState<boolean>(false);
   const { resolvedTheme } = useTheme();
-  let src;
+  let src: string;
 
   useEffect(() => setMounted(true), []);
 

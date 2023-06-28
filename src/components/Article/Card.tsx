@@ -5,6 +5,12 @@ import Tag from "@/components/Article/Tag";
 import Image from "next/image";
 import { BsArrowRightCircle } from "react-icons/bs";
 import { useRouter } from "next/navigation";
+import { Article } from "../../../types/Article";
+
+type CardProps = {
+  article: Article;
+  cardType: string;
+};
 
 const Card = ({ article, cardType }) => {
   const router = useRouter();
