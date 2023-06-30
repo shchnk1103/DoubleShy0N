@@ -1,5 +1,3 @@
-import { PortableTextBlock } from "sanity";
-
 export type Article = {
   _id: string;
   title: string;

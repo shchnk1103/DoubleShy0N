@@ -1,9 +1,10 @@
+"use client";
+
 import * as HoverCard from "@radix-ui/react-hover-card";
 import { useTheme } from "next-themes";
 import ThemedImage from "./ThemedImage";
-import { FC } from "react";
 
-const DarkModeButton: FC = () => {
+const DarkModeButton = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
 

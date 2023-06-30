@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ArticleCard from "./ArticleCard";
 import { staggerContainer } from "@/utils/motion";
@@ -8,12 +8,10 @@ import Link from "next/link";
 import { getArticles } from "../../../sanity/utils";
 import { Article } from "../../../types/Article";
 
-const ArticleCardList: FC = () => {
+const ArticleCardList = () => {
   const [articles, setArticles] = useState<Article[]>([]);
-  const [active, setActive] = useState<string>("0");
 
   const handleClick = (id: string) => {
-    setActive(id);
     console.log(id);
   };
 
@@ -22,8 +20,6 @@ const ArticleCardList: FC = () => {
       const data = await getArticles();
 
       setArticles(data);
-
-      setActive(data[0]?._id);
     };
 
     fetchArticles();
@@ -44,23 +40,21 @@ const ArticleCardList: FC = () => {
       {articles.length !== 0 ? (
         <div className="flex flex-col gap-2 w-full h-full">
           {Array.from(articles).map((article, index) => (
-            <Link href={`/articles/${article.slug}`} key={article._id}>
-              <ArticleCard
-                key={article._id}
-                article={{
-                  id: article._id,
-                  userId: article.author.name,
-                  title: article.title,
-                  date: article._createdAt,
-                  tag: article.categories.title,
-                  count: article.count,
-                  image: article.mainImage,
-                }}
-                index={index}
-                active={active}
-                handleHover={() => setActive(article._id)}
-              />
-            </Link>
+            <ArticleCard
+              key={article._id}
+              article={{
+                id: article._id,
+                name: article.author.name,
+                slug: article.slug,
+                title: article.title,
+                date: article._createdAt,
+                tag: article.categories.title,
+                count: article.count,
+                image: article.mainImage,
+              }}
+              index={index}
+              handleHover={() => {}}
+            />
           ))}
         </div>
       ) : (

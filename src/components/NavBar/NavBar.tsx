@@ -1,74 +1,83 @@
 "use client";
 
 import "@/styles/navbar.css";
-import Image from "next/image";
-import Link from "next/link";
-import { FC, useState } from "react";
-import { motion } from "framer-motion";
+import { tabs } from "./Tabs";
 import Avatar from "./Avatar";
 import DarkModeButton from "./DarkModeButton";
-import { tabs } from "./Tabs";
+import NavItem from "./NavItem";
+import Icon from "./Icon";
+import { CSSProperties, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+import { clamp, removeProperty, setProperty } from "@/utils/functions";
 
-const NavBar: FC = () => {
-  const [activeItem, setActiveItem] = useState<string>("Home");
+const NavBar = () => {
+  const isHomePage = usePathname() === "/";
 
-  const clickItem = (item: string, index: number) => {
-    setActiveItem(item);
-  };
+  const navRef = useRef<HTMLDivElement>(null);
+  const isInitial = useRef(true);
+
+  useEffect(() => {
+    const updateHeaderStyles = () => {
+      if (!navRef.current) return;
+
+      const { top } = navRef.current.getBoundingClientRect();
+
+      const scrollY = clamp(
+        window.scrollY,
+        0,
+        document.body.scrollHeight - window.innerHeight
+      );
+
+      if (isInitial.current) {
+        setProperty("--header-position", "sticky");
+      }
+
+      if (top === 0 && scrollY > 0 && scrollY >= 200) {
+        removeProperty("--header-position");
+      }
+    };
+
+    const updateStyles = () => {
+      updateHeaderStyles();
+      isInitial.current = false;
+    };
+
+    updateStyles();
+    window.addEventListener("scroll", updateStyles, { passive: true });
+    window.addEventListener("resize", updateStyles);
+
+    return () => {
+      window.removeEventListener("scroll", updateStyles);
+      window.removeEventListener("resize", updateStyles);
+    };
+  }, [isHomePage]);
 
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      className="flex-between pt-4 mb-4 w-full mx-auto relative"
+    <nav
+      className="flex-between pt-4 mb-4 w-full mx-auto z-50 h-16 top-0"
+      ref={navRef}
+      style={{
+        position: "var(--header-position)" as CSSProperties["position"],
+      }}
     >
       {/* icon */}
-      <motion.div
-        initial={{ opacity: "0%", rotate: "0deg" }}
-        animate={{ opacity: "100%", rotate: "360deg" }}
-        transition={{ duration: 0.25 }}
-        whileHover={{ scale: 1.1, rotate: "180deg" }}
-      >
-        <Image
-          alt="logo"
-          src="/assets/icons/favicon.ico"
-          width={36}
-          height={36}
-          className="rounded-full shadow-md"
-          priority={true}
-        />
-      </motion.div>
+      <div className="flex-1">
+        <Icon />
+      </div>
 
       {/* items */}
-      <div className="flex flex-row px-6 py-0 absolute left-1/2 -translate-x-1/2 w-fit h-10 border dark:border-gray-500 rounded-full bg-gray-50 dark:bg-gray-800 shadow-md dark:shadow-gray-600/95 dark:text-gray-500">
+      <div className="flex flex-1 flex-row px-6 py-0 w-fit h-10 border dark:border-gray-500 rounded-full bg-gray-50 dark:bg-gray-800 shadow-md dark:shadow-gray-600/95 dark:text-gray-500">
         {tabs.map((tab) => (
-          <Link
-            key={tab.index}
-            href={tab.link}
-            className={
-              activeItem == tab.name
-                ? "relative flex-center flex-col text-blue-600 mx-2 w-full h-full transition-colors"
-                : "relative flex-center flex-col hover:text-blue-600 mx-2 w-full h-full transition-colors"
-            }
-            onClick={() => clickItem(tab.name, tab.index)}
-          >
-            {tab.name}
-            {tab.name === activeItem ? (
-              <motion.div
-                className="h-[1px] w-full absolute bottom-[-1px] bg-gradient-to-r from-blue-600 to-cyan-600"
-                layoutId="underline"
-              />
-            ) : null}
-          </Link>
+          <NavItem tab={tab} key={tab.index} />
         ))}
       </div>
 
-      <div className="flex-center gap-2">
+      <div className="flex-end gap-2 flex-1">
         <Avatar />
 
         <DarkModeButton />
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 

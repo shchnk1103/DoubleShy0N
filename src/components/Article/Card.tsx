@@ -6,13 +6,14 @@ import Image from "next/image";
 import { BsArrowRightCircle } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { Article } from "../../../types/Article";
+import Link from "next/link";
 
 type CardProps = {
   article: Article;
   cardType: string;
 };
 
-const Card = ({ article, cardType }) => {
+const Card = ({ article, cardType }: CardProps) => {
   const router = useRouter();
 
   return (
@@ -21,7 +22,7 @@ const Card = ({ article, cardType }) => {
         <div className="w-full flex flex-between gap-4 border dark:border-gray-500 py-8 px-8 rounded-3xl backdrop-blur-sm shadow-md dark:shadow-gray-600/95">
           <div className="flex-start justify-center items-center w-full gap-8">
             <Image
-              src={article.image}
+              src={article.mainImage}
               alt="article_img"
               width={200}
               height={200}
@@ -34,27 +35,22 @@ const Card = ({ article, cardType }) => {
               </h1>
 
               <div className="flex-start gap-2">
-                {cardType !== "tag" && (
-                  <Author author={article.creator.username} />
-                )}
+                {cardType !== "tag" && <Author author={article.author.name} />}
 
-                <Date date={article.date} />
+                <Date date={article._createdAt} />
 
-                <Tag tag={article.tag} />
+                <Tag tag={article.categories.title} />
 
                 <Count count={article.count} />
               </div>
 
-              <p className="text-gray-500">{article.content}</p>
+              {/* <p className="text-gray-500">{article.content}</p> */}
             </div>
           </div>
 
-          <BsArrowRightCircle
-            className="h-8 w-8 text-gray-300 hover:text-gray-500 cursor-pointer transition-colors dark:text-gray-500 dark:hover:text-gray-400"
-            onClick={() => {
-              router.push(`articles/${article._id}`);
-            }}
-          />
+          <Link href={`/articles/${article.slug}`}>
+            <BsArrowRightCircle className="h-8 w-8 text-gray-300 hover:text-gray-500 cursor-pointer transition-colors dark:text-gray-500 dark:hover:text-gray-400" />
+          </Link>
         </div>
       )}
     </>

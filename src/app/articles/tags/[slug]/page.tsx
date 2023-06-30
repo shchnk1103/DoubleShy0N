@@ -3,19 +3,26 @@
 import AnimatedText from "@/components/AnimatedText";
 import Card from "@/components/Article/Card";
 import { useEffect, useState } from "react";
+import { getArticlesByCategory } from "../../../../../sanity/utils";
+import { Article } from "../../../../../types/Article";
 
-const ArticleByTag = ({ params }) => {
-  const [articles, setArticles] = useState([]);
+type ArticleByTagProps = {
+  params: {
+    slug: string;
+  };
+};
 
-  const fetchArticlesByTag = async (id) => {
-    const response = await fetch(`/api/articles/by-tag/${id}`);
-    const data = await response.json();
+const ArticleByTag = ({ params }: ArticleByTagProps) => {
+  const [articles, setArticles] = useState<Article[]>([]);
+
+  const fetchArticlesByTag = async (slug: string) => {
+    const data = await getArticlesByCategory(slug);
 
     setArticles(data);
   };
 
   useEffect(() => {
-    fetchArticlesByTag(params.id);
+    fetchArticlesByTag(params.slug);
   }, []);
 
   return (

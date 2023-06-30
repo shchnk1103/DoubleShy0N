@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const HomeComponent = () => {
   return (
-    <div className="flex-between w-full h-full min-h-screen">
+    <div className="flex-center md:flex-between flex-col md:flex-row w-full h-full min-h-[80vh] gap-6">
       <HomeImage />
 
       <div className="flex justify-start items-start flex-col w-full md:w-1/2">
@@ -22,7 +22,7 @@ const HomeComponent = () => {
               ease: "easeIn",
             },
           }}
-          className="w-full h-auto mx-auto flex-center flex-col overflow-hidden pointer-events-none blue_gradient inline-block font-semibold text-5xl mt-8 capitalize text-left"
+          className="w-full h-auto mx-auto flex-start flex-col overflow-hidden pointer-events-none blue_gradient inline-block font-semibold text-5xl mt-8 capitalize text-left"
         >
           Welcome to my site!
         </motion.span>

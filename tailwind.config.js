@@ -10,6 +10,9 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
+      backgroundImage: {
+        me: "url(./public/assets/me.jpg)",
+      },
       keyframes: {
         overlayShow: {
           from: { opacity: 0 },
@@ -19,10 +22,22 @@ module.exports = {
           from: { opacity: 0, transform: "translate(-50%, -48%) scale(0.96)" },
           to: { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
         },
+        profileAnimate: {
+          "0%": {
+            "border-radius": "60% 40% 30% 70%/60% 30% 70% 40%",
+          },
+          "50%": {
+            "border-radius": "30% 60% 70% 40%/50% 60% 30% 60%",
+          },
+          "100%": {
+            "border-radius": "60% 40% 30% 70%/60% 30% 70% 40%",
+          },
+        },
       },
       animation: {
         overlayShow: "overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
         contentShow: "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+        profileAnimation: "profileAnimate 8s ease-in-out infinite 1s",
       },
     },
   },

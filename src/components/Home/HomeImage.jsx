@@ -5,10 +5,10 @@ const HomeImage = () => {
     <>
       <Image
         alt="home-pic"
-        src="/assets/images/developer-pic-1.png"
+        src="/assets/images/me.jpg"
         width={500}
         height={500}
-        className="w-1/2 hidden md:flex"
+        className="w-2/3 md:w-1/2 md:flex animate-profileAnimation"
       />
     </>
   );

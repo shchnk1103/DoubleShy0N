@@ -1,15 +1,11 @@
+"use client";
+
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { getProviders, signIn, signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-
-type Provider = {
-  id: string;
-  name: string;
-  type: string;
-};
 
 const AvatarImg = ({ session }) => {
   return (

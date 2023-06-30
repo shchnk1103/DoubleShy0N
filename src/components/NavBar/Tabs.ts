@@ -1,4 +1,4 @@
-type Tab = {
+export type Tab = {
   index: number;
   name: string;
   link: string;
