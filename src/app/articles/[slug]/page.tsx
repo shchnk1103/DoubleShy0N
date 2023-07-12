@@ -20,16 +20,7 @@ type Props = {
   };
 };
 
-// const myPortableTextComponents = {
-//   types: {
-//     image: ({value})
-//   }
-// }
-
 const ArticleDetail = ({ params }: Props) => {
-  // const router = useRouter();
-  // const { data: session } = useSession() as { data: { user: { id: string } } };
-
   const [article, setArticle] = useState<Article>();
 
   // TODO: 暂时不做删除功能
@@ -53,6 +44,7 @@ const ArticleDetail = ({ params }: Props) => {
       const data = await getArticleBySlug(slug);
 
       setArticle(data);
+      console.log("article", data);
     };
 
     fetchArticle(params.slug);
@@ -62,12 +54,13 @@ const ArticleDetail = ({ params }: Props) => {
     <>
       {article ? (
         <div className="w-full flex-center flex-col gap-4 relative">
-          <div className="w-full h-[500px] flex-center my-8">
+          <div className="relative w-full h-[500px] flex-center my-8">
             <Image
               src={article.mainImage}
               alt="article_detail_img"
               fill
-              className="w-full max-h-[500px] mt-8 shadow-xl dark:shadow-gray-600/95 border dark:border-gray-500 rounded-2xl object-cover"
+              priority={true}
+              className="w-full max-h-[500px] shadow-xl dark:shadow-gray-600/95 border dark:border-gray-500 rounded-2xl object-cover"
             />
           </div>
 

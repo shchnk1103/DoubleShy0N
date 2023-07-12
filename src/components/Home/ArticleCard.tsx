@@ -29,7 +29,7 @@ const ArticleCard = ({ article, index }: ArticleCardProps) => {
     <Link
       href={`/articles/${article.slug}`}
       passHref
-      className="w-full md:w-[90%] relative h-80 md:h-full shadow-md rounded-3xl cursor-pointer z-20 group hover:scale-105 transition-transform"
+      className="w-full md:w-[90%] relative h-60 md:h-80 shadow-md rounded-3xl cursor-pointer z-20 group hover:scale-105 transition-transform"
     >
       <motion.div
         variants={fadeIn("down", "spring", index * 0.5, 0.75)}

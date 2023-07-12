@@ -2,6 +2,7 @@ import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 import { schemas } from "./sanity/schemas";
 import { visionTool } from "@sanity/vision";
+import { codeInput } from "@sanity/code-input";
 
 export const config = defineConfig({
   name: "default",
@@ -12,7 +13,7 @@ export const config = defineConfig({
   apiVersion: "2023-06-21",
   basePath: "/admin",
 
-  plugins: [deskTool(), visionTool()],
+  plugins: [deskTool(), visionTool(), codeInput()],
 
   schema: {
     types: schemas,

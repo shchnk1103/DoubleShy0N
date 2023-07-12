@@ -1,3 +1,4 @@
+import "@/styles/js.css";
 import {
   PortableText,
   PortableTextComponentProps,
@@ -6,25 +7,42 @@ import {
 import Image from "next/image";
 import { urlFor } from "../../../sanity/utils";
 import Link from "next/link";
+import SyntaxHighLighter from "react-syntax-highlighter";
+import { tomorrowNight } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const components: PortableTextComponents = {
   types: {
     image: ({ value }: any) => {
       return (
-        <div className="relative h-96 m-10 mx-auto w-full">
+        <div className="relative h-80 md:h-[520px] m-10 mx-auto w-full">
           <Image
             src={urlFor(value).url()}
             alt={value}
             fill
-            className="w-full shadow-xl dark:shadow-gray-600/95 border dark:border-gray-500 rounded-2xl object-cover"
+            className="w-full shadow-xl dark:shadow-gray-600/95 border dark:border-gray-500 rounded-2xl object-fill"
           />
         </div>
+      );
+    },
+    myCode: ({ value }: any) => {
+      return (
+        <SyntaxHighLighter
+          language={value.language}
+          style={tomorrowNight}
+          className="rounded-2xl !p-4 my-1"
+        >
+          {value.code}
+        </SyntaxHighLighter>
       );
     },
   },
   list: {
     bullet: ({ children }: any) => {
-      return <ul className="ml-10 py-5 list-disc space-y-5">{children}</ul>;
+      return (
+        <ul className="ml-10 py-5 list-disc space-y-5 dark:text-gray-400 text-lg">
+          {children}
+        </ul>
+      );
     },
     number: ({ children }: any) => {
       return <ol className="mt-10 list-decimal">{children}</ol>;
@@ -44,7 +62,9 @@ const components: PortableTextComponents = {
       return <h4 className="text-2xl py-4 font-bold">{children}</h4>;
     },
     normal: ({ children }: any) => {
-      return <p className="text-lg text-gray-600">{children}</p>;
+      return (
+        <p className="text-lg text-gray-600 dark:text-gray-400">{children}</p>
+      );
     },
 
     blockquote: ({ children }: any) => {

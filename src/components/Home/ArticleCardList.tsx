@@ -38,7 +38,7 @@ const ArticleCardList = () => {
       </span>
 
       {articles.length !== 0 ? (
-        <div className="flex flex-col gap-2 w-full h-full">
+        <div className="flex flex-col gap-3 w-full h-full">
           {Array.from(articles).map((article, index) => (
             <ArticleCard
               key={article._id}
