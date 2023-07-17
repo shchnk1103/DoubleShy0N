@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ArticleCard from "./ArticleCard";
 import { staggerContainer } from "@/utils/motion";
-import Link from "next/link";
 import { getArticles } from "../../../sanity/utils";
 import { Article } from "../../../types/Article";
 

@@ -6,6 +6,8 @@ import Tag from "../Article/Tag";
 import Count from "../Article/Count";
 import { fadeIn } from "@/utils/motion";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { fetchCount } from "@/utils/api_func";
 
 type ArticleCardProps = {
   article: article;
@@ -25,11 +27,38 @@ type article = {
 };
 
 const ArticleCard = ({ article, index }: ArticleCardProps) => {
+  const [count, setCount] = useState(0);
+
+  const handleCountClick = async () => {
+    try {
+      const response = await fetch(`/api/articles/add/${article.id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: article.id }),
+      });
+
+      if (response.ok) {
+        setCount(count + 1);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCount(article.id).then((result) => {
+      setCount(result);
+    });
+  }, [count]);
+
   return (
     <Link
       href={`/articles/${article.slug}`}
       passHref
       className="w-full md:w-[90%] relative h-60 md:h-80 shadow-md rounded-3xl cursor-pointer z-20 group hover:scale-105 transition-transform"
+      onClick={() => handleCountClick()}
     >
       <motion.div
         variants={fadeIn("down", "spring", index * 0.5, 0.75)}
@@ -57,7 +86,7 @@ const ArticleCard = ({ article, index }: ArticleCardProps) => {
               </span>
 
               <div className="inline-flex items-center justify-end space-x-3 flex-auto w-full">
-                <Count count={article.count} />
+                <Count count={count} />
               </div>
             </span>
           </div>

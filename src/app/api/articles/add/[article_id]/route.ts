@@ -1,19 +1,17 @@
-import Test from "@/models/articles";
+import ArticleCount from "@/models/articles";
 import { connectToDatabase } from "@/utils/database";
 
-export const GET = async (request, { params }) => {
+export const POST = async (request: any) => {
+  const { id } = await request.json();
+
   try {
     await connectToDatabase();
 
-    const article = await Test.find({
-      _id: params.id,
-    });
-
-    if (!article) {
-      return new Response(JSON.stringify("Article not found"), {
-        status: 404,
-      });
-    }
+    const article = await ArticleCount.findOneAndUpdate(
+      { id: id },
+      { $inc: { count: 1 } },
+      { new: true, upsert: true }
+    );
 
     return new Response(JSON.stringify(article), { status: 200 });
   } catch (error) {

@@ -13,6 +13,7 @@ import Author from "@/components/Article/Author";
 import { getArticleBySlug } from "../../../../sanity/utils";
 import { Article } from "../../../../types/Article";
 import { ArticlePortableText } from "@/components/Article/ArticlePortableText";
+import { fetchCount } from "@/utils/api_func";
 
 type Props = {
   params: {
@@ -22,6 +23,7 @@ type Props = {
 
 const ArticleDetail = ({ params }: Props) => {
   const [article, setArticle] = useState<Article>();
+  const [count, setCount] = useState(0);
 
   // TODO: 暂时不做删除功能
   // const deleteArticle = async () => {
@@ -44,7 +46,10 @@ const ArticleDetail = ({ params }: Props) => {
       const data = await getArticleBySlug(slug);
 
       setArticle(data);
-      console.log("article", data);
+
+      fetchCount(data._id).then((result) => {
+        setCount(result);
+      });
     };
 
     fetchArticle(params.slug);
@@ -75,7 +80,7 @@ const ArticleDetail = ({ params }: Props) => {
 
             <Date date={article._createdAt} />
 
-            <Count count={article.count} />
+            <Count count={count} />
 
             {/* <Dialog handleSubmit={deleteArticle} data={article[0]._id} /> */}
           </div>

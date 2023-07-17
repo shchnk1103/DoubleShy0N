@@ -1,11 +1,11 @@
-import Test from "@/models/articles";
+import ArticleCount from "@/models/articles";
 import { connectToDatabase } from "@/utils/database";
 
-export const GET = async (request, { params }) => {
+export const GET = async (req, res) => {
   try {
     await connectToDatabase();
 
-    const articles = await Test.find({ tag: params.id });
+    const articles = await ArticleCount.find({});
 
     return new Response(JSON.stringify(articles), { status: 200 });
   } catch (error) {

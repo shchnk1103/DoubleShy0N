@@ -5,6 +5,7 @@ import Card from "@/components/Article/Card";
 import { useEffect, useState } from "react";
 import { getArticlesByCategory } from "../../../../../sanity/utils";
 import { Article } from "../../../../../types/Article";
+import ArticleCard from "@/components/Home/ArticleCard";
 
 type ArticleByTagProps = {
   params: {
@@ -28,10 +29,23 @@ const ArticleByTag = ({ params }: ArticleByTagProps) => {
   return (
     <>
       {articles.length !== 0 ? (
-        <div className="flex-start flex-col w-full my-8 min-h-[400px]">
+        <div className="w-full my-8 min-h-[70vh] grid grid-cols-1 md:grid-cols-2 gap-3">
           {articles.map((article, index) => (
-            <div key={index}>
-              <Card article={article} cardType={"tag"} />
+            <div key={index} className="w-full h-96 shadow-md rounded-3xl">
+              <ArticleCard
+                article={{
+                  id: article._id,
+                  name: article.author.name,
+                  slug: article.slug,
+                  title: article.title,
+                  date: article._createdAt,
+                  tag: article.categories.title,
+                  count: article.count,
+                  image: article.mainImage,
+                }}
+                index={index}
+                handleHover={() => {}}
+              />
             </div>
           ))}
         </div>

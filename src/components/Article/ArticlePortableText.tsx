@@ -29,7 +29,7 @@ const components: PortableTextComponents = {
         <SyntaxHighLighter
           language={value.language}
           style={tomorrowNight}
-          className="rounded-2xl !p-4 my-1"
+          className="rounded-2xl !p-4 my-1 mb-3 shadow-lg shadow-slate-800 dark:shadow-gray-600/95 dark:border-gray-500"
         >
           {value.code}
         </SyntaxHighLighter>
