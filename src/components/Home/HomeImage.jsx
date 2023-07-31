@@ -9,6 +9,7 @@ const HomeImage = () => {
         width={500}
         height={500}
         className="w-2/3 md:w-1/2 md:flex animate-profileAnimation"
+        loading="lazy" // lazy load
       />
     </>
   );
