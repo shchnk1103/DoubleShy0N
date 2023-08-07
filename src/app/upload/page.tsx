@@ -1,9 +1,11 @@
-'use client'
+'use client';
 
 import Link from "next/link";
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 
 const Upload = () => {
+  const inputFileRef = useRef<HTMLInputElement | null>(null)
+
   const [filename, setFilename] = useState('click here to upload excel...')
   const [submitting, setSubmitting] = useState(false);
 
@@ -15,22 +17,37 @@ const Upload = () => {
     event.preventDefault();
     setSubmitting(true);
 
+    const inputFiles = inputFileRef.current;
+
+    const headers = new Headers();
+    headers.append("Content-Type", "multipart/form-data");
+    headers.append('Content-Disposition', `attachment; filename=${inputFiles.files[0].name}`)
+
     const formData = new FormData();
-    const inputFile = document.getElementById('input-excel') as HTMLInputElement;
+    formData.append('file', inputFiles.files[0]);
 
-    if (inputFile) {
-      formData.append('input-excel', inputFile.files[0]);
-
+    if (inputFiles && inputFiles.files.length > 0) {
       try {
-        const response = await fetch("/api/upload/", {
+        const response = await fetch("http://127.0.0.1:8000/api/upload/", {
           method: "POST",
+          headers: headers,
           body: formData,
         });
 
         if (response.ok) {
-          // router.push("/");
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', 'output.xlsx');
+          document.body.appendChild(link);
+          link.click()
+          link.parentNode.removeChild(link);
+          
           console.log('success')
         } else {
+          console.log(formData.get('file'))
           console.log(response.statusText);
         }
       } catch (error) {
@@ -55,6 +72,7 @@ const Upload = () => {
 
       <form onSubmit={handleSubmit}
             className={'mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism dark:bg-gray-500/20 dark:border-gray-500 dark:shadow-gray-600/95 z-0'}
+            encType={'multipart/form-data'}
       >
         <label htmlFor={'input-excel'}>
           <span className="font-semibold text-base text-gray-700 dark:text-gray-300">
@@ -69,6 +87,7 @@ const Upload = () => {
           </div>
 
           <input
+            ref={inputFileRef}
             name="input-excel"
             id="input-excel"
             accept="xlsx, xls, csv"
