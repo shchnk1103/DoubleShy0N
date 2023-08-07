@@ -28,7 +28,7 @@ const Upload = () => {
 
     if (inputFiles && inputFiles.files.length > 0) {
       try {
-        const response = await fetch("http://127.0.0.1:8000/api/upload/", {
+        const response = await fetch("https://django-api-topaz.vercel.app/api/upload/", {
           method: "POST",
           headers: headers,
           body: formData,
@@ -44,7 +44,7 @@ const Upload = () => {
           document.body.appendChild(link);
           link.click()
           link.parentNode.removeChild(link);
-          
+
           console.log('success')
         } else {
           console.log(formData.get('file'))
