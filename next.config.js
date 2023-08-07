@@ -23,6 +23,14 @@ const nextConfig = {
   },
   reactStrictMode: true,
   swcMinify: true,
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://double-shy0-n.vercel.app/api/:path*", // Proxy to Backend
+      }
+    ]
+  }
 };
 
 module.exports = nextConfig;

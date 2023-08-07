@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import {useEffect, useState} from "react";
+import {AnimatePresence, motion} from "framer-motion";
 
-const UploadImage = ({ convertToBase64, post }) => {
+const UploadImage = ({convertToBase64, post}) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const clickInput = () => {
@@ -17,8 +17,6 @@ const UploadImage = ({ convertToBase64, post }) => {
     return () => {
       if (input) {
         input.removeEventListener("click", clickInput);
-      } else {
-        return;
       }
     };
   }, [isClicked]);
@@ -31,8 +29,8 @@ const UploadImage = ({ convertToBase64, post }) => {
           src={post.image}
           alt="article-img"
           className="flex-center w-full h-full rounded-xl shadow-md dark:shadow-gray-600/95 border dark:border-gray-500 mt-4 object-cover"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{opacity: 0, scale: 0.8}}
+          animate={{opacity: 1, scale: 1}}
         />
       ) : (
         <motion.button
@@ -43,14 +41,14 @@ const UploadImage = ({ convertToBase64, post }) => {
             clickInput();
           }}
           className="flex-center w-full min-h-[250px] rounded-xl shadow-sm mt-4 bg-white dark:bg-black/20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{opacity: 0}}
+          animate={{opacity: 1}}
+          exit={{opacity: 0}}
         >
           <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{opacity: 0}}
+            animate={{opacity: 1}}
+            exit={{opacity: 0}}
             className="text-gray-500 text-xl capitalize"
           >
             click here to upload image...
