@@ -5,12 +5,12 @@ import SideBar from "@/components/Home/SideBar";
 const Home = () => {
   return (
     <>
-      <HomeComponent />
+      <HomeComponent/>
 
-      <div className="w-full h-full grid grid-cols-1 md:grid-cols-2">
-        <ArticleCardList />
+      <div className="relative w-full h-full grid grid-cols-1 md:grid-cols-2">
+        <ArticleCardList/>
 
-        <SideBar />
+        <SideBar/>
       </div>
     </>
   );

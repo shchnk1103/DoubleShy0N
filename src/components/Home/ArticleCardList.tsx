@@ -1,27 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import {useEffect, useState} from "react";
+import {motion} from "framer-motion";
 import ArticleCard from "./ArticleCard";
-import { staggerContainer } from "@/utils/motion";
-import { getArticles } from "../../../sanity/utils";
-import { Article } from "../../../types/Article";
+import {staggerContainer} from "@/utils/motion";
+import {getArticles} from "../../../sanity/utils";
+import {Article} from "../../../types/Article";
 
 const ArticleCardList = () => {
   const [articles, setArticles] = useState<Article[]>([]);
 
-  const handleClick = (id: string) => {
-    console.log(id);
-  };
-
   useEffect(() => {
     const fetchArticles = async () => {
-      const data = await getArticles();
-
-      setArticles(data);
+      return await getArticles(5)
     };
 
-    fetchArticles();
+    fetchArticles().then(result => {
+      setArticles(result);
+    });
   }, []);
 
   return (
@@ -30,7 +26,7 @@ const ArticleCardList = () => {
       variants={staggerContainer}
       initial="hidden"
       animate="show"
-      viewport={{ once: false, amount: 0.25 }}
+      viewport={{once: false, amount: 0.25}}
     >
       <span className="font-semibold text-xl blue_gradient">
         The latest articles:
@@ -52,12 +48,14 @@ const ArticleCardList = () => {
                 image: article.mainImage,
               }}
               index={index}
-              handleHover={() => {}}
+              handleHover={() => {
+              }}
             />
           ))}
         </div>
       ) : (
-        <div className="flex flex-col gap-2 w-[90%] h-full border rounded-3xl p-8 shadow-sm font-semibold text-lg backdrop-blur-md dark:text-zinc-300 dark:border-gray-500">
+        <div
+          className="flex flex-col gap-2 w-[90%] h-full border rounded-3xl p-8 shadow-sm font-semibold text-lg backdrop-blur-md dark:text-zinc-300 dark:border-gray-500">
           <span>There are no articles at the moment,</span>
           <span>Please give me some time.</span>
         </div>
