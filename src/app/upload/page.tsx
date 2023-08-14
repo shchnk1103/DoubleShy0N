@@ -28,7 +28,7 @@ const Upload = () => {
 
     if (inputFiles && inputFiles.files.length > 0) {
       try {
-        const response = await fetch("https://django-api-topaz.vercel.app/api/upload/", {
+        const response = await fetch("https://django-api-topaz.vercel.app/files-upload/", {
           method: "POST",
           headers: headers,
           body: formData,
