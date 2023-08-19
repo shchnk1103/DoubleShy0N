@@ -134,6 +134,7 @@ const ToolDetail = ({ params }: Props) => {
         Number(skill_order_score);
 
       pokemon_skill_scores[index] = score;
+      console.log("pokemon_skill_scores", pokemon_skill_scores);
     }
 
     // 性格分
@@ -141,6 +142,11 @@ const ToolDetail = ({ params }: Props) => {
       characterScore["plus"][selectedCharacter?.plus];
     const pokemon_character_minus =
       characterScore["minus"][selectedCharacter?.minus];
+    console.log("pokemon_character_plus", pokemon_character_plus);
+    console.log("pokemon_character_minus", pokemon_character_minus);
+    console.log(
+      Number(pokemon_character_plus) - Number(pokemon_character_minus)
+    );
 
     const total_score =
       pokemon_score +
