@@ -61,7 +61,7 @@ const Avatar = () => {
               <DropdownMenu.Portal forceMount>
                 <DropdownMenu.Content align="end" className="z-50">
                   <motion.div
-                    className="bg-slate-50/80 rounded-md p-2 backdrop-blur-sm shadow-md flex flex-col justify-start items-start gap-2 text-slate-600 text-sm origin-top-right"
+                    className="bg-slate-50/80 rounded-md p-2 backdrop-blur-sm shadow-md flex-col justify-start items-start gap-2 text-slate-600 text-sm origin-top-right hidden md:flex"
                     initial={{ opacity: 0, scale: 0.96 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.96 }}
@@ -116,7 +116,7 @@ const Avatar = () => {
                 onClick={() => {
                   signIn(provider.id);
                 }}
-                className="border px-4 py-1 rounded-full bg-white shadow-md"
+                className="border px-4 py-1 rounded-full bg-white shadow-md hidden sm:flex"
                 initial={{ background: "#fff", color: "#000" }}
                 animate={{ background: "#fff", color: "#000" }}
                 whileHover={{

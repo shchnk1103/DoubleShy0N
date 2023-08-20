@@ -84,6 +84,7 @@ const ToolDetail = ({ params }: Props) => {
     const pokemon_score = selectedPokemon?.total_score;
 
     let pokemon_skill_scores = [0, 0, 0, 0, 0];
+    let consistent = ["", "", "", "", ""];
 
     for (
       let index = 0, len = pokemon_skill_scores.length;
@@ -93,20 +94,10 @@ const ToolDetail = ({ params }: Props) => {
       // 技能颜色分
       const skill_color = selectedSecondarySkill[index]?.color;
 
-      // 技能自洽分
-      let consistent_score = 0;
+      // 技能自洽
       const skill_self_consistent =
         selectedSecondarySkill[index]?.self_consistent;
-
-      if (index >= 1) {
-        for (let i = 0; i < index - 1; i++) {
-          const pre_skill_self_consistent =
-            selectedSecondarySkill[i]?.self_consistent;
-          if (skill_self_consistent == pre_skill_self_consistent) {
-            consistent_score += 2;
-          }
-        }
-      }
+      consistent[index] = skill_self_consistent;
 
       // 技能匹配分
       let skill_score = 0;
@@ -128,13 +119,9 @@ const ToolDetail = ({ params }: Props) => {
 
       // 副技能总得分
       const score =
-        Number(skill_color) +
-        Number(consistent_score) +
-        Number(skill_score) +
-        Number(skill_order_score);
+        Number(skill_color) + Number(skill_score) + Number(skill_order_score);
 
       pokemon_skill_scores[index] = score;
-      console.log("pokemon_skill_scores", pokemon_skill_scores);
     }
 
     // 性格分
@@ -142,18 +129,27 @@ const ToolDetail = ({ params }: Props) => {
       characterScore["plus"][selectedCharacter?.plus];
     const pokemon_character_minus =
       characterScore["minus"][selectedCharacter?.minus];
-    console.log("pokemon_character_plus", pokemon_character_plus);
-    console.log("pokemon_character_minus", pokemon_character_minus);
-    console.log(
-      Number(pokemon_character_plus) - Number(pokemon_character_minus)
-    );
 
+    // 技能自洽分
+    let consistent_score = 0;
+    for (let index = 0; index < consistent.length; index++) {
+      for (let j = index + 1; j < consistent.length; j++) {
+        if (consistent[index] === consistent[j]) {
+          consistent_score += 2;
+          break;
+        }
+      }
+    }
+
+    // 总分
     const total_score =
       pokemon_score +
       pokemon_skill_scores.reduce((a, b) => a + b) +
+      consistent_score +
       Number(pokemon_character_plus) -
       Number(pokemon_character_minus);
-    setTotalScore(total_score);
+    const formatted_total_score = Number(total_score.toFixed(2));
+    setTotalScore(formatted_total_score);
   };
 
   return (
@@ -170,30 +166,34 @@ const ToolDetail = ({ params }: Props) => {
             </span>
           </div>
 
-          <div className={"w-full flex-start flex-row gap-6"}>
+          <div className={"w-full flex-start lg:flex-row flex-col gap-6"}>
             {/* Content */}
             <div
               className={
-                "h-full filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-start flex-col gap-6"
+                "w-full md:w-fit h-full filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-start flex-col gap-4 md:gap-6"
               }
             >
-              <div className={"w-full flex-start flex-row gap-4"}>
-                {/* 宝可梦 */}
-                <PokemonDropDown
-                  pokemons={pokemons}
-                  isLoading={isLoading}
-                  setIsLoading={setIsLoading}
-                  currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
-                  selectedPokemon={selectedPokemon}
-                  setSelectedPokemon={setSelectedPokemon}
-                />
+              <div className={"w-full flex-start md:flex-row flex-col gap-4"}>
+                <div className={"w-fit flex-start flex-row gap-4"}>
+                  {/* 宝可梦 */}
+                  <PokemonDropDown
+                    pokemons={pokemons}
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    selectedPokemon={selectedPokemon}
+                    setSelectedPokemon={setSelectedPokemon}
+                  />
 
-                {/* 专长 */}
-                <PokemonExpertise selectedPokemon={selectedPokemon} />
+                  {/* 专长 */}
+                  <PokemonExpertise selectedPokemon={selectedPokemon} />
+                </div>
 
-                {/* 树果和食材 */}
-                <PokemonFruit selectedPokemon={selectedPokemon} />
+                <div className={"w-full flex-start flex-row gap-4"}>
+                  {/* 树果和食材 */}
+                  <PokemonFruit selectedPokemon={selectedPokemon} />
+                </div>
               </div>
 
               {/* 性格 */}
@@ -237,33 +237,19 @@ const ToolDetail = ({ params }: Props) => {
                 <div className="relative -z-20 h-28 w-28">
                   <FaStar className="w-28 h-28 -z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-300" />
                   {totalScore >= 60 ? (
-                    <span className="text-red-500 font-bold text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%]">
-                      S
-                    </span>
+                    <span className="score_s">S</span>
                   ) : totalScore >= 50 ? (
-                    <span className="text-red-500 font-bold text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%]">
-                      A
-                    </span>
+                    <span className="score_a">A</span>
                   ) : totalScore >= 40 ? (
-                    <span className="text-red-500 font-bold text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%]">
-                      B
-                    </span>
+                    <span className="score_b">B</span>
                   ) : totalScore >= 30 ? (
-                    <span className="text-red-500 font-bold text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%]">
-                      C
-                    </span>
+                    <span className="score_c">C</span>
                   ) : totalScore >= 20 ? (
-                    <span className="text-red-500 font-bold text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%]">
-                      D
-                    </span>
+                    <span className="score_d">D</span>
                   ) : totalScore >= 10 ? (
-                    <span className="text-red-500 font-bold text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%]">
-                      E
-                    </span>
+                    <span className="score_e">E</span>
                   ) : (
-                    <span className="text-red-500 font-bold text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%]">
-                      F
-                    </span>
+                    <span className="score_f">F</span>
                   )}
                 </div>
 

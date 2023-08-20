@@ -3,12 +3,8 @@ import Image from "next/image";
 const PokemonFruit = ({ selectedPokemon }) => {
   return (
     <div className="flex-start flex-row h-[66px] gap-4 pointer-events-none">
-      <div
-        className={
-          "bg-gray-200 rounded-2xl h-[66px] p-2 flex-center gap-2 shadow-xl transition-all"
-        }
-      >
-        <span>树果：</span>
+      <div className={"pokemon_card"}>
+        <span className="text-sm md:text-base">树果：</span>
         {selectedPokemon ? (
           <Image
             src={selectedPokemon.tree_fruit}
@@ -22,12 +18,8 @@ const PokemonFruit = ({ selectedPokemon }) => {
         )}
       </div>
 
-      <div
-        className={
-          "bg-gray-200 rounded-2xl h-[66px] p-2 flex-center gap-2 shadow-xl transition-all"
-        }
-      >
-        <span>食材Lv.1:</span>
+      <div className={"pokemon_card"}>
+        <span className="text-sm md:text-base">食材Lv.1:</span>
         {selectedPokemon ? (
           <Image
             src={selectedPokemon.ingredients}

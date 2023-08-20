@@ -44,12 +44,12 @@ const PokemonSecondarySkill = ({
   };
 
   return (
-    <>
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:flex">
       {skills_array.map((skill_level, index) => (
         <div className="flex-start flex-col gap-1" key={index}>
           <span
             className={
-              "bg-yellow-700 text-white py-1 px-2 rounded-full text-xs"
+              "bg-yellow-700 text-white dark:text-gray-300 py-1 px-2 rounded-full text-xs"
             }
           >
             Lv.{skill_level}
@@ -65,20 +65,23 @@ const PokemonSecondarySkill = ({
                       : selectedSecondarySkill[index].color == 4
                       ? "silver_skill"
                       : "gold_skill"
-                  }`}
+                  } text-sm md:text-base`}
                 >
                   {selectedSecondarySkill[index].secondary_skill_name}
                 </span>
               ) : (
-                <div className="flex-center gap-1 bg-gray-200 rounded-xl py-1 px-2 min-w-[100px]">
-                  <span className={"text-gray-700"}> - </span>
+                <div className="pokemon_card py-1 px-2 min-w-[100px] !h-[30px]">
+                  <span className={"text-gray-700 dark:text-gray-300"}>
+                    {" "}
+                    -{" "}
+                  </span>
                 </div>
               )}
             </DropdownMenu.Trigger>
 
             <DropdownMenu.Portal>
               <DropdownMenu.Content
-                className="flex-start flex-col z-50 bg-gray-200 p-2 gap-2 rounded-2xl shadow-xl"
+                className="flex-start flex-col z-50 bg-gray-200 dark:bg-gray-700 p-2 gap-2 rounded-2xl shadow-xl"
                 sideOffset={3}
               >
                 <ScrollArea.Root className="w-full h-[400px] overflow-hidden rounded-2xl">
@@ -87,6 +90,7 @@ const PokemonSecondarySkill = ({
                       <DropdownMenu.Item
                         key={skill._id}
                         onClick={() => handlePokemonClick(skill, index)}
+                        className="flex-center flex-row w-full"
                       >
                         <div
                           className={`${
@@ -95,7 +99,7 @@ const PokemonSecondarySkill = ({
                               : skill.color == 4
                               ? "silver_skill"
                               : "gold_skill"
-                          } mb-2`}
+                          } mb-2 w-full lg:text-base text-sm`}
                         >
                           {skill.secondary_skill_name}
                         </div>
@@ -121,7 +125,7 @@ const PokemonSecondarySkill = ({
           </DropdownMenu.Root>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

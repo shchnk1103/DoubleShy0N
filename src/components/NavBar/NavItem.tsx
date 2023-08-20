@@ -19,7 +19,7 @@ const NavItem = ({ tab }: { tab: Tab }) => {
           : "relative flex-center flex-col hover:text-blue-600 mx-2 w-full h-full transition-colors"
       }
     >
-      {tab.name}
+      <span className="text-sm sm:text-base">{tab.name}</span>
       {isActive ? (
         <motion.div
           className="h-[1px] w-full absolute bottom-[-1px] bg-gradient-to-r from-blue-600 to-cyan-600"

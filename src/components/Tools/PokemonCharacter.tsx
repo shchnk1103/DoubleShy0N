@@ -26,23 +26,30 @@ const PokemonCharacter = ({
   };
 
   return (
-    <div className="flex-start flex-row gap-2">
-      <div
-        className={
-          "bg-gray-200 rounded-2xl h-[66px] p-2 flex-center gap-2 shadow-xl transition-all"
-        }
-      >
-        <span className="pointer-events-none">性格：</span>
+    <div className="flex-start flex-col md:flex-row gap-4">
+      <div className={"pokemon_card"}>
+        <span className="text-sm md:text-base pointer-events-none">性格：</span>
 
         <DropdownMenu.Root key={"PokemonCharacter"}>
           <DropdownMenu.Trigger>
             {selected ? (
-              <span className={"bg-gray-300 rounded-xl py-1 px-2"}>
+              <span
+                className={
+                  "bg-gray-300 dark:bg-gray-600 rounded-xl py-1 px-2 text-sm md:text-base"
+                }
+              >
                 {selectedCharacter.title}
               </span>
             ) : (
-              <div className="flex-center gap-1 bg-gray-300 rounded-xl py-1 px-2">
-                <span className={"text-gray-700"}>请选择性格</span>
+              <div className="flex-center gap-1 bg-gray-300 dark:bg-gray-600 rounded-xl py-1 px-2">
+                <span
+                  className={
+                    "text-gray-700 dark:text-gray-300 text-sm md:text-base"
+                  }
+                >
+                  {" "}
+                  -{" "}
+                </span>
 
                 <MdCatchingPokemon />
               </div>
@@ -51,7 +58,7 @@ const PokemonCharacter = ({
 
           <DropdownMenu.Portal>
             <DropdownMenu.Content
-              className="flex-start flex-col z-50 bg-gray-200 p-2 gap-2 rounded-2xl shadow-xl"
+              className="flex-start flex-col z-50 bg-gray-200 dark:bg-gray-700 p-2 gap-2 rounded-2xl shadow-xl"
               sideOffset={3}
             >
               <ScrollArea.Root className="w-20 h-[400px] overflow-hidden rounded-2xl">
@@ -63,7 +70,7 @@ const PokemonCharacter = ({
                     >
                       <div
                         className={
-                          "p-2 rounded-2xl flex-center hover:bg-gray-400"
+                          "p-2 rounded-2xl flex-center hover:bg-gray-400 dark:text-gray-300"
                         }
                       >
                         {character.title}
@@ -90,22 +97,28 @@ const PokemonCharacter = ({
         </DropdownMenu.Root>
       </div>
 
-      <div
-        className={
-          "flex-center gap-2 bg-gray-200 rounded-xl py-1 px-2 h-[66px] min-w-[80px] pointer-events-none"
-        }
-      >
-        <FaArrowUp className={"text-red-600"} />
-        {selected ? <span>{selectedCharacter.plus}</span> : <span> - </span>}
-      </div>
+      <div className="flex-start flex-row gap-2">
+        <div className={"pokemon_card min-w-[80px] pointer-events-none"}>
+          <FaArrowUp className={"text-red-600"} />
+          {selected ? (
+            <span className="text-sm md:text-base">
+              {selectedCharacter.plus}
+            </span>
+          ) : (
+            <span> - </span>
+          )}
+        </div>
 
-      <div
-        className={
-          "flex-center gap-2 bg-gray-200 rounded-xl py-1 px-2 h-[66px] min-w-[80px] pointer-events-none"
-        }
-      >
-        <FaArrowDown className="text-green-600" />
-        {selected ? <span>{selectedCharacter.minus}</span> : <span> - </span>}
+        <div className={"pokemon_card min-w-[80px] pointer-events-none"}>
+          <FaArrowDown className="text-green-600" />
+          {selected ? (
+            <span className="text-sm md:text-base">
+              {selectedCharacter.minus}
+            </span>
+          ) : (
+            <span> - </span>
+          )}
+        </div>
       </div>
     </div>
   );

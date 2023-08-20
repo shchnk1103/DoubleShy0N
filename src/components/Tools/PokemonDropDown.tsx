@@ -49,9 +49,7 @@ const PokemonDropDown = ({
     <DropdownMenu.Root key={"Pokemons"}>
       <DropdownMenu.Trigger>
         <div
-          className={
-            "px-2 flex-center gap-4 bg-gray-200 rounded-2xl shadow-xl group"
-          }
+          className={"pokemon_card group min-w-[160px]"}
           aria-label="Pokemon options"
         >
           {selected ? (
@@ -65,18 +63,22 @@ const PokemonDropDown = ({
                 loading="lazy"
               />
 
-              <span className={"text-lg font-poppins"}>
+              <span
+                className={
+                  "text-sm md:text-base font-poppins w-fit whitespace-nowrap"
+                }
+              >
                 {selectedPokemon.name}
               </span>
             </div>
           ) : (
             <div className="flex-center flex-row gap-2">
-              <div className="w-[50px] h-[50px] flex-center bg-gray-300 rounded-2xl my-2">
+              <div className="min-w-[50px] min-h-[50px] flex-center bg-gray-300 dark:bg-gray-600 rounded-2xl my-2">
                 <MdCatchingPokemon className="w-8 h-8" />
               </div>
 
-              <span className="h-[50px] flex-center blue_gradient">
-                请选择宝可梦
+              <span className="h-[50px] flex-center blue_gradient text-sm md:text-base">
+                宝可梦
               </span>
             </div>
           )}
@@ -89,7 +91,7 @@ const PokemonDropDown = ({
 
       <DropdownMenu.Portal>
         <DropdownMenu.Content
-          className="flex-start flex-col z-50 bg-gray-200 p-2 gap-2 rounded-2xl shadow-xl"
+          className="flex-start flex-col z-50 bg-gray-200 dark:bg-gray-700 p-2 gap-2 rounded-2xl shadow-xl"
           sideOffset={3}
         >
           <ScrollArea.Root className="w-[194px] h-[400px] overflow-hidden rounded-2xl">
@@ -99,7 +101,7 @@ const PokemonDropDown = ({
             >
               {pokemons.map((pokemon, index) => (
                 <DropdownMenu.Item
-                  className="flex justify-start items-center gap-3 bg-gray-300 px-2 mb-2 rounded-2xl cursor-pointer w-[194px] hover:bg-gray-400/60 transition-all"
+                  className="flex justify-start items-center gap-3 bg-gray-300 dark:bg-gray-800 px-2 mb-2 rounded-2xl cursor-pointer w-[194px] hover:bg-gray-400/60 dark:hover:bg-gray-800/60 transition-all"
                   key={index}
                   onClick={() => handlePokemonClick(pokemon)}
                 >

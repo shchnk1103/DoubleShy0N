@@ -1,13 +1,17 @@
+.pokemon_card {
+  @apply bg-gray-200 dark:bg-gray-700 rounded-2xl h-[66px] p-2 flex justify-center items-center gap-2 shadow-xl dark:shadow-gray-600 transition-all dark:text-gray-300;
+}
+
 .gold_skill {
-  @apply flex justify-center items-center gap-1 bg-yellow-500/60 text-gray-400 border border-yellow-600 rounded-2xl py-1 px-4 shadow-xl;
+  @apply flex justify-center items-center gap-1 bg-yellow-500/60 text-gray-400 dark:text-gray-300 border border-yellow-600 rounded-2xl py-1 px-4 shadow-xl;
 }
 
 .silver_skill {
-  @apply flex justify-center items-center gap-1 bg-blue-200/80 text-gray-400 border border-blue-300 rounded-2xl py-1 px-4 shadow-xl;
+  @apply flex justify-center items-center gap-1 bg-blue-200/80 text-gray-400 dark:text-gray-500 border border-blue-300 rounded-2xl py-1 px-4 shadow-xl;
 }
 
 .normal_skill {
-  @apply flex justify-center items-center gap-1 bg-gray-200 text-gray-400 border border-gray-400 rounded-2xl py-1 px-4 shadow-xl;
+  @apply flex justify-center items-center gap-1 bg-gray-200 text-gray-400 dark:text-gray-500 border border-gray-400 rounded-2xl py-1 px-4 shadow-xl;
 }
 
 .score_s {
@@ -23,7 +27,7 @@
 }
 
 .score_c {
-  @apply text-green-300 font-bold text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%];
+  @apply text-green-500 font-bold text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%];
 }
 
 .score_d {
