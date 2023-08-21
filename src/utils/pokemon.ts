@@ -18,7 +18,7 @@ export const fetchPokemons = async (currentPage: number) => {
 export const fetchPokemonByName = async (name: string) => {
   try {
     const response = await fetch(
-      `http://127.0.0.1:8000/pokemons/?name=${name}`,
+      `https://django-api-topaz.vercel.app/pokemons/?name=${name}`,
       { method: "GET" }
     );
 
