@@ -14,7 +14,7 @@ const Icon = () => {
     >
       <Image
         alt="logo"
-        src="/assets/icons/favicon.ico"
+        src="/assets/icons/icon.jpg"
         width={36}
         height={36}
         className="rounded-full shadow-md"

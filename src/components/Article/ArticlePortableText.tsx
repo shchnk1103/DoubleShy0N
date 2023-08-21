@@ -1,27 +1,31 @@
 import "@/styles/js.css";
-import {PortableText, PortableTextComponentProps, type PortableTextComponents,} from "@portabletext/react";
+import {
+  PortableText,
+  PortableTextComponentProps,
+  type PortableTextComponents,
+} from "@portabletext/react";
 import Image from "next/image";
-import {urlFor} from "../../../sanity/utils";
+import { urlFor } from "../../../sanity/utils";
 import Link from "next/link";
 import SyntaxHighLighter from "react-syntax-highlighter";
-import {tomorrowNight} from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { tomorrowNight } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const components: PortableTextComponents = {
   types: {
-    image: ({value}: any) => {
+    image: ({ value }: any) => {
       return (
-        <div
-          className="relative h-80 md:h-[520px] m-10 mx-auto w-full bg-white dark:bg-black rounded-2xl backdrop-filter backdrop-blur-2xl">
+        <div className="relative h-80 md:h-[520px] m-10 mx-auto w-full bg-white dark:bg-black rounded-2xl backdrop-filter backdrop-blur-2xl">
           <Image
             src={urlFor(value).url()}
             alt={value}
             fill
             className="w-full shadow-xl dark:shadow-gray-600/95 border dark:border-gray-500 rounded-2xl object-contain"
+            loading="lazy"
           />
         </div>
       );
     },
-    myCode: ({value}: any) => {
+    myCode: ({ value }: any) => {
       return (
         <SyntaxHighLighter
           language={value.language}
@@ -34,37 +38,37 @@ const components: PortableTextComponents = {
     },
   },
   list: {
-    bullet: ({children}: any) => {
+    bullet: ({ children }: any) => {
       return (
         <ul className="ml-10 py-5 list-disc space-y-5 dark:text-gray-400 text-lg">
           {children}
         </ul>
       );
     },
-    number: ({children}: any) => {
+    number: ({ children }: any) => {
       return <ol className="mt-10 list-decimal">{children}</ol>;
     },
   },
   block: {
-    h1: ({children}: PortableTextComponentProps<any>) => {
+    h1: ({ children }: PortableTextComponentProps<any>) => {
       return <h1 className="text-5xl py-6 font-bold">{children}</h1>;
     },
-    h2: ({children}: any) => {
+    h2: ({ children }: any) => {
       return <h2 className="text-4xl py-6 font-bold">{children}</h2>;
     },
-    h3: ({children}: any) => {
+    h3: ({ children }: any) => {
       return <h3 className="text-3xl py-6 font-bold">{children}</h3>;
     },
-    h4: ({children}: any) => {
+    h4: ({ children }: any) => {
       return <h4 className="text-2xl py-4 font-bold">{children}</h4>;
     },
-    normal: ({children}: any) => {
+    normal: ({ children }: any) => {
       return (
         <p className="text-lg text-gray-600 dark:text-gray-400">{children}</p>
       );
     },
 
-    blockquote: ({children}: any) => {
+    blockquote: ({ children }: any) => {
       return (
         <blockquote className="border-l-blue-600 border-l-4 pl-3 my-3">
           {children}
@@ -73,7 +77,7 @@ const components: PortableTextComponents = {
     },
   },
   marks: {
-    link: ({children, value}: any) => {
+    link: ({ children, value }: any) => {
       const rel = !value.href.startsWith("/")
         ? "noreferer noopener"
         : undefined;

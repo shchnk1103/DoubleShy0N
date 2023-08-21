@@ -125,10 +125,49 @@ const ToolDetail = ({ params }: Props) => {
     }
 
     // 性格分
-    const pokemon_character_plus =
-      characterScore["plus"][selectedCharacter?.plus];
-    const pokemon_character_minus =
-      characterScore["minus"][selectedCharacter?.minus];
+    const plus = characterScore["plus"][selectedCharacter?.plus];
+    let pokemon_character_plus = 0;
+    if (selectedCharacter?.plus === "食材发现率") {
+      const key_word = selectedPokemon?.expertise == "食材" ? "食材" : "其他";
+      pokemon_character_plus = plus[key_word];
+    } else if (selectedCharacter?.plus === "帮忙速度") {
+      const key_word = selectedPokemon?.expertise == "树果" ? "树果" : "其他";
+      pokemon_character_plus = plus[key_word];
+    } else if (selectedCharacter?.plus === "主技能发动概率") {
+      const key_word = selectedPokemon?.expertise === "技能" ? "技能" : "其他";
+      pokemon_character_plus = plus[key_word];
+      if (
+        ["食材获取S", "料理强化S", "能量填充M"].includes(
+          selectedPokemon?.main_skill
+        )
+      ) {
+        pokemon_character_plus += 2;
+      }
+    } else {
+      pokemon_character_plus = plus;
+    }
+
+    const minus = characterScore["minus"][selectedCharacter?.minus];
+    let pokemon_character_minus = 0;
+    if (selectedCharacter?.minus === "食材发现率") {
+      const key_word = selectedPokemon?.expertise == "食材" ? "食材" : "其他";
+      pokemon_character_minus = minus[key_word];
+    } else if (selectedCharacter?.minus === "帮忙速度") {
+      const key_word = selectedPokemon?.expertise == "树果" ? "树果" : "其他";
+      pokemon_character_minus = minus[key_word];
+    } else if (selectedCharacter?.minus === "主技能发动概率") {
+      const key_word = selectedPokemon?.expertise === "技能" ? "技能" : "其他";
+      pokemon_character_minus = minus[key_word];
+      if (
+        ["食材获取S", "料理强化S", "能量填充M"].includes(
+          selectedPokemon?.main_skill
+        )
+      ) {
+        pokemon_character_minus += 2;
+      }
+    } else {
+      pokemon_character_minus = minus;
+    }
 
     // 技能自洽分
     let consistent_score = 0;
