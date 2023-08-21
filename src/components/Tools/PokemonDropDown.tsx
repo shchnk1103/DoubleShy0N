@@ -3,10 +3,12 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import Image from "next/image";
-import { useState } from "react";
+import React, { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MdCatchingPokemon } from "react-icons/md";
 import { Pokemon } from "../../../types/Pokemon";
+import { BsSearch } from "react-icons/bs";
+import { fetchPokemonByName } from "@/utils/pokemon";
 
 type Props = {
   pokemons: Pokemon[];
@@ -28,6 +30,29 @@ const PokemonDropDown = ({
   setSelectedPokemon,
 }: Props) => {
   const [selected, setSelected] = useState<boolean>(false);
+  const [searchPokemons, setSearchPokemons] = useState<Pokemon[]>([]); // 搜索结果
+
+  let typingTimeout: ReturnType<typeof setTimeout>;
+  const displayPokemons =
+    searchPokemons.length === 0 ? pokemons : searchPokemons;
+
+  const renderedPokemonItem = (pokemon: Pokemon, index: number) => (
+    <DropdownMenu.Item
+      className="flex justify-start items-center gap-3 bg-gray-300 dark:bg-gray-800 px-2 mb-2 rounded-2xl cursor-pointer w-[194px] hover:bg-gray-400/60 dark:hover:bg-gray-800/60 transition-all"
+      key={index}
+      onClick={() => handlePokemonClick(pokemon)}
+    >
+      <Image
+        src={pokemon.img_url}
+        alt={pokemon.id}
+        width={"50"}
+        height={"50"}
+        className={"object-fill rounded-xl my-4"}
+      />
+      <span className="flex-1">{pokemon.name}</span>
+      <MdCatchingPokemon className="w-6 h-6" />
+    </DropdownMenu.Item>
+  );
 
   const handlePokemonClick = (pokemon: Pokemon) => {
     setSelected(true);
@@ -43,6 +68,23 @@ const PokemonDropDown = ({
         setCurrentPage(currentPage + 1);
       }
     }
+  };
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+
+    if (value === "") return;
+
+    clearTimeout(typingTimeout); // 清除之前的延迟函数
+    typingTimeout = setTimeout(() => {
+      // 延迟执行搜索
+      fetchPokemonByName(value).then((res) => {
+        console.log(res);
+        if (res) {
+          setSearchPokemons(res);
+        }
+      });
+    }, 1000);
   };
 
   return (
@@ -99,23 +141,18 @@ const PokemonDropDown = ({
               className="w-full h-full"
               onScroll={handleScroll}
             >
-              {pokemons.map((pokemon, index) => (
-                <DropdownMenu.Item
-                  className="flex justify-start items-center gap-3 bg-gray-300 dark:bg-gray-800 px-2 mb-2 rounded-2xl cursor-pointer w-[194px] hover:bg-gray-400/60 dark:hover:bg-gray-800/60 transition-all"
-                  key={index}
-                  onClick={() => handlePokemonClick(pokemon)}
-                >
-                  <Image
-                    src={pokemon.img_url}
-                    alt={pokemon.id}
-                    width={"50"}
-                    height={"50"}
-                    className={"object-fill rounded-xl my-4"}
-                  />
-                  <span className="flex-1">{pokemon.name}</span>
-                  <MdCatchingPokemon className="w-6 h-6" />
-                </DropdownMenu.Item>
-              ))}
+              {/* 搜索栏 */}
+              <div className="w-full h-8 rounded-xl my-2 shadow-sm flex-center gap-2 bg-gray-100 dark:bg-gray-500">
+                <BsSearch className="h-5 w-5 mx-2 text-gray-600 dark:text-gray-300" />
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="w-full h-full bg-transparent text-blue-500 dark:text-blue-300 outline-none"
+                  onChange={onChange}
+                />
+              </div>
+
+              {displayPokemons.map(renderedPokemonItem)}
 
               {isLoading[0] && (
                 <div className="w-full flex-center">

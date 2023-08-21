@@ -4,9 +4,7 @@ export const fetchPokemons = async (currentPage: number) => {
   try {
     const response = await fetch(
       `https://django-api-topaz.vercel.app/pokemons/?page=${currentPage}`,
-      {
-        method: "GET",
-      }
+      { method: "GET" }
     );
 
     const data = await response.json();
@@ -17,13 +15,24 @@ export const fetchPokemons = async (currentPage: number) => {
   }
 };
 
+export const fetchPokemonByName = async (name: string) => {
+  try {
+    const response = await fetch(
+      `http://127.0.0.1:8000/pokemons/?name=${name}`,
+      { method: "GET" }
+    );
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {}
+};
+
 export const fetchCharacters = async () => {
   try {
     const response = await fetch(
       `https://django-api-topaz.vercel.app/pokemon-chacators/`,
-      {
-        method: "GET",
-      }
+      { method: "GET" }
     );
 
     const data = await response.json();
@@ -38,9 +47,7 @@ export const fetchSecondarySkills = async () => {
   try {
     const response = await fetch(
       `https://django-api-topaz.vercel.app/pokemon-secondary-skills/`,
-      {
-        method: "GET",
-      }
+      { method: "GET" }
     );
 
     const data = await response.json();
