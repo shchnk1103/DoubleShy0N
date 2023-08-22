@@ -110,3 +110,23 @@ export const characterScore = {
     帮忙速度: { 树果: 12, 其他: 10 },
   },
 };
+
+const score_to_level = [
+  { score: 0, level: "F" },
+  { score: 10, level: "E" },
+  { score: 20, level: "D" },
+  { score: 30, level: "C" },
+  { score: 40, level: "B" },
+  { score: 50, level: "A" },
+  { score: 60, level: "S" },
+];
+
+export const pokemonScoreInfo = (score: number) => {
+  for (let index = score_to_level.length - 1; index > 0; index--) {
+    const element = score_to_level[index];
+    if (score >= element.score) {
+      const class_name = `score_${element.level.toLowerCase}`;
+      return [element.level, class_name];
+    }
+  }
+};

@@ -15,17 +15,19 @@ const ToolCard = ({ type }: ToolCardProps) => {
   return (
     <div
       className={
-        "rounded-xl filter backdrop-blur-2xl w-2/5 h-52 shadow-xl shadow-gray-400 border-[1px] border-gray-200 dark:border-gray-500 cursor-pointer hover:shadow-2xl hover:-translate-y-4 hover:border-gray-500 dark:hover:border-gray-200 transition-all group"
+        "rounded-xl filter backdrop-blur-2xl w-full h-full shadow-xl dark:shadow-md shadow-gray-400 dark:shadow-gray-500 border-[1px] border-gray-200 dark:border-gray-500 cursor-pointer hover:shadow-2xl hover:-translate-y-4 hover:border-gray-500 dark:hover:border-gray-200 transition-all group"
       }
     >
       <Link
         href={`/tools/${type.name}`}
-        className={"flex-start flex-row gap-4 h-52"}
+        className={
+          "flex-start lg:flex-row flex-col sm:gap-4 md:gap-1 gap-2 lg:h-52 h-80"
+        }
       >
         {/* Image */}
         <div
           className={
-            "rounded-xl bg-white dark:bg-gray-900 w-[200px] h-[200px] my-auto flex-center pl-1"
+            "rounded-xl bg-white dark:bg-gray-900 lg:w-fit w-full h-[200px] my-auto flex-center pl-1"
           }
         >
           <Image
@@ -34,20 +36,25 @@ const ToolCard = ({ type }: ToolCardProps) => {
             width={"200"}
             height={"200"}
             className={"object-fill rounded-xl"}
+            loading="lazy"
           />
         </div>
 
         {/* Text */}
         <div
           className={
-            "h-full py-1 flex-start flex-col flex-1 gap-2 pr-1 relative"
+            "h-full py-1 flex-start flex-col flex-1 gap-1 pr-1 relative px-2"
           }
         >
           <span className={"font-semibold text-lg blue_gradient"}>
             {type.title}
           </span>
 
-          <span className={"text-sm text-gray-800 dark:text-gray-300"}>
+          <span
+            className={
+              "sm:text-sm text-xs text-gray-700 dark:text-gray-300 overflow-hidden"
+            }
+          >
             {type.description}
           </span>
 

@@ -9,7 +9,7 @@ const User = async () => {
         <span className={"text-xl"}>Here will be some self-made tools.</span>
       </div>
 
-      <div className={"w-full"}>
+      <div className={"w-full grid md:grid-cols-2 grid-cols-1"}>
         <ToolCard type={PokemonTool} />
       </div>
     </div>

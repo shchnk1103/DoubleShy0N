@@ -17,12 +17,14 @@ import {
   fetchCharacters,
   fetchPokemons,
   fetchSecondarySkills,
+  pokemonScoreInfo,
   skillOrder,
   skillScore,
 } from "@/utils/pokemon";
 import PokemonFruit from "@/components/Tools/PokemonFruit";
 import PokemonExpertise from "@/components/Tools/PokemonExpertise";
 import { FaStar } from "react-icons/fa";
+import Link from "next/link";
 
 type Props = {
   params: {
@@ -205,11 +207,12 @@ const ToolDetail = ({ params }: Props) => {
             </span>
           </div>
 
+          {/* Content */}
           <div className={"w-full flex-start lg:flex-row flex-col gap-6"}>
             {/* Content */}
             <div
               className={
-                "w-full md:w-fit h-full filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-start flex-col gap-4 md:gap-6"
+                "w-full lg:w-3/4 md:w-fit h-full filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-start flex-col gap-4 md:gap-6"
               }
             >
               <div className={"w-full flex-start md:flex-row flex-col gap-4"}>
@@ -270,25 +273,20 @@ const ToolDetail = ({ params }: Props) => {
             {totalScore !== 0 && (
               <div
                 className={
-                  "h-full filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-start flex-col gap-6"
+                  "h-full lg:w-1/4 filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-center flex-col gap-6"
                 }
               >
                 <div className="relative -z-20 h-28 w-28">
                   <FaStar className="w-28 h-28 -z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-300" />
-                  {totalScore >= 60 ? (
-                    <span className="score_s">S</span>
-                  ) : totalScore >= 50 ? (
-                    <span className="score_a">A</span>
-                  ) : totalScore >= 40 ? (
-                    <span className="score_b">B</span>
-                  ) : totalScore >= 30 ? (
-                    <span className="score_c">C</span>
-                  ) : totalScore >= 20 ? (
-                    <span className="score_d">D</span>
-                  ) : totalScore >= 10 ? (
-                    <span className="score_e">E</span>
-                  ) : (
-                    <span className="score_f">F</span>
+
+                  {pokemonScoreInfo(totalScore) && (
+                    <span
+                      className={
+                        "blue_gradient font-bold text-7xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[30px] text-center font-serif"
+                      }
+                    >
+                      {pokemonScoreInfo(totalScore)[0]}
+                    </span>
                   )}
                 </div>
 
@@ -298,6 +296,27 @@ const ToolDetail = ({ params }: Props) => {
                 </span>
               </div>
             )}
+          </div>
+
+          {/* Footer */}
+          <div className="flex-start">
+            <span className="text-sm text-gray-600">
+              <span className="blue_gradient">* </span>
+              感谢NGA论坛中优秀帖子的指导, 本工具数据都来自
+              <Link
+                href={"https://bbs.nga.cn/read.php?tid=37121346"}
+                className="mx-1 blue_gradient"
+              >
+                宝可梦数据表
+              </Link>
+              和
+              <Link
+                href={"https://bbs.nga.cn/read.php?tid=37354638"}
+                className="mx-1 blue_gradient"
+              >
+                精灵等级评定工具
+              </Link>
+            </span>
           </div>
         </div>
       ) : (
