@@ -6,7 +6,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MdCatchingPokemon } from "react-icons/md";
-import { Pokemon } from "../../../types/Pokemon";
+import { Pokemon } from "../../../../types/Pokemon";
 import { BsSearch } from "react-icons/bs";
 import { fetchPokemonByName } from "@/utils/pokemon";
 

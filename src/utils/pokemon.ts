@@ -111,6 +111,20 @@ export const characterScore = {
   },
 };
 
+export const temporaryScore = {
+  树果: {
+    否: 0,
+    一次产1树果: 3,
+    一次产2树果: 6,
+    一次产3树果: 9,
+  },
+  食材: {
+    否: 0,
+    单个食材: 2,
+    双倍食材: 4,
+  },
+};
+
 const score_to_level = [
   { score: 0, level: "F" },
   { score: 10, level: "E" },

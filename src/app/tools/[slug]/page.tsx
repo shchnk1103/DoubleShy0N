@@ -1,8 +1,8 @@
 "use client";
 
 import AnimatedText from "@/components/AnimatedText";
-import PokemonCharacter from "@/components/Tools/PokemonCharacter";
-import PokemonDropDown from "@/components/Tools/PokemonDropDown";
+import PokemonCharacter from "@/components/Tools/Pokemon/PokemonCharacter";
+import PokemonDropDown from "@/components/Tools/Pokemon/PokemonDropDown";
 import { PokemonTool } from "@/components/Tools/ToolTypes";
 import { useEffect, useState } from "react";
 import {
@@ -10,21 +10,21 @@ import {
   PokemonCharacterType,
   PokemonSecondarySkillType,
 } from "../../../../types/Pokemon";
-import Image from "next/image";
-import PokemonSecondarySkill from "@/components/Tools/PokemonSecondarySkill";
+import PokemonSecondarySkill from "@/components/Tools/Pokemon/PokemonSecondarySkill";
 import {
   characterScore,
   fetchCharacters,
   fetchPokemons,
   fetchSecondarySkills,
-  pokemonScoreInfo,
   skillOrder,
   skillScore,
 } from "@/utils/pokemon";
-import PokemonFruit from "@/components/Tools/PokemonFruit";
-import PokemonExpertise from "@/components/Tools/PokemonExpertise";
-import { FaStar } from "react-icons/fa";
-import Link from "next/link";
+import PokemonFruit from "@/components/Tools/Pokemon/PokemonFruit";
+import PokemonExpertise from "@/components/Tools/Pokemon/PokemonExpertise";
+import PokemonScoreResult from "@/components/Tools/Pokemon/PokemonScoreResult";
+import PokemonFooter from "@/components/Tools/Pokemon/PokemonFooter";
+import PokemonTemporary from "@/components/Tools/Pokemon/PokemonTemporary";
+import PokemonTip from "@/components/Tools/Pokemon/PokemonTip";
 
 type Props = {
   params: {
@@ -47,7 +47,11 @@ const ToolDetail = ({ params }: Props) => {
   const [selectedSecondarySkill, setSelectedSecondarySkill] = useState<
     PokemonSecondarySkillType[]
   >([undefined, undefined, undefined, undefined, undefined]);
+  const [selectedTemporary, setSelectedTemporary] = useState<
+    [string, number][]
+  >([]);
   const [totalScore, setTotalScore] = useState<number>(0);
+  const [totalScoreTemporarily, setTotalScoreTemporarily] = useState<number>(0);
 
   const submit_disabled =
     selectedPokemon !== undefined &&
@@ -182,6 +186,17 @@ const ToolDetail = ({ params }: Props) => {
       }
     }
 
+    // 临时分
+    let temporary_score = 0;
+    if (selectedTemporary.length > 0) {
+      if (selectedTemporary[0]) {
+        temporary_score += selectedTemporary[0][1];
+      }
+      if (selectedTemporary[1]) {
+        temporary_score += selectedTemporary[1][1];
+      }
+    }
+
     // 总分
     const total_score =
       pokemon_score +
@@ -191,6 +206,13 @@ const ToolDetail = ({ params }: Props) => {
       Number(pokemon_character_minus);
     const formatted_total_score = Number(total_score.toFixed(2));
     setTotalScore(formatted_total_score);
+
+    // 临时总分
+    const total_score_temporarily = total_score + temporary_score;
+    const formatted_total_score_temporarily = Number(
+      total_score_temporarily.toFixed(2)
+    );
+    setTotalScoreTemporarily(formatted_total_score_temporarily);
   };
 
   return (
@@ -212,7 +234,7 @@ const ToolDetail = ({ params }: Props) => {
             {/* Content */}
             <div
               className={
-                "w-full lg:w-3/4 md:w-fit h-full filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-start flex-col gap-4 md:gap-6"
+                "w-full lg:w-3/4 md:w-fit h-full lg:h-[468px] filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-start flex-col gap-4 md:gap-6"
               }
             >
               <div className={"w-full flex-start md:flex-row flex-col gap-4"}>
@@ -256,6 +278,16 @@ const ToolDetail = ({ params }: Props) => {
                 />
               </div>
 
+              <div className={"flex-start flex-row gap-4"}>
+                <PokemonTemporary
+                  selectedTemporary={selectedTemporary}
+                  setSelectedTemporary={setSelectedTemporary}
+                />
+
+                <PokemonTip />
+              </div>
+
+              {/* 计算分数按钮 */}
               <button
                 className={`w-full py-3 px-4 rounded-2xl shadow-2xl transition-all ${
                   !submit_disabled
@@ -271,53 +303,15 @@ const ToolDetail = ({ params }: Props) => {
 
             {/* Result */}
             {totalScore !== 0 && (
-              <div
-                className={
-                  "h-full lg:w-1/4 filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-center flex-col gap-6"
-                }
-              >
-                <div className="relative -z-20 h-28 w-28">
-                  <FaStar className="w-28 h-28 -z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-300" />
-
-                  {pokemonScoreInfo(totalScore) && (
-                    <span
-                      className={
-                        "blue_gradient font-bold text-7xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[30px] text-center font-serif"
-                      }
-                    >
-                      {pokemonScoreInfo(totalScore)[0]}
-                    </span>
-                  )}
-                </div>
-
-                <span className="w-full flex-center gap-1 font-semibold">
-                  {totalScore}{" "}
-                  <span className="text-gray-500 text-sm"> /70</span>
-                </span>
-              </div>
+              <PokemonScoreResult
+                totalScore={totalScore}
+                totalScoreTemporarily={totalScoreTemporarily}
+              />
             )}
           </div>
 
           {/* Footer */}
-          <div className="flex-start">
-            <span className="text-sm text-gray-600">
-              <span className="blue_gradient">* </span>
-              感谢NGA论坛中优秀帖子的指导, 本工具数据都来自
-              <Link
-                href={"https://bbs.nga.cn/read.php?tid=37121346"}
-                className="mx-1 blue_gradient"
-              >
-                宝可梦数据表
-              </Link>
-              和
-              <Link
-                href={"https://bbs.nga.cn/read.php?tid=37354638"}
-                className="mx-1 blue_gradient"
-              >
-                精灵等级评定工具
-              </Link>
-            </span>
-          </div>
+          <PokemonFooter />
         </div>
       ) : (
         <AnimatedText

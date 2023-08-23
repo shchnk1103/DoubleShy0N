@@ -5,7 +5,7 @@ import * as ScrollArea from "@radix-ui/react-scroll-area";
 import { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { MdCatchingPokemon } from "react-icons/md";
-import { PokemonCharacterType } from "../../../types/Pokemon";
+import { PokemonCharacterType } from "../../../../types/Pokemon";
 
 type Props = {
   characters: PokemonCharacterType[];
@@ -44,14 +44,12 @@ const PokemonCharacter = ({
               <div className="flex-center gap-1 bg-gray-300 dark:bg-gray-600 rounded-xl py-1 px-2">
                 <span
                   className={
-                    "text-gray-700 dark:text-gray-300 text-sm md:text-base"
+                    "text-gray-700 dark:text-gray-300 text-sm md:text-base px-2"
                   }
                 >
                   {" "}
                   -{" "}
                 </span>
-
-                <MdCatchingPokemon />
               </div>
             )}
           </DropdownMenu.Trigger>

@@ -15,7 +15,7 @@ const ToolCard = ({ type }: ToolCardProps) => {
   return (
     <div
       className={
-        "rounded-xl filter backdrop-blur-2xl w-full h-full shadow-xl dark:shadow-md shadow-gray-400 dark:shadow-gray-500 border-[1px] border-gray-200 dark:border-gray-500 cursor-pointer hover:shadow-2xl hover:-translate-y-4 hover:border-gray-500 dark:hover:border-gray-200 transition-all group"
+        "rounded-xl filter backdrop-blur-2xl w-full h-fit shadow-xl dark:shadow-md shadow-gray-400 dark:shadow-gray-500 border-[1px] border-gray-200 dark:border-gray-500 cursor-pointer hover:shadow-2xl hover:-translate-y-4 hover:border-gray-500 dark:hover:border-gray-200 transition-all group"
       }
     >
       <Link

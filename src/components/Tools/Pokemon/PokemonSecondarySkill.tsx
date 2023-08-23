@@ -4,7 +4,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import { useState } from "react";
 import "@/styles/pokemon.css";
-import { PokemonSecondarySkillType } from "../../../types/Pokemon";
+import { PokemonSecondarySkillType } from "../../../../types/Pokemon";
 
 type Props = {
   secondarySkills: PokemonSecondarySkillType[];
@@ -84,7 +84,7 @@ const PokemonSecondarySkill = ({
                 className="flex-start flex-col z-50 bg-gray-200 dark:bg-gray-700 p-2 gap-2 rounded-2xl shadow-xl"
                 sideOffset={3}
               >
-                <ScrollArea.Root className="w-full h-[400px] overflow-hidden rounded-2xl">
+                <ScrollArea.Root className="w-full h-[320px] overflow-hidden rounded-2xl">
                   <ScrollArea.Viewport className="w-full h-full">
                     {secondarySkills.map((skill) => (
                       <DropdownMenu.Item
