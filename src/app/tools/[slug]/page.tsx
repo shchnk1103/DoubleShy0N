@@ -226,8 +226,6 @@ const ToolDetail = ({ params }: Props) => {
     setTotalScoreTemporarily(formatted_total_score_temporarily);
   };
 
-  console.log(selectedSecondarySkill);
-
   return (
     <>
       {params.slug == PokemonTool.name ? (
@@ -322,14 +320,15 @@ const ToolDetail = ({ params }: Props) => {
 
             {/* Result */}
             {totalScore === 0 ? (
-              <ImageUpload
-                setSelectedPokemon={setSelectedPokemon}
-                setSelectedCharacter={setSelectedCharacter}
-                setSelectedSecondarySkill={setSelectedSecondarySkill}
-                setIsSelectedPokemon={setIsSelectedPokemon}
-                setIsSelectedCharacter={setIsSelectedCharacter}
-                setIsSelectedSecondarySkills={setIsSelectedSecondarySkills}
-              />
+              // <ImageUpload
+              //   setSelectedPokemon={setSelectedPokemon}
+              //   setSelectedCharacter={setSelectedCharacter}
+              //   setSelectedSecondarySkill={setSelectedSecondarySkill}
+              //   setIsSelectedPokemon={setIsSelectedPokemon}
+              //   setIsSelectedCharacter={setIsSelectedCharacter}
+              //   setIsSelectedSecondarySkills={setIsSelectedSecondarySkills}
+              // />
+              <div></div>
             ) : (
               <PokemonScoreResult
                 totalScore={totalScore}
