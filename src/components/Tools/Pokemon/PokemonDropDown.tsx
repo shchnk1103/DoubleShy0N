@@ -18,6 +18,8 @@ type Props = {
   setCurrentPage: (newPage: number) => void;
   selectedPokemon: Pokemon;
   setSelectedPokemon: (newPokemon: Pokemon) => void;
+  selected: boolean;
+  setSelected: (newSelected: boolean) => void;
 };
 
 const PokemonDropDown = ({
@@ -28,8 +30,9 @@ const PokemonDropDown = ({
   setCurrentPage,
   selectedPokemon,
   setSelectedPokemon,
+  selected,
+  setSelected,
 }: Props) => {
-  const [selected, setSelected] = useState<boolean>(false);
   const [searchPokemons, setSearchPokemons] = useState<Pokemon[]>([]); // 搜索结果
 
   let typingTimeout: ReturnType<typeof setTimeout>;

@@ -25,6 +25,7 @@ import PokemonScoreResult from "@/components/Tools/Pokemon/PokemonScoreResult";
 import PokemonFooter from "@/components/Tools/Pokemon/PokemonFooter";
 import PokemonTemporary from "@/components/Tools/Pokemon/PokemonTemporary";
 import PokemonTip from "@/components/Tools/Pokemon/PokemonTip";
+import ImageUpload from "@/components/Tools/Pokemon/ImageUpload";
 
 type Props = {
   params: {
@@ -33,13 +34,22 @@ type Props = {
 };
 
 const ToolDetail = ({ params }: Props) => {
+  // 初始化
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [characters, setCharacters] = useState<PokemonCharacterType[]>([]);
   const [secondarySkills, setSecondarySkills] = useState<
     PokemonSecondarySkillType[]
   >([]);
+  // 判断是否
   const [isLoading, setIsLoading] = useState<boolean[]>([true, false]); // [0] -> Fetching, [1] -> No more data
+  const [isSelectedPokemon, setIsSelectedPokemon] = useState<boolean>(false);
+  const [isSelectedCharacter, setIsSelectedCharacter] =
+    useState<boolean>(false);
+  const [isSelectedSecondarySkills, setIsSelectedSecondarySkills] = useState<
+    boolean[]
+  >([false, false, false, false, false]);
+  // 选择
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [selectedPokemon, setSelectedPokemon] = useState<Pokemon>();
   const [selectedCharacter, setSelectedCharacter] =
@@ -50,6 +60,7 @@ const ToolDetail = ({ params }: Props) => {
   const [selectedTemporary, setSelectedTemporary] = useState<
     [string, number][]
   >([]);
+  // 分数
   const [totalScore, setTotalScore] = useState<number>(0);
   const [totalScoreTemporarily, setTotalScoreTemporarily] = useState<number>(0);
 
@@ -215,6 +226,8 @@ const ToolDetail = ({ params }: Props) => {
     setTotalScoreTemporarily(formatted_total_score_temporarily);
   };
 
+  console.log(selectedSecondarySkill);
+
   return (
     <>
       {params.slug == PokemonTool.name ? (
@@ -234,11 +247,11 @@ const ToolDetail = ({ params }: Props) => {
             {/* Content */}
             <div
               className={
-                "w-full lg:w-3/4 md:w-fit h-full lg:h-[468px] filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-start flex-col gap-4 md:gap-6"
+                "w-full lg:w-3/4 md:w-fit h-full lg:h-[468px] filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-start flex-col gap-2 md:gap-6"
               }
             >
-              <div className={"w-full flex-start md:flex-row flex-col gap-4"}>
-                <div className={"w-fit flex-start flex-row gap-4"}>
+              <div className={"w-full flex-start md:flex-row flex-col gap-2"}>
+                <div className={"w-fit flex-start flex-row gap-2"}>
                   {/* 宝可梦 */}
                   <PokemonDropDown
                     pokemons={pokemons}
@@ -248,37 +261,43 @@ const ToolDetail = ({ params }: Props) => {
                     setCurrentPage={setCurrentPage}
                     selectedPokemon={selectedPokemon}
                     setSelectedPokemon={setSelectedPokemon}
+                    selected={isSelectedPokemon}
+                    setSelected={setIsSelectedPokemon}
                   />
 
                   {/* 专长 */}
                   <PokemonExpertise selectedPokemon={selectedPokemon} />
                 </div>
 
-                <div className={"w-full flex-start flex-row gap-4"}>
+                <div className={"w-full flex-start flex-row gap-2"}>
                   {/* 树果和食材 */}
                   <PokemonFruit selectedPokemon={selectedPokemon} />
                 </div>
               </div>
 
               {/* 性格 */}
-              <div className={"flex-start flex-row gap-4"}>
+              <div className={"flex-start flex-row gap-2"}>
                 <PokemonCharacter
                   characters={characters}
                   selectedCharacter={selectedCharacter}
                   setSelectedCharacter={setSelectedCharacter}
+                  selected={isSelectedCharacter}
+                  setSelected={setIsSelectedCharacter}
                 />
               </div>
 
               {/* 副技能 */}
-              <div className={"flex-start flex-row gap-4"}>
+              <div className={"flex-start flex-row gap-2"}>
                 <PokemonSecondarySkill
                   secondarySkills={secondarySkills}
                   selectedSecondarySkill={selectedSecondarySkill}
                   setSelectedSecondarySkill={setSelectedSecondarySkill}
+                  selected={isSelectedSecondarySkills}
+                  setSelected={setIsSelectedSecondarySkills}
                 />
               </div>
 
-              <div className={"flex-start flex-row gap-4"}>
+              <div className={"flex-start flex-row gap-2"}>
                 <PokemonTemporary
                   selectedTemporary={selectedTemporary}
                   setSelectedTemporary={setSelectedTemporary}
@@ -302,7 +321,16 @@ const ToolDetail = ({ params }: Props) => {
             </div>
 
             {/* Result */}
-            {totalScore !== 0 && (
+            {totalScore === 0 ? (
+              <ImageUpload
+                setSelectedPokemon={setSelectedPokemon}
+                setSelectedCharacter={setSelectedCharacter}
+                setSelectedSecondarySkill={setSelectedSecondarySkill}
+                setIsSelectedPokemon={setIsSelectedPokemon}
+                setIsSelectedCharacter={setIsSelectedCharacter}
+                setIsSelectedSecondarySkills={setIsSelectedSecondarySkills}
+              />
+            ) : (
               <PokemonScoreResult
                 totalScore={totalScore}
                 totalScoreTemporarily={totalScoreTemporarily}

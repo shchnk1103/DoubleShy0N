@@ -11,22 +11,24 @@ type Props = {
   characters: PokemonCharacterType[];
   selectedCharacter: PokemonCharacterType;
   setSelectedCharacter: (newCharacter: PokemonCharacterType) => void;
+  selected: boolean;
+  setSelected: (newSelected: boolean) => void;
 };
 
 const PokemonCharacter = ({
   characters,
   selectedCharacter,
   setSelectedCharacter,
+  selected,
+  setSelected,
 }: Props) => {
-  const [selected, setSelected] = useState<boolean>(false);
-
   const handleClick = (character: PokemonCharacterType) => {
     setSelected(true);
     setSelectedCharacter(character);
   };
 
   return (
-    <div className="flex-start flex-col md:flex-row gap-4">
+    <div className="flex-start flex-col md:flex-row gap-2">
       <div className={"pokemon_card"}>
         <span className="text-sm md:text-base pointer-events-none">性格：</span>
 

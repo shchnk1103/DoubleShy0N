@@ -43,6 +43,21 @@ export const fetchCharacters = async () => {
   }
 };
 
+export const fetchCharactersByTitle = async (title: string) => {
+  try {
+    const response = await fetch(
+      `https://django-api-topaz.vercel.app/pokemon-chacators/?title=${title}`,
+      { method: "GET" }
+    );
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const fetchSecondarySkills = async () => {
   try {
     const response = await fetch(
@@ -65,6 +80,21 @@ export const fetchSecondarySkills = async () => {
     );
 
     return sortedData;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchSecondarySkillsByName = async (name: string) => {
+  try {
+    const response = await fetch(
+      `https://django-api-topaz.vercel.app/pokemon-secondary-skills/?secondary_skill_name=${name}`,
+      { method: "GET" }
+    );
+
+    const data = await response.json();
+
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -142,5 +172,24 @@ export const pokemonScoreInfo = (score: number) => {
       const class_name = `score_${element.level.toLowerCase}`;
       return [element.level, class_name];
     }
+  }
+};
+
+export const uploadImage = async (file: File) => {
+  try {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const response = await fetch(
+      "https://django-api-topaz.vercel.app/pokemon-image-uploads/",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    return response;
+  } catch (error) {
+    console.log(error);
   }
 };

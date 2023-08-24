@@ -2,31 +2,28 @@
 
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
-import { useState } from "react";
+import React, { useState } from "react";
 import "@/styles/pokemon.css";
 import { PokemonSecondarySkillType } from "../../../../types/Pokemon";
 
 type Props = {
   secondarySkills: PokemonSecondarySkillType[];
   selectedSecondarySkill: PokemonSecondarySkillType[];
-  setSelectedSecondarySkill: (
-    newSecondarySkill: PokemonSecondarySkillType[]
-  ) => void;
+  setSelectedSecondarySkill: React.Dispatch<
+    React.SetStateAction<PokemonSecondarySkillType[]>
+  >;
+  selected: boolean[];
+  setSelected: React.Dispatch<React.SetStateAction<boolean[]>>;
 };
 
 const PokemonSecondarySkill = ({
   secondarySkills,
   selectedSecondarySkill,
   setSelectedSecondarySkill,
+  selected,
+  setSelected,
 }: Props) => {
   const skills_array: number[] = [10, 25, 50, 75, 100];
-  const [selected, setSelected] = useState<boolean[]>([
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
 
   const handlePokemonClick = (
     secondary_skill: PokemonSecondarySkillType,
@@ -38,13 +35,15 @@ const PokemonSecondarySkill = ({
       return newSelected;
     });
 
-    const newSelectedSecondarySkill = [...selectedSecondarySkill];
-    newSelectedSecondarySkill[index] = secondary_skill;
-    setSelectedSecondarySkill(newSelectedSecondarySkill);
+    setSelectedSecondarySkill((preSelectedSecondarySkill) => {
+      const newSelectedSecondarySkill = [...preSelectedSecondarySkill];
+      newSelectedSecondarySkill[index] = secondary_skill;
+      return newSelectedSecondarySkill;
+    });
   };
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:flex">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-2 lg:flex">
       {skills_array.map((skill_level, index) => (
         <div className="flex-start flex-col gap-1" key={index}>
           <span
