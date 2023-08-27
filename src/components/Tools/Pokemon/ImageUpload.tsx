@@ -11,7 +11,6 @@ import {
   PokemonCharacterType,
   PokemonSecondarySkillType,
 } from "../../../../types/Pokemon";
-import Tesseract from "tesseract.js";
 
 type Props = {
   setSelectedPokemon: (newPokemon: Pokemon) => void;
