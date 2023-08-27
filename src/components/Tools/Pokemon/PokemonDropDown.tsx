@@ -82,7 +82,6 @@ const PokemonDropDown = ({
     typingTimeout = setTimeout(() => {
       // 延迟执行搜索
       fetchPokemonByName(value).then((res) => {
-        console.log(res);
         if (res) {
           setSearchPokemons(res);
         }

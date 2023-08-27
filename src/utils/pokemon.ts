@@ -181,7 +181,7 @@ export const uploadImage = async (file: File) => {
     formData.append("image", file);
 
     const response = await fetch(
-      "https://django-api-topaz.vercel.app/pokemon-image-uploads/",
+      "http://47.98.244.246:8000/pokemon-image-uploads/",
       {
         method: "POST",
         body: formData,

@@ -245,7 +245,7 @@ const ToolDetail = ({ params }: Props) => {
             {/* Content */}
             <div
               className={
-                "w-full lg:w-3/4 md:w-fit h-full lg:h-[468px] filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-start flex-col gap-2 md:gap-6"
+                "w-full lg:w-3/4 md:w-full h-full lg:h-[468px] filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-start flex-col gap-2 md:gap-6"
               }
             >
               <div className={"w-full flex-start md:flex-row flex-col gap-2"}>
@@ -320,15 +320,14 @@ const ToolDetail = ({ params }: Props) => {
 
             {/* Result */}
             {totalScore === 0 ? (
-              // <ImageUpload
-              //   setSelectedPokemon={setSelectedPokemon}
-              //   setSelectedCharacter={setSelectedCharacter}
-              //   setSelectedSecondarySkill={setSelectedSecondarySkill}
-              //   setIsSelectedPokemon={setIsSelectedPokemon}
-              //   setIsSelectedCharacter={setIsSelectedCharacter}
-              //   setIsSelectedSecondarySkills={setIsSelectedSecondarySkills}
-              // />
-              <div></div>
+              <ImageUpload
+                setSelectedPokemon={setSelectedPokemon}
+                setSelectedCharacter={setSelectedCharacter}
+                setSelectedSecondarySkill={setSelectedSecondarySkill}
+                setIsSelectedPokemon={setIsSelectedPokemon}
+                setIsSelectedCharacter={setIsSelectedCharacter}
+                setIsSelectedSecondarySkills={setIsSelectedSecondarySkills}
+              />
             ) : (
               <PokemonScoreResult
                 totalScore={totalScore}
