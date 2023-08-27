@@ -47,7 +47,7 @@ const ImageUpload = ({
 
         // Pokemon
         const pokemon = await fetchPokemonByName(responseData.pokemon_name);
-        if (pokemon) {
+        if (pokemon[0]) {
           setSelectedPokemon(pokemon[0]);
           setIsSelectedPokemon(true);
         }
@@ -56,7 +56,8 @@ const ImageUpload = ({
         const character: PokemonCharacterType = await fetchCharactersByTitle(
           responseData.pokemon_character
         );
-        if (character) {
+        console.log(character);
+        if (character[0]) {
           setSelectedCharacter(character[0]);
           setIsSelectedCharacter(true);
         }
@@ -68,7 +69,7 @@ const ImageUpload = ({
               responseData.pokemon_secondary_skills[i]
             );
 
-          if (secondary_skill) {
+          if (secondary_skill[0]) {
             setSelectedSecondarySkill((preSelectedSecondarySkill) => {
               const newSelectedSecondarySkill = [...preSelectedSecondarySkill];
               newSelectedSecondarySkill[i] = secondary_skill[0];
