@@ -56,7 +56,6 @@ const ImageUpload = ({
         const character: PokemonCharacterType = await fetchCharactersByTitle(
           responseData.pokemon_character
         );
-        console.log(character);
         if (character[0]) {
           setSelectedCharacter(character[0]);
           setIsSelectedCharacter(true);
