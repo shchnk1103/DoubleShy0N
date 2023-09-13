@@ -18,7 +18,7 @@ export const options: NextAuthOptions = {
           ...profile,
           role: profile.role ?? "user",
           id: profile.id.toString(),
-          image: profile.image ?? "/icons/icon.jpg",
+          image: profile.image ?? "/assets/icons/default_avatar.jpeg",
         };
       },
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -32,7 +32,7 @@ export const options: NextAuthOptions = {
           ...profile,
           role: profile.role ?? "user",
           id: profile.id.toString(),
-          image: profile.image ?? "/icons/icon.jpg",
+          image: profile.image ?? "/assets/icons/default_avatar.jpeg",
         };
       },
       clientId: process.env.GITHUB_CLIENT_ID as string,
