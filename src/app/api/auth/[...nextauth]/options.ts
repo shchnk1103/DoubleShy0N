@@ -2,6 +2,7 @@ import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { GoogleProfile } from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
+import { GithubProfile } from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 // Database
 import User from "@/models/user";
@@ -24,6 +25,16 @@ export const options: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
     GithubProvider({
+      profile(profile: GithubProfile) {
+        console.log(profile);
+
+        return {
+          ...profile,
+          role: profile.role ?? "user",
+          id: profile.id.toString(),
+          image: profile.image ?? "/icons/icon.jpg",
+        };
+      },
       clientId: process.env.GITHUB_CLIENT_ID as string,
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
     }),
