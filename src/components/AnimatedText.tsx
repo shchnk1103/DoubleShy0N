@@ -11,7 +11,7 @@ type AnimatedTextProps = {
 
 const AnimatedText = ({ text, className = "" }: AnimatedTextProps) => {
   return (
-    <div className="w-full h-auto mx-auto flex-center text-center flex-col overflow-hidden pointer-events-none">
+    <div className="w-full h-full mx-auto flex-center text-center flex-col overflow-hidden pointer-events-none">
       <motion.h1
         className={`inline-block w-full blue_gradient font-semibold text-5xl mt-8 capitalize ${className}`}
         variants={quoteVariants}

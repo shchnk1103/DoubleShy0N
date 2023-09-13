@@ -89,7 +89,7 @@ const PokemonSecondarySkill = ({
                       <DropdownMenu.Item
                         key={skill._id}
                         onClick={() => handlePokemonClick(skill, index)}
-                        className="flex-center flex-row w-full"
+                        className="flex-center flex-row w-full mb-2"
                       >
                         <div
                           className={`${
@@ -98,7 +98,7 @@ const PokemonSecondarySkill = ({
                               : skill.color == 4
                               ? "silver_skill"
                               : "gold_skill"
-                          } mb-2 w-full lg:text-base text-sm`}
+                          } w-full lg:text-base text-sm`}
                         >
                           {skill.secondary_skill_name}
                         </div>

@@ -24,7 +24,7 @@ const Articles = () => {
     <>
       {articles.length !== 0 ? (
         <div className="w-full my-8 min-h-[70vh] grid grid-cols-1 md:grid-cols-2 gap-3">
-          {articles.map((article, index) => (
+          {articles.map((article: Article, index: number) => (
             <div key={index} className="w-full h-96 shadow-md rounded-3xl">
               <ArticleCard
                 article={{

@@ -26,12 +26,8 @@ const RootLayout = ({ children, session }: RootLayoutProps) => {
               <div className="gradient" />
             </div>
 
-            <main className="app font-poppins">
-              <NavBar />
-
+            <main className="app font-poppins relative">
               {children}
-
-              <Footer />
 
               <Analytics />
             </main>

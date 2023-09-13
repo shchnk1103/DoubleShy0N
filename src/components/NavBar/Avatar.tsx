@@ -4,8 +4,8 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { getProviders, signIn, signOut, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useState } from "react";
 
 const AvatarImg = ({ session }) => {
   return (
@@ -28,22 +28,11 @@ const AvatarImg = ({ session }) => {
 const Avatar = () => {
   const { data: session } = useSession();
 
-  const [providers, setProviders] = useState([]);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   const handleSignOut = async () => {
     await signOut();
   };
-
-  useEffect(() => {
-    const setUpProviders = async () => {
-      const response = await getProviders();
-
-      setProviders(response as any);
-    };
-
-    setUpProviders();
-  }, []);
 
   return (
     <>
@@ -108,27 +97,21 @@ const Avatar = () => {
         </DropdownMenu.Root>
       ) : (
         <>
-          {providers &&
-            Object.values(providers).map((provider) => (
-              <motion.button
-                type="button"
-                key={provider.name}
-                onClick={() => {
-                  signIn(provider.id);
-                }}
-                className="border px-4 py-1 rounded-full bg-white shadow-md hidden sm:flex"
-                initial={{ background: "#fff", color: "#000" }}
-                animate={{ background: "#fff", color: "#000" }}
-                whileHover={{
-                  scale: 1.05,
-                  background: "#2563eb",
-                  color: "#fff",
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Sign In
-              </motion.button>
-            ))}
+          <motion.button
+            type="button"
+            onClick={() => signIn()}
+            className="border px-4 py-1 rounded-full bg-white shadow-md hidden sm:flex"
+            initial={{ background: "#fff", color: "#000" }}
+            animate={{ background: "#fff", color: "#000" }}
+            whileHover={{
+              scale: 1.05,
+              background: "#2563eb",
+              color: "#fff",
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Sign In
+          </motion.button>
         </>
       )}
     </>

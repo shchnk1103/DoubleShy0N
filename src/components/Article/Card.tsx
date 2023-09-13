@@ -4,7 +4,6 @@ import Date from "@/components/Article/Date";
 import Tag from "@/components/Article/Tag";
 import Image from "next/image";
 import { BsArrowRightCircle } from "react-icons/bs";
-import { useRouter } from "next/navigation";
 import { Article } from "../../../types/Article";
 import Link from "next/link";
 
@@ -14,8 +13,6 @@ type CardProps = {
 };
 
 const Card = ({ article, cardType }: CardProps) => {
-  const router = useRouter();
-
   return (
     <>
       {article && (

@@ -17,6 +17,18 @@ const UserSchema = new Schema({
   image: {
     type: String,
   },
+  password: {
+    type: String,
+    required: [true, "Password is required"],
+    match: [
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+      "Password invalid, it should be at least 8 characters long, and contain at least one uppercase letter, one lowercase letter, and one number",
+    ],
+  },
+  role: {
+    type: String,
+    default: "user",
+  },
 });
 
 const User = models.User || model("User", UserSchema);
