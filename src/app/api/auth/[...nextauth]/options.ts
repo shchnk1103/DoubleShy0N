@@ -12,13 +12,11 @@ export const options: NextAuthOptions = {
   providers: [
     GoogleProvider({
       profile(profile: GoogleProfile) {
-        console.log(profile);
-
         return {
           ...profile,
           role: profile.role ?? "user",
-          id: profile.id.toString(),
-          image: profile.image ?? "/assets/icons/default_avatar.jpeg",
+          id: profile.id ?? profile.sub,
+          image: profile.picture ?? "/assets/icons/default_avatar.jpeg",
         };
       },
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -26,8 +24,6 @@ export const options: NextAuthOptions = {
     }),
     GithubProvider({
       profile(profile: GithubProfile) {
-        console.log(profile);
-
         return {
           ...profile,
           role: profile.role ?? "user",
