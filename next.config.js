@@ -9,6 +9,7 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "img.nga.178.com",
       "avatars.githubusercontent.com",
+      "www.serebii.net",
     ],
     remotePatterns: [
       {
