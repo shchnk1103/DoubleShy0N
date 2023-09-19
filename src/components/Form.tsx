@@ -1,5 +1,4 @@
 import Link from "next/link";
-import SelectTag from "./SelectTag";
 import UploadImage from "./UploadImage";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
@@ -47,8 +46,6 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           <span className="font-semibold text-base text-gray-700 dark:text-gray-300">
             Tag:
           </span>
-
-          <SelectTag post={post} setPost={setPost} />
         </label>
 
         <label>
