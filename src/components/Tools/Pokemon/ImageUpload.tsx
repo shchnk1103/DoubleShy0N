@@ -84,7 +84,7 @@ const ImageUpload = ({
   };
 
   return (
-    <div className="w-full lg:w-1/3 md:py-2 h-full lg:h-[468px] filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] border-dashed flex-center flex-col gap-4 md:gap-6">
+    <div className="w-full lg:w-1/4 md:py-2 h-full lg:h-[468px] filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] border-dashed flex-center flex-col gap-4 md:gap-6">
       {selectedImage ? (
         <Image
           src={selectedImage}

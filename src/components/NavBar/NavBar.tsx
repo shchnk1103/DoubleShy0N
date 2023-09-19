@@ -9,7 +9,7 @@ const NavBar = () => {
   return (
     <nav className="flex-between pt-4 mb-4 w-full mx-auto z-50 h-16 top-0 sticky">
       {/* icon */}
-      <div className="flex-1">
+      <div className="flex-1 hidden md:flex">
         <Icon />
       </div>
 

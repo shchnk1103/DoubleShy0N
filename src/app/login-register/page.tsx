@@ -35,6 +35,7 @@ const LoginOrRegister = () => {
       });
 
       if (result.error) {
+        setIsLogging(false);
         setError("Email or password is incorrect!");
       } else {
         setIsLogging(false);

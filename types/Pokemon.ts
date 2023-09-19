@@ -37,9 +37,22 @@ export type PokemonSecondarySkillType = {
 };
 
 export type DailyPokemons = {
-  name: string,
-  score: string,
-  scoreTemporarily: string,
-  owner: ObjectId,
-  createdAt: Date
-}
+  _id: string;
+  name: string;
+  score: string;
+  scoreTemporarily: string;
+  owner: ObjectId;
+  img_url: string;
+  createdAt: Date;
+  isFavorite: boolean;
+  secondarySkillsName: string[];
+  secondarySkillsColors: string[];
+  character: string;
+  characterEffect: {
+    plus: string;
+    minus: string;
+  };
+  expertise: string;
+  tree_fruit: string;
+  ingredients: string;
+};

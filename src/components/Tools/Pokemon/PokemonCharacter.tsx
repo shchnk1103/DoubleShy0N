@@ -2,9 +2,7 @@
 
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
-import { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-import { MdCatchingPokemon } from "react-icons/md";
 import { PokemonCharacterType } from "../../../../types/Pokemon";
 
 type Props = {
