@@ -5,11 +5,7 @@ import PokemonCharacter from "@/components/Tools/Pokemon/PokemonCharacter";
 import PokemonDropDown from "@/components/Tools/Pokemon/PokemonDropDown";
 import { PokemonTool } from "@/components/Tools/ToolTypes";
 import { useEffect, useState } from "react";
-import {
-  Pokemon,
-  PokemonCharacterType,
-  PokemonSecondarySkillType,
-} from "../../../../types/Pokemon";
+import { Pokemon, PokemonCharacterType, PokemonSecondarySkillType, } from "../../../../types/Pokemon";
 import PokemonSecondarySkill from "@/components/Tools/Pokemon/PokemonSecondarySkill";
 import {
   characterScore,
@@ -26,6 +22,8 @@ import PokemonFooter from "@/components/Tools/Pokemon/PokemonFooter";
 import PokemonTemporary from "@/components/Tools/Pokemon/PokemonTemporary";
 import PokemonTip from "@/components/Tools/Pokemon/PokemonTip";
 import ImageUpload from "@/components/Tools/Pokemon/ImageUpload";
+import { AiTwotoneStar } from "react-icons/ai";
+import { useSession } from "next-auth/react";
 
 type Props = {
   params: {
@@ -33,7 +31,8 @@ type Props = {
   };
 };
 
-const ToolDetail = ({ params }: Props) => {
+const ToolDetail = ({params}: Props) => {
+  const {data: session} = useSession();
   // 初始化
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
@@ -63,6 +62,7 @@ const ToolDetail = ({ params }: Props) => {
   // 分数
   const [totalScore, setTotalScore] = useState<number>(0);
   const [totalScoreTemporarily, setTotalScoreTemporarily] = useState<number>(0);
+  const [isFavourite, setIsFavourite] = useState<boolean>(false)
 
   const submit_disabled =
     selectedPokemon !== undefined &&
@@ -112,9 +112,7 @@ const ToolDetail = ({ params }: Props) => {
       const skill_color = selectedSecondarySkill[index]?.color;
 
       // 技能自洽
-      const skill_self_consistent =
-        selectedSecondarySkill[index]?.self_consistent;
-      consistent[index] = skill_self_consistent;
+      consistent[index] = selectedSecondarySkill[index]?.self_consistent;
 
       // 技能匹配分
       let skill_score = 0;
@@ -135,10 +133,7 @@ const ToolDetail = ({ params }: Props) => {
       const skill_order_score = skill_score * skillOrder[index];
 
       // 副技能总得分
-      const score =
-        Number(skill_color) + Number(skill_score) + Number(skill_order_score);
-
-      pokemon_skill_scores[index] = score;
+      pokemon_skill_scores[index] = Number(skill_color) + Number(skill_score) + Number(skill_order_score);
     }
 
     // 性格分
@@ -226,125 +221,159 @@ const ToolDetail = ({ params }: Props) => {
     setTotalScoreTemporarily(formatted_total_score_temporarily);
   };
 
+  const handleFavouritePokemon = async () => {
+    if (!session?.user) {
+      alert('请先登录！')
+      return
+    }
+
+    const result = await fetch('/api/pokemon/add', {
+      method: 'POST',
+      body: JSON.stringify({
+        userID: session?.user['id'],
+        name: selectedPokemon.name,
+        score: totalScore,
+        scoreTemporarily: totalScoreTemporarily,
+      })
+    })
+
+    if (result.ok) {
+      setIsFavourite(true)
+      alert('收藏成功！')
+    }
+  }
+
   return (
     <>
-      {params.slug == PokemonTool.name ? (
+      { params.slug == PokemonTool.name ? (
         <div className="min-h-[75vh] w-full flex-start flex-col gap-8">
-          {/* Head */}
-          <div className={"text-left w-full flex-start flex-col gap-2"}>
-            <h1 className={"blue_gradient text-5xl font-semibold mt-4"}>
-              {PokemonTool.title}
+          {/* Head */ }
+          <div className={ "text-left w-full flex-start flex-col gap-2" }>
+            <h1 className={ "blue_gradient text-5xl font-semibold mt-4" }>
+              { PokemonTool.title }
             </h1>
-            <span className={"text-xl text-gray-400"}>
-              {PokemonTool.description}
+            <span className={ "text-xl text-gray-400" }>
+              { PokemonTool.description }
             </span>
           </div>
 
-          {/* Content */}
-          <div className={"w-full flex-start lg:flex-row flex-col gap-6"}>
-            {/* Content */}
+          {/* Content */ }
+          <div className={ "w-full flex-start lg:flex-row flex-col gap-6" }>
+            {/* Content */ }
             <div
               className={
                 "w-full lg:w-3/4 md:w-full h-full lg:h-[468px] filter backdrop-blur-3xl rounded-2xl shadow-xl border-[1px] p-4 flex-start flex-col gap-2 md:gap-6"
               }
             >
-              <div className={"w-full flex-start md:flex-row flex-col gap-2"}>
-                <div className={"w-fit flex-start flex-row gap-2"}>
-                  {/* 宝可梦 */}
+              <div className={ "w-full flex-start md:flex-row flex-col gap-2" }>
+                <div className={ "w-fit flex-start flex-row gap-2" }>
+                  {/* 宝可梦 */ }
                   <PokemonDropDown
-                    pokemons={pokemons}
-                    isLoading={isLoading}
-                    setIsLoading={setIsLoading}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    selectedPokemon={selectedPokemon}
-                    setSelectedPokemon={setSelectedPokemon}
-                    selected={isSelectedPokemon}
-                    setSelected={setIsSelectedPokemon}
+                    pokemons={ pokemons }
+                    isLoading={ isLoading }
+                    setIsLoading={ setIsLoading }
+                    currentPage={ currentPage }
+                    setCurrentPage={ setCurrentPage }
+                    selectedPokemon={ selectedPokemon }
+                    setSelectedPokemon={ setSelectedPokemon }
+                    selected={ isSelectedPokemon }
+                    setSelected={ setIsSelectedPokemon }
                   />
 
-                  {/* 专长 */}
-                  <PokemonExpertise selectedPokemon={selectedPokemon} />
+                  {/* 专长 */ }
+                  <PokemonExpertise selectedPokemon={ selectedPokemon }/>
                 </div>
 
-                <div className={"w-full flex-start flex-row gap-2"}>
-                  {/* 树果和食材 */}
-                  <PokemonFruit selectedPokemon={selectedPokemon} />
+                <div className={ "w-full flex-start flex-row gap-2" }>
+                  {/* 树果和食材 */ }
+                  <PokemonFruit selectedPokemon={ selectedPokemon }/>
                 </div>
               </div>
 
-              {/* 性格 */}
-              <div className={"flex-start flex-row gap-2"}>
+              {/* 性格 */ }
+              <div className={ "flex-start flex-row gap-2" }>
                 <PokemonCharacter
-                  characters={characters}
-                  selectedCharacter={selectedCharacter}
-                  setSelectedCharacter={setSelectedCharacter}
-                  selected={isSelectedCharacter}
-                  setSelected={setIsSelectedCharacter}
+                  characters={ characters }
+                  selectedCharacter={ selectedCharacter }
+                  setSelectedCharacter={ setSelectedCharacter }
+                  selected={ isSelectedCharacter }
+                  setSelected={ setIsSelectedCharacter }
                 />
               </div>
 
-              {/* 副技能 */}
-              <div className={"flex-start flex-row gap-2"}>
+              {/* 副技能 */ }
+              <div className={ "flex-start flex-row gap-2" }>
                 <PokemonSecondarySkill
-                  secondarySkills={secondarySkills}
-                  selectedSecondarySkill={selectedSecondarySkill}
-                  setSelectedSecondarySkill={setSelectedSecondarySkill}
-                  selected={isSelectedSecondarySkills}
-                  setSelected={setIsSelectedSecondarySkills}
+                  secondarySkills={ secondarySkills }
+                  selectedSecondarySkill={ selectedSecondarySkill }
+                  setSelectedSecondarySkill={ setSelectedSecondarySkill }
+                  selected={ isSelectedSecondarySkills }
+                  setSelected={ setIsSelectedSecondarySkills }
                 />
               </div>
 
-              <div className={"flex-start flex-row gap-2"}>
+              <div className={ "flex-start flex-row gap-2" }>
                 <PokemonTemporary
-                  selectedTemporary={selectedTemporary}
-                  setSelectedTemporary={setSelectedTemporary}
+                  selectedTemporary={ selectedTemporary }
+                  setSelectedTemporary={ setSelectedTemporary }
                 />
 
-                <PokemonTip />
+                <PokemonTip/>
               </div>
 
-              {/* 计算分数按钮 */}
-              <button
-                className={`w-full py-3 px-4 rounded-2xl shadow-2xl transition-all ${
-                  !submit_disabled
-                    ? "bg-gray-200 text-gray-400"
-                    : "bg-blue-400 text-white hover:-translate-y-1 hover:shadow-md"
-                }`}
-                onClick={handleClick}
-                disabled={!submit_disabled}
-              >
-                计算分数
-              </button>
+              <div className={ `w-full flex-center gap-4` }>
+                {/* 计算分数按钮 */ }
+                <button
+                  className={ `w-full py-3 px-4 rounded-2xl shadow-2xl transition-all ${
+                    !submit_disabled
+                      ? "bg-gray-200 text-gray-400"
+                      : "bg-blue-400 text-white hover:-translate-y-1 hover:shadow-md"
+                  }` }
+                  onClick={ handleClick }
+                  disabled={ !submit_disabled }
+                >
+                  计算分数
+                </button>
+
+                { totalScore !== 0 && totalScoreTemporarily !== 0 && (
+                  <div
+                    className={ `${ isFavourite ? '' : 'hover:shadow-xl' } h-full w-12 flex-center bg-gray-200 dark:bg-gray-700 rounded-full shadow-md group cursor-pointer` }
+                    onClick={ handleFavouritePokemon }
+                  >
+                    <AiTwotoneStar
+                      className={ `${ isFavourite ? 'text-amber-400' : 'group-hover:text-amber-400' } text-gray-800/80 dark:text-gray-300/80 h-1/2 w-1/2 transition-all ` }/>
+                  </div>
+                ) }
+              </div>
             </div>
 
-            {/* Result */}
-            {totalScore === 0 ? (
+            {/* Result */ }
+            { totalScore === 0 ? (
               <ImageUpload
-                setSelectedPokemon={setSelectedPokemon}
-                setSelectedCharacter={setSelectedCharacter}
-                setSelectedSecondarySkill={setSelectedSecondarySkill}
-                setIsSelectedPokemon={setIsSelectedPokemon}
-                setIsSelectedCharacter={setIsSelectedCharacter}
-                setIsSelectedSecondarySkills={setIsSelectedSecondarySkills}
+                setSelectedPokemon={ setSelectedPokemon }
+                setSelectedCharacter={ setSelectedCharacter }
+                setSelectedSecondarySkill={ setSelectedSecondarySkill }
+                setIsSelectedPokemon={ setIsSelectedPokemon }
+                setIsSelectedCharacter={ setIsSelectedCharacter }
+                setIsSelectedSecondarySkills={ setIsSelectedSecondarySkills }
               />
             ) : (
               <PokemonScoreResult
-                totalScore={totalScore}
-                totalScoreTemporarily={totalScoreTemporarily}
+                totalScore={ totalScore }
+                totalScoreTemporarily={ totalScoreTemporarily }
               />
-            )}
+            ) }
           </div>
 
-          {/* Footer */}
-          <PokemonFooter />
+          {/* Footer */ }
+          <PokemonFooter/>
         </div>
       ) : (
         <AnimatedText
-          text={"loading..."}
+          text={ "loading..." }
           className="blue_gradient text-2xl md:text-6xl capitalize my-8 min-h-[400px] flex-center"
         />
-      )}
+      ) }
     </>
   );
 };

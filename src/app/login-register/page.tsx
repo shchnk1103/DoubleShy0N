@@ -1,28 +1,33 @@
 "use client";
 
 import AnimatedInput from "@/components/AnimatedInput";
+import { AnimatePresence, motion } from "framer-motion";
 import { getProviders, signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { AiOutlineLoading } from "react-icons/ai";
 
 const LoginOrRegister = () => {
   const router = useRouter();
   const [providers, setProviders] = useState<any>([]);
-
+  // Form
   const [inputEmail, setInputEmail] = useState<string>("");
   const [inputName, setInputName] = useState<string>("");
   const [inputPassword, setInputPassword] = useState<string>("");
   const [inputPassword2, setInputPassword2] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [loginMode, setLoginMode] = useState<boolean>(true);
+  const [isLogging, setIsLogging] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (loginMode) {
       // Login
+      setIsLogging(true);
+
       const result = await signIn("credentials", {
         email: inputEmail,
         password: inputPassword,
@@ -32,6 +37,7 @@ const LoginOrRegister = () => {
       if (result.error) {
         setError("Email or password is incorrect!");
       } else {
+        setIsLogging(false);
         router.push("/");
       }
     } else {
@@ -82,16 +88,7 @@ const LoginOrRegister = () => {
     <>
       {/* Content */}
       <div className="relative mx-4 filter backdrop-blur-2xl rounded-3xl border flex-center flex-row shadow-md">
-        {error ? (
-          <div className="absolute top-2 flex-center rounded-full border border-gray-300/25">
-            <div className="w-full h-full bg-white bg-opacity-60 backdrop-filter blur-sm absolute rounded-full"></div>
-
-            <p className="text-red-600 z-50 py-1 px-2 pointer-events-none">
-              {error}
-            </p>
-          </div>
-        ) : null}
-
+        {/* Image */}
         <div className="h-full w-full flex-1 hidden sm:flex">
           <Image
             alt="LoginImage"
@@ -103,6 +100,7 @@ const LoginOrRegister = () => {
           />
         </div>
 
+        {/* Form */}
         <div className="h-full py-4 flex-1 flex-center flex-col gap-1 px-8">
           {/* Title */}
           <div className="flex-start flex-col gap-2">
@@ -248,6 +246,7 @@ const LoginOrRegister = () => {
         </div>
       </div>
 
+      {/* Back Button */}
       <div className="absolute top-8 left-8 w-12 h-12 flex-center border rounded-full p-2 group cursor-pointer hover:bg-blue-600 transition-colors shadow-md">
         <Link
           href={"/"}
@@ -256,6 +255,44 @@ const LoginOrRegister = () => {
           {"<"}
         </Link>
       </div>
+
+      <AnimatePresence>
+        {error && (
+          <div
+            className="absolute bg-black/50 w-full h-full flex-center"
+            onClick={() => setError("")}
+          >
+            <motion.span
+              key={error}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              className="bg-white px-4 py-2 rounded-xl pointer-events-none text-red-600"
+            >
+              {error}
+            </motion.span>
+          </div>
+        )}
+
+        {isLogging && (
+          <div className="absolute bg-black/50 w-full h-full flex-center">
+            <div className="h-14 w-14 absolute bg-white dark:bg-gray-700 rounded-2xl"></div>
+            <motion.span
+              key={"isLogging"}
+              animate={{
+                rotate: 360,
+                transition: {
+                  type: "spring",
+                  duration: 1.25,
+                  repeat: Infinity,
+                },
+              }}
+            >
+              <AiOutlineLoading className="w-8 h-8" />
+            </motion.span>
+          </div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

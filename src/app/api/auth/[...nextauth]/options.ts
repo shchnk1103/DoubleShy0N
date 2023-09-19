@@ -4,11 +4,14 @@ import { GoogleProfile } from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import { GithubProfile } from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { MongoDBAdapter } from "@auth/mongodb-adapter";
 // Database
 import User from "@/models/user";
 import { connectToDatabase } from "@/utils/database";
+import clientPromise from "@/utils/mongodb";
 
 export const options: NextAuthOptions = {
+  // adapter: MongoDBAdapter(clientPromise),
   providers: [
     GoogleProvider({
       profile(profile: GoogleProfile) {
@@ -76,11 +79,11 @@ export const options: NextAuthOptions = {
         user: {
           ...session.user,
           id: sessionUser._id.toString(),
+          role: sessionUser.role,
         },
       };
     },
     async signIn({ user, profile }) {
-      console.log(profile);
       if (profile) {
         try {
           await connectToDatabase();

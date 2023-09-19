@@ -1,3 +1,5 @@
+import { ObjectId } from "mongoose";
+
 export type Pokemon = {
   id: string;
   name: string;
@@ -33,3 +35,11 @@ export type PokemonSecondarySkillType = {
   self_consistent: string;
   color: number;
 };
+
+export type DailyPokemons = {
+  name: string,
+  score: string,
+  scoreTemporarily: string,
+  owner: ObjectId,
+  createdAt: Date
+}

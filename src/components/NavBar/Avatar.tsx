@@ -25,6 +25,47 @@ const AvatarImg = ({ session }) => {
   );
 };
 
+const DropItems = ({ setToggleDropdown }) => {
+  const { data: session } = useSession();
+
+  type item = {
+    name: string;
+    href: string;
+  };
+
+  const items: item[] = [
+    { name: "Tags", href: "/articles/tags" },
+    { name: "Create Article", href: "/articles/create" },
+    { name: "Pokemon Sleep", href: "/tools/pokemon-sleep" },
+  ];
+
+  return (
+    <>
+      {items
+        .filter((item) => {
+          const user = session?.user;
+
+          if (user["role"] === "admin") {
+            return true;
+          } else {
+            return !(item.name === "Create Article" || item.name === "Tags");
+          }
+        })
+        .map((item, index) => (
+          <DropdownMenu.Item key={index}>
+            <Link
+              href={item.href}
+              className="w-full text-sm text-slate-400 hover:text-slate-800 transition-colors"
+              onClick={() => setToggleDropdown(false)}
+            >
+              {item.name}
+            </Link>
+          </DropdownMenu.Item>
+        ))}
+    </>
+  );
+};
+
 const Avatar = () => {
   const { data: session } = useSession();
 
@@ -56,24 +97,7 @@ const Avatar = () => {
                     exit={{ opacity: 0, scale: 0.96 }}
                   >
                     <DropdownMenu.Group className="flex-start flex-col gap-2">
-                      <DropdownMenu.Item>
-                        <Link
-                          href="/articles/tags"
-                          className="w-full text-sm text-slate-400 hover:text-slate-800 transition-colors"
-                          onClick={() => setToggleDropdown(false)}
-                        >
-                          Tags
-                        </Link>
-                      </DropdownMenu.Item>
-                      <DropdownMenu.Item>
-                        <Link
-                          href="/articles/create"
-                          className="w-full text-sm text-slate-400 hover:text-slate-800 transition-colors"
-                          onClick={() => setToggleDropdown(false)}
-                        >
-                          Create Article
-                        </Link>
-                      </DropdownMenu.Item>
+                      <DropItems setToggleDropdown={setToggleDropdown} />
                     </DropdownMenu.Group>
 
                     <DropdownMenu.Separator className="h-px w-full bg-gray-300" />
