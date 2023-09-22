@@ -70,6 +70,7 @@ const ArticleCard = ({ article, index }: ArticleCardProps) => {
           fill
           className="inset-0 w-full h-full rounded-3xl object-cover -z-10"
           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+          loading="lazy"
         />
 
         <div className="z-10 w-full h-24 bg-gradient-to-b from-gray-50 dark:from-gray-600 to-white dark:to-gray-800 opacity-90 backdrop-blur-xl backdrop-filter dark:bg-gray-900 group-hover:opacity-60 transition-opacity mt-auto rounded-b-3xl p-3 flex flex-col justify-center">

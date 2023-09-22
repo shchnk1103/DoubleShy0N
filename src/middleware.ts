@@ -13,7 +13,7 @@ export default withAuth(
       return NextResponse.rewrite(new URL("/", request.url));
     }
 
-    if (request.nextUrl.pathname.startsWith("/admin")) {
+    if (request.nextUrl.pathname.startsWith("/tools/pokemon-sleep")) {
       return NextResponse.next();
     }
   },
@@ -26,4 +26,4 @@ export default withAuth(
 
 // Applies next-auth only to matching routes - can be regex
 // Ref: https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
-export const config = { matcher: ["/admin"] };
+export const config = { matcher: ["/tools/pokemon-sleep"] };

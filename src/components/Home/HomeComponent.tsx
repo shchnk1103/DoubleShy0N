@@ -13,10 +13,10 @@ const HomeComponent = () => {
 
       <div className="flex justify-start items-start flex-col w-full md:w-1/2">
         <motion.span
-          initial={{ opacity: 0, offsetY: 20 }}
+          initial={{ opacity: 0, offset: 20 }}
           animate={{
             opacity: 1,
-            offsetY: 0,
+            offset: 0,
             transition: {
               type: "tween",
               ease: "easeIn",

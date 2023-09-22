@@ -3,27 +3,28 @@
 import AnimatedText from "@/components/AnimatedText";
 import Card from "@/components/Article/Card";
 import { useEffect, useState } from "react";
-import { getArticles } from "../../../sanity/utils";
+import { getAllArticles } from "../../../sanity/utils";
 import { Article } from "../../../types/Article";
 import ArticleCard from "@/components/Home/ArticleCard";
+import Tags from "@/components/Tags";
 
 const Articles = () => {
   const [articles, setArticles] = useState<Article[]>([]);
 
-  const fetchArticles = async () => {
-    const data = await getArticles();
-
-    setArticles(data);
-  };
-
   useEffect(() => {
+    const fetchArticles = async () => {
+      const data = await getAllArticles();
+
+      setArticles(data);
+    };
+
     fetchArticles();
   }, []);
 
   return (
     <>
       {articles.length !== 0 ? (
-        <div className="w-full my-8 min-h-[70vh] grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="w-full min-h-[70vh] grid grid-cols-1 md:grid-cols-2 gap-3">
           {articles.map((article: Article, index: number) => (
             <div key={index} className="w-full h-96 shadow-md rounded-3xl">
               <ArticleCard

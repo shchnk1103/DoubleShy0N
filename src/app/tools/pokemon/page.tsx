@@ -271,7 +271,7 @@ const ToolDetail = ({ params }: Props) => {
 
   return (
     <>
-      {params.slug == PokemonTool.name ? (
+      {pokemons.length !== 0 ? (
         <div className="min-h-[75vh] w-full flex-start flex-col gap-8">
           {/* Head */}
           <div className={"text-left w-full flex-start flex-col gap-2"}>

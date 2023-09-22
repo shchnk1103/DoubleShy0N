@@ -1,12 +1,14 @@
-import {createClient, groq} from "next-sanity";
+import { createClient, groq } from "next-sanity";
 import clientConfig from "./config/client-config";
-import {Article} from "../types/Article";
+import { Article } from "../types/Article";
 import imageUrlBuilder from "@sanity/image-url";
-import {Category} from "../types/Category";
+import { Category } from "../types/Category";
 
 const builder = imageUrlBuilder(clientConfig);
 
-export const getArticles = async (num: number = 99999): Promise<Article[]> => {
+export const getAllArticles = async (
+  num: number = 99999
+): Promise<Article[]> => {
   return createClient(clientConfig).fetch(
     groq`*[_type == "article"]{
       _id,
@@ -35,7 +37,7 @@ export const getArticleBySlug = async (slug: string): Promise<Article> => {
       body,
       categories[0]->,
     }`,
-    {slug}
+    { slug }
   );
 };
 
@@ -54,7 +56,7 @@ export const getArticlesByCategory = async (
       body,
       categories[0]->,
     }`,
-    {category}
+    { category }
   );
 };
 

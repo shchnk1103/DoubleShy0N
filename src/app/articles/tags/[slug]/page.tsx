@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { getArticlesByCategory } from "../../../../../sanity/utils";
 import { Article } from "../../../../../types/Article";
 import ArticleCard from "@/components/Home/ArticleCard";
+import Tags from "@/components/Tags";
 
 type ArticleByTagProps = {
   params: {
@@ -16,20 +17,20 @@ type ArticleByTagProps = {
 const ArticleByTag = ({ params }: ArticleByTagProps) => {
   const [articles, setArticles] = useState<Article[]>([]);
 
-  const fetchArticlesByTag = async (slug: string) => {
-    const data = await getArticlesByCategory(slug);
-
-    setArticles(data);
-  };
-
   useEffect(() => {
+    const fetchArticlesByTag = async (slug: string) => {
+      const data = await getArticlesByCategory(slug);
+
+      setArticles(data);
+    };
+
     fetchArticlesByTag(params.slug);
   }, []);
 
   return (
     <>
       {articles.length !== 0 ? (
-        <div className="w-full my-8 min-h-[70vh] grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="w-full min-h-[70vh] grid grid-cols-1 md:grid-cols-2 gap-3">
           {articles.map((article, index) => (
             <div key={index} className="w-full h-96 shadow-md rounded-3xl">
               <ArticleCard
