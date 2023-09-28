@@ -11,7 +11,7 @@ const Home = () => {
 
       <HomeComponent />
 
-      <div className="relative w-full h-full grid grid-cols-1 md:grid-cols-2">
+      <div className="relative w-full h-full grid grid-cols-1 md:grid-cols-2 padding">
         <ArticleCardList />
 
         <SideBar />

@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const HomeComponent = () => {
   return (
-    <div className="flex-center md:flex-between flex-col md:flex-row w-full h-full min-h-[80vh] gap-6">
+    <div className="flex-center md:flex-between flex-col md:flex-row w-full h-full min-h-[80vh] gap-6 padding">
       <HomeImage />
 
       <div className="flex justify-start items-start flex-col w-full md:w-1/2">

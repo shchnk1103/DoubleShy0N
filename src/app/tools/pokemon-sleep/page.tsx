@@ -63,7 +63,7 @@ const Pokemon = () => {
 
   return (
     <>
-      <div className="h-full w-full flex-start flex-col gap-2 min-h-[70vh]">
+      <div className="h-full w-full flex-start flex-col gap-2 min-h-[70vh] padding">
         {Object.keys(pokemons).length !== 0 ? (
           Object.keys(pokemons).map((date) => (
             <div key={date} className="w-full flex justify-between items-start">

@@ -347,7 +347,7 @@ const ToolDetail = ({ params }: Props) => {
                 <PokemonTip />
               </div>
 
-              <div className={`w-full flex-center gap-4`}>
+              <div className={`w-full flex-center md:gap-4 gap-2`}>
                 {/* 计算分数按钮 */}
                 <button
                   className={`w-full py-3 px-4 rounded-2xl shadow-2xl transition-all ${
@@ -365,7 +365,7 @@ const ToolDetail = ({ params }: Props) => {
                   <div
                     className={`${
                       isFavourite ? "" : "hover:shadow-xl"
-                    } h-full w-12 flex-center bg-gray-200 dark:bg-gray-700 rounded-full shadow-md group cursor-pointer`}
+                    } md:h-[48px] h-[33px] md:w-[48px] w-[33px] flex-center bg-gray-200 dark:bg-gray-700 rounded-full shadow-md group cursor-pointer`}
                     onClick={handleFavouritePokemon}
                   >
                     <AiTwotoneStar

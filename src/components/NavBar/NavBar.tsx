@@ -4,12 +4,13 @@ import Avatar from "./Avatar";
 import DarkModeButton from "./DarkModeButton";
 import NavItem from "./NavItem";
 import Icon from "./Icon";
+import Hamburger from "./Hamburger";
 
 const NavBar = () => {
   return (
-    <nav className="flex-between pt-4 mb-4 w-full mx-auto z-50 h-16 top-0 sticky">
+    <nav className="flex-between pt-4 mb-4 w-full mx-auto z-50 h-16 top-0 sticky padding">
       {/* icon */}
-      <div className="flex-1 hidden md:flex">
+      <div className="flex-1 flex">
         <Icon />
       </div>
 
@@ -20,10 +21,16 @@ const NavBar = () => {
         ))}
       </div>
 
-      <div className="flex-end gap-2 flex-1">
+      {/* PC */}
+      <div className="gap-2 flex-1 hidden md:flex md:justify-end md:items-center">
         <Avatar />
 
         <DarkModeButton />
+      </div>
+
+      {/* Mobile */}
+      <div className="flex-1 md:hidden w-full h-full flex justify-end items-center">
+        <Hamburger />
       </div>
     </nav>
   );

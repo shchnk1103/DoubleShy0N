@@ -73,8 +73,12 @@
 
 /* Tailwind Styles */
 
+.padding {
+  @apply md:px-20 lg:px-28 px-8;
+}
+
 .app {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto md:px-20 lg:px-28 px-8;
+  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto;
 }
 
 .head_text {
