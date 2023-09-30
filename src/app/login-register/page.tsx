@@ -88,7 +88,7 @@ const LoginOrRegister = () => {
   return (
     <>
       {/* Content */}
-      <div className="relative mx-4 filter backdrop-blur-2xl rounded-3xl border flex-center flex-row shadow-md padding">
+      <div className="relative mx-4 filter backdrop-blur-2xl rounded-3xl border flex-center flex-row shadow-md">
         {/* Image */}
         <div className="h-full w-full flex-1 hidden sm:flex">
           <Image

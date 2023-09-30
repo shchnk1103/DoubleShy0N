@@ -272,7 +272,7 @@ const ToolDetail = ({ params }: Props) => {
   return (
     <>
       {pokemons.length !== 0 ? (
-        <div className="min-h-[75vh] w-full flex-start flex-col gap-8">
+        <div className="min-h-[75vh] w-full flex-start flex-col gap-8 padding">
           {/* Head */}
           <div className={"text-left w-full flex-start flex-col gap-2"}>
             <h1 className={"blue_gradient text-5xl font-semibold mt-4"}>
