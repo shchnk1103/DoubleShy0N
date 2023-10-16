@@ -4,7 +4,7 @@ import "@/styles/pokemon.css";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { DailyPokemons } from "../../../../types/Pokemon";
+import { DailyPokemons } from "../../../../../types/Pokemon";
 import { pokemonScoreInfo } from "@/utils/pokemon";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import AnimatedText from "@/components/AnimatedText";

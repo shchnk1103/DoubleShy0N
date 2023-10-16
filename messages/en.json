@@ -1,0 +1,24 @@
+{
+  "Home": {
+    "title": "Welcome To My Site!",
+    "subtitle_1": "My name is",
+    "subtitle_2": ", I am a full-stack developer, I like to share my experience and my thoughts on this site. I hope you can find what you want here. If I have any mistakes, please contact me. Thank you!",
+    "name": "DoubleShy0N",
+    "contact_me": "Contact Me",
+    "latest_articles": "The latest articles:",
+    "tip_1": "There are no articles at the moment,",
+    "tip_2": "Please give me some time.",
+    "tags": "Tags:",
+    "tip_tag": "You can choose a tag to show your interest articles.",
+    "more": "something else..."
+  },
+  "Tabs": {
+    "Home": "Home",
+    "Articles": "Articles",
+    "Tools": "Tools"
+  },
+  "Tools": {
+    "title": "Tools",
+    "subtitle": "Here will be some self-made tools."
+  }
+}

@@ -7,8 +7,8 @@ import Tag from "@/components/Article/Tag";
 import Date from "@/components/Article/Date";
 import Count from "@/components/Article/Count";
 import Author from "@/components/Article/Author";
-import { getArticleBySlug } from "../../../../sanity/utils";
-import { Article } from "../../../../types/Article";
+import { getArticleBySlug } from "../../../../../sanity/utils";
+import { Article } from "../../../../../types/Article";
 import { ArticlePortableText } from "@/components/Article/ArticlePortableText";
 import { fetchCount } from "@/utils/api_func";
 

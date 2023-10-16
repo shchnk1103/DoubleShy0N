@@ -6,9 +6,11 @@ import ArticleCard from "./ArticleCard";
 import { staggerContainer } from "@/utils/motion";
 import { getAllArticles } from "../../../sanity/utils";
 import { Article } from "../../../types/Article";
+import { useTranslations } from "next-intl";
 
 const ArticleCardList = () => {
   const [articles, setArticles] = useState<Article[]>([]);
+  const t = useTranslations("Home");
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -31,7 +33,7 @@ const ArticleCardList = () => {
       viewport={{ once: false, amount: 0.25 }}
     >
       <span className="font-semibold text-xl blue_gradient">
-        The latest articles:
+        {t("latest_articles")}
       </span>
 
       {articles.length !== 0 ? (
@@ -56,8 +58,8 @@ const ArticleCardList = () => {
         </div>
       ) : (
         <div className="flex flex-col gap-2 w-[90%] h-full border rounded-3xl p-8 shadow-sm font-semibold text-lg backdrop-blur-md dark:text-zinc-300 dark:border-gray-500">
-          <span>There are no articles at the moment,</span>
-          <span>Please give me some time.</span>
+          <span>{t("tip_1")}</span>
+          <span>{t("tip_2")}</span>
         </div>
       )}
     </motion.div>

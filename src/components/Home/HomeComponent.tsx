@@ -5,8 +5,11 @@ import HomeImage from "./HomeImage";
 import { FiGithub, FiTwitter, FiInstagram } from "react-icons/fi";
 import { SiBilibili } from "react-icons/si";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const HomeComponent = () => {
+  const t = useTranslations("Home");
+
   return (
     <div className="flex-center md:flex-between flex-col md:flex-row w-full h-full min-h-[80vh] gap-6 padding">
       <HomeImage />
@@ -24,15 +27,13 @@ const HomeComponent = () => {
           }}
           className="w-full h-auto mx-auto flex-start flex-col overflow-hidden pointer-events-none blue_gradient inline-block font-semibold text-5xl mt-8 capitalize text-left"
         >
-          Welcome to my site!
+          {t("title")}
         </motion.span>
 
         <span className="text-base text-left my-8 overflow-hidden pointer-events-none">
-          My name is{" "}
-          <span className="blue_gradient font-semibold">DoubleShy0N</span>, I am
-          a full-stack developer, I like to share my experience and my thoughts
-          on this site. I hope you can find what you want here. If I have any
-          mistakes, please contact me. Thank you!
+          {t("subtitle_1")}{" "}
+          <span className="blue_gradient font-semibold">{t("name")}</span>
+          {t("subtitle_2")}
         </span>
 
         <div className="flex justify-start items-center flex-row mt-4 gap-4">
@@ -40,7 +41,7 @@ const HomeComponent = () => {
             href="mailto:doubleshy0n@qq.com"
             className="capitalize bg_blue_gradient text-slate-100 text-xl px-8 py-3 rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition active:scale-95"
           >
-            Contact
+            {t("contact_me")}
           </a>
 
           <Link href="https://github.com/shchnk1103">

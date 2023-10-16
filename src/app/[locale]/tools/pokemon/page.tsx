@@ -9,7 +9,7 @@ import {
   Pokemon,
   PokemonCharacterType,
   PokemonSecondarySkillType,
-} from "../../../../types/Pokemon";
+} from "../../../../../types/Pokemon";
 import PokemonSecondarySkill from "@/components/Tools/Pokemon/PokemonSecondarySkill";
 import {
   characterScore,
