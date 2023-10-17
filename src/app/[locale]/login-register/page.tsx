@@ -3,6 +3,7 @@
 import AnimatedInput from "@/components/AnimatedInput";
 import { AnimatePresence, motion } from "framer-motion";
 import { getProviders, signIn } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,6 +11,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 
 const LoginOrRegister = () => {
+  const t = useTranslations("LoginOrRegister");
   const router = useRouter();
   const [providers, setProviders] = useState<any>([]);
   // Form
@@ -88,7 +90,7 @@ const LoginOrRegister = () => {
   return (
     <>
       {/* Content */}
-      <div className="relative mx-4 filter backdrop-blur-2xl rounded-3xl border flex-center flex-row shadow-md">
+      <div className="md:w-[850px] relative md:mx-4 filter backdrop-blur-2xl rounded-3xl border grid sm:grid-cols-2 grid-cols-1 shadow-md">
         {/* Image */}
         <div className="h-full w-full flex-1 hidden sm:flex">
           <Image
@@ -102,27 +104,25 @@ const LoginOrRegister = () => {
         </div>
 
         {/* Form */}
-        <div className="h-full py-4 flex-1 flex-center flex-col gap-1 px-8">
+        <div className="h-full py-4 flex-1 flex items-start justify-center flex-col gap-4 px-8">
           {/* Title */}
-          <div className="flex-start flex-col gap-2">
-            <span className="blue_gradient font-bold text-3xl text-left w-full">
-              {loginMode ? "Login" : "Register"}
+          <div className="h-fit flex-start flex-col gap-4">
+            <span className="blue_gradient font-bold text-5xl text-left w-full h-[55px]">
+              {loginMode ? t("title_login") : t("title_register")}
             </span>
 
             <span className="text-sm text-gray-600 dark:text-gray-400">
-              {loginMode
-                ? "Login an account can access you to have more power with this site..."
-                : "Register an account can access you to have more power with this site..."}
+              {loginMode ? t("subtitle_login") : t("subtitle_register")}
             </span>
           </div>
 
           <form
-            className="flex-start flex-col p-2 h-full w-full gap-6 mt-2"
+            className="flex-center flex-col py-2 h-fit w-full gap-6 mt-2"
             onSubmit={handleSubmit}
           >
             {/* email */}
             <AnimatedInput
-              inputName={"Email"}
+              inputName={t("email")}
               type="email"
               input={inputEmail}
               setInput={setInputEmail}
@@ -131,7 +131,7 @@ const LoginOrRegister = () => {
             {/* Name */}
             {!loginMode && (
               <AnimatedInput
-                inputName={"Name"}
+                inputName={t("name")}
                 type="name"
                 input={inputName}
                 setInput={setInputName}
@@ -140,7 +140,7 @@ const LoginOrRegister = () => {
 
             {/* Password */}
             <AnimatedInput
-              inputName={"Password"}
+              inputName={t("password")}
               type="password"
               input={inputPassword}
               setInput={setInputPassword}
@@ -149,7 +149,7 @@ const LoginOrRegister = () => {
             {/* Password2 */}
             {!loginMode && (
               <AnimatedInput
-                inputName={"Check Your Password"}
+                inputName={t("password_confirmation")}
                 type="password"
                 input={inputPassword2}
                 setInput={setInputPassword2}
@@ -157,24 +157,23 @@ const LoginOrRegister = () => {
             )}
 
             {loginMode ? (
-              <span className="text-gray-500 text-sm">
-                Don't have an account,{" "}
+              <span className="w-full text-gray-500 text-sm">
+                {t("login_tip") + " "}
                 <span
                   className="font-semibold hover:text-blue-600 transition-colors cursor-pointer"
                   onClick={changeLoginMode}
                 >
-                  Sign Up Now
-                </span>{" "}
-                !
+                  {t("login_tip_2")}
+                </span>
               </span>
             ) : (
-              <span className="text-gray-500 text-sm">
-                Already have an account?{" "}
+              <span className="w-full text-gray-500 text-sm">
+                {t("register_tip") + " "}
                 <span
                   className="font-semibold hover:text-blue-600 transition-colors cursor-pointer"
                   onClick={changeLoginMode}
                 >
-                  Login Now
+                  {t("register_tip_2")}
                 </span>
               </span>
             )}
@@ -198,7 +197,7 @@ const LoginOrRegister = () => {
               }
             >
               <span className="font-semibold">
-                {loginMode ? "Login" : "Register"}
+                {loginMode ? t("login") : t("register")}
               </span>
             </button>
           </form>
@@ -215,7 +214,7 @@ const LoginOrRegister = () => {
           </span> */}
 
           {/* ------ OR ------ */}
-          <div className="flex-center flex-row w-full gap-2 my-2">
+          <div className="flex-center flex-row w-full gap-2">
             <div className="h-[1px] w-full bg-gray-400"></div>
             <span className="text-gray-400">or</span>
             <div className="h-[1px] w-full bg-gray-400"></div>

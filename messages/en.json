@@ -20,5 +20,25 @@
   "Tools": {
     "title": "Tools",
     "subtitle": "Here will be some self-made tools."
+  },
+  "LoginOrRegister": {
+    "title_login": "Login",
+    "title_register": "Register",
+    "subtitle_login": "Login an account can access you to have more power with this site...",
+    "subtitle_register": "Register an account can access you to have more power with this site...",
+    "email": "Email",
+    "name": "Name",
+    "password": "Password",
+    "password_confirmation": "Password Confirmation",
+    "login_tip": "Don't have an account,",
+    "login_tip_2": "Sign Up Now!",
+    "register_tip": "Already have an account?",
+    "register_tip_2": "Login Now!",
+    "login": "Login",
+    "register": "Register"
+  },
+  "Footer": {
+    "en": "English",
+    "zh-CN": "简体中文"
   }
 }

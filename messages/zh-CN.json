@@ -20,5 +20,25 @@
   "Tools": {
     "title": "工具",
     "subtitle": "这里有一些我自己做的小工具。"
+  },
+  "LoginOrRegister": {
+    "title_login": "登录",
+    "title_register": "注册",
+    "subtitle_login": "登录之后可以拥有更多的权限...",
+    "subtitle_register": "注册之后可以拥有更多的权限...",
+    "email": "邮箱",
+    "name": "名字",
+    "password": "密码",
+    "password_confirmation": "再次确认密码",
+    "login_tip": "还没有账号吗,",
+    "login_tip_2": "现在注册!",
+    "register_tip": "已经注册过账号了吗?",
+    "register_tip_2": "现在登录!",
+    "login": "登录",
+    "register": "注册"
+  },
+  "Footer": {
+    "en": "English",
+    "zh-CN": "简体中文"
   }
 }
