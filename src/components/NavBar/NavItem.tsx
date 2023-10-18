@@ -6,10 +6,9 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 
-const NavItem = ({ tab }: { tab: Tab }) => {
+const NavItem = ({ tab, name }: { tab: Tab; name: string }) => {
   const location = useLocale();
   const pathName = usePathname();
-  const t = useTranslations("Tabs");
   const isActive =
     pathName === tab.link
       ? true
@@ -28,9 +27,7 @@ const NavItem = ({ tab }: { tab: Tab }) => {
           : "relative flex-center flex-col hover:text-blue-600 mx-2 w-full h-full transition-colors"
       }
     >
-      <span className="text-sm sm:text-base whitespace-nowrap">
-        {t(tab.name)}
-      </span>
+      <span className="text-sm sm:text-base whitespace-nowrap">{name}</span>
       {isActive ? (
         <motion.div
           className="h-[1px] w-full absolute bottom-[-1px] bg-gradient-to-r from-blue-600 to-cyan-600"

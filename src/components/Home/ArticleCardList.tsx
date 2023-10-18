@@ -8,9 +8,8 @@ import { getAllArticles } from "../../../sanity/utils";
 import { Article } from "../../../types/Article";
 import { useTranslations } from "next-intl";
 
-const ArticleCardList = () => {
+const ArticleCardList = ({ data }) => {
   const [articles, setArticles] = useState<Article[]>([]);
-  const t = useTranslations("Home");
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -32,9 +31,7 @@ const ArticleCardList = () => {
       animate="show"
       viewport={{ once: false, amount: 0.25 }}
     >
-      <span className="font-semibold text-xl blue_gradient">
-        {t("latest_articles")}
-      </span>
+      <span className="font-semibold text-xl blue_gradient">{data.title}</span>
 
       {articles.length !== 0 ? (
         <div className="flex flex-col gap-3 w-full h-full">
@@ -58,8 +55,8 @@ const ArticleCardList = () => {
         </div>
       ) : (
         <div className="flex flex-col gap-2 w-[90%] h-full border rounded-3xl p-8 shadow-sm font-semibold text-lg backdrop-blur-md dark:text-zinc-300 dark:border-gray-500">
-          <span>{t("tip_1")}</span>
-          <span>{t("tip_2")}</span>
+          <span>{data.tip_1}</span>
+          <span>{data.tip_2}</span>
         </div>
       )}
     </motion.div>

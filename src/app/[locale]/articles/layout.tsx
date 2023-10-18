@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer";
+import Footer from "@/components/Footer/Footer";
 import NavBar from "@/components/NavBar/NavBar";
 import Tags from "@/components/Tags";
 import { useTranslations } from "next-intl";
