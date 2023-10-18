@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { ReactNode } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 export const metadata = {
   title: "DoubleShy0N",
@@ -22,7 +23,7 @@ type RootLayoutProps = {
 };
 
 export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "de" }];
+  return [{ locale: "en" }, { locale: "zh-CN" }];
 }
 
 const RootLayout = async ({
@@ -30,7 +31,6 @@ const RootLayout = async ({
   session,
   params: { locale },
 }: RootLayoutProps) => {
-  // Validate that the incoming `locale` parameter is valid
   let messages;
   try {
     messages = (await import(`../../../messages/${locale}.json`)).default;
