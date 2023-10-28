@@ -22,8 +22,6 @@
     "subtitle": "Here will be some self-made tools."
   },
   "LoginOrRegister": {
-    "title_login": "Login",
-    "title_register": "Register",
     "subtitle_login": "Login an account can access you to have more power with this site...",
     "subtitle_register": "Register an account can access you to have more power with this site...",
     "email": "Email",
@@ -40,5 +38,11 @@
   "Footer": {
     "en": "English",
     "zh-CN": "简体中文"
+  },
+  "Pokemon": {
+    "name": "pokemon",
+    "title": "Pokemon Level Rating Tool",
+    "description": "A tool for rating Pokemon levels based on information such as the Pokemon's main skill, secondary skill, and personality.",
+    "image": "/assets/images/pokemon.png"
   }
 }

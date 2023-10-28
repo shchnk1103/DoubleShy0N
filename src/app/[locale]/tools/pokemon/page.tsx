@@ -1,10 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import AnimatedText from "@/components/AnimatedText";
 import PokemonCharacter from "@/components/Tools/Pokemon/PokemonCharacter";
 import PokemonDropDown from "@/components/Tools/Pokemon/PokemonDropDown";
 import { PokemonTool } from "@/components/Tools/ToolTypes";
-import { useEffect, useState } from "react";
 import {
   Pokemon,
   PokemonCharacterType,
@@ -12,12 +12,10 @@ import {
 } from "../../../../../types/Pokemon";
 import PokemonSecondarySkill from "@/components/Tools/Pokemon/PokemonSecondarySkill";
 import {
-  characterScore,
+  calculatePokemonScore,
   fetchCharacters,
   fetchPokemons,
   fetchSecondarySkills,
-  skillOrder,
-  skillScore,
 } from "@/utils/pokemon";
 import PokemonFruit from "@/components/Tools/Pokemon/PokemonFruit";
 import PokemonExpertise from "@/components/Tools/Pokemon/PokemonExpertise";
@@ -29,13 +27,7 @@ import ImageUpload from "@/components/Tools/Pokemon/ImageUpload";
 import { AiTwotoneStar } from "react-icons/ai";
 import { useSession } from "next-auth/react";
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
-
-const ToolDetail = ({ params }: Props) => {
+const ToolDetail = () => {
   const { data: session } = useSession();
   // 初始化
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
@@ -101,128 +93,15 @@ const ToolDetail = ({ params }: Props) => {
   }, []);
 
   const handleClick = () => {
-    // 面板 + 潜力分
-    const pokemon_score = selectedPokemon?.total_score;
+    const { formatted_total_score, formatted_total_score_temporarily } =
+      calculatePokemonScore(
+        selectedPokemon,
+        selectedSecondarySkill,
+        selectedCharacter,
+        selectedTemporary
+      );
 
-    let pokemon_skill_scores = [0, 0, 0, 0, 0];
-    let consistent = ["", "", "", "", ""];
-
-    for (
-      let index = 0, len = pokemon_skill_scores.length;
-      index < len;
-      index++
-    ) {
-      // 技能颜色分
-      const skill_color = selectedSecondarySkill[index]?.color;
-
-      // 技能自洽
-      consistent[index] = selectedSecondarySkill[index]?.self_consistent;
-
-      // 技能匹配分
-      let skill_score = 0;
-      const secondary_skill_name =
-        selectedSecondarySkill[index]?.secondary_skill_name;
-      const expertise = selectedPokemon?.expertise;
-      if (expertise && secondary_skill_name) {
-        if (skillScore[secondary_skill_name]) {
-          if (skillScore[secondary_skill_name][expertise]) {
-            skill_score = skillScore[secondary_skill_name][expertise];
-          } else {
-            skill_score = skillScore[secondary_skill_name]["其他"];
-          }
-        }
-      }
-
-      // 副技能顺序分
-      const skill_order_score = skill_score * skillOrder[index];
-
-      // 副技能总得分
-      pokemon_skill_scores[index] =
-        Number(skill_color) + Number(skill_score) + Number(skill_order_score);
-    }
-
-    // 性格分
-    const plus = characterScore["plus"][selectedCharacter?.plus];
-    let pokemon_character_plus = 0;
-    if (selectedCharacter?.plus === "食材发现率") {
-      const key_word = selectedPokemon?.expertise == "食材" ? "食材" : "其他";
-      pokemon_character_plus = plus[key_word];
-    } else if (selectedCharacter?.plus === "帮忙速度") {
-      const key_word = selectedPokemon?.expertise == "树果" ? "树果" : "其他";
-      pokemon_character_plus = plus[key_word];
-    } else if (selectedCharacter?.plus === "主技能发动概率") {
-      const key_word = selectedPokemon?.expertise === "技能" ? "技能" : "其他";
-      pokemon_character_plus = plus[key_word];
-      if (
-        ["食材获取S", "料理强化S", "能量填充M"].includes(
-          selectedPokemon?.main_skill
-        )
-      ) {
-        pokemon_character_plus += 2;
-      }
-    } else {
-      pokemon_character_plus = plus;
-    }
-
-    const minus = characterScore["minus"][selectedCharacter?.minus];
-    let pokemon_character_minus = 0;
-    if (selectedCharacter?.minus === "食材发现率") {
-      const key_word = selectedPokemon?.expertise == "食材" ? "食材" : "其他";
-      pokemon_character_minus = minus[key_word];
-    } else if (selectedCharacter?.minus === "帮忙速度") {
-      const key_word = selectedPokemon?.expertise == "树果" ? "树果" : "其他";
-      pokemon_character_minus = minus[key_word];
-    } else if (selectedCharacter?.minus === "主技能发动概率") {
-      const key_word = selectedPokemon?.expertise === "技能" ? "技能" : "其他";
-      pokemon_character_minus = minus[key_word];
-      if (
-        ["食材获取S", "料理强化S", "能量填充M"].includes(
-          selectedPokemon?.main_skill
-        )
-      ) {
-        pokemon_character_minus += 2;
-      }
-    } else {
-      pokemon_character_minus = minus;
-    }
-
-    // 技能自洽分
-    let consistent_score = 0;
-    for (let index = 0; index < consistent.length; index++) {
-      for (let j = index + 1; j < consistent.length; j++) {
-        if (consistent[index] === consistent[j]) {
-          consistent_score += 2;
-          break;
-        }
-      }
-    }
-
-    // 临时分
-    let temporary_score = 0;
-    if (selectedTemporary.length > 0) {
-      if (selectedTemporary[0]) {
-        temporary_score += selectedTemporary[0][1];
-      }
-      if (selectedTemporary[1]) {
-        temporary_score += selectedTemporary[1][1];
-      }
-    }
-
-    // 总分
-    const total_score =
-      pokemon_score +
-      pokemon_skill_scores.reduce((a, b) => a + b) +
-      consistent_score +
-      Number(pokemon_character_plus) -
-      Number(pokemon_character_minus);
-    const formatted_total_score = Number(total_score.toFixed(2));
     setTotalScore(formatted_total_score);
-
-    // 临时总分
-    const total_score_temporarily = total_score + temporary_score;
-    const formatted_total_score_temporarily = Number(
-      total_score_temporarily.toFixed(2)
-    );
     setTotalScoreTemporarily(formatted_total_score_temporarily);
   };
 

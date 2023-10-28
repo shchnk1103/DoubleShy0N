@@ -22,8 +22,6 @@
     "subtitle": "这里有一些我自己做的小工具。"
   },
   "LoginOrRegister": {
-    "title_login": "登录",
-    "title_register": "注册",
     "subtitle_login": "登录之后可以拥有更多的权限...",
     "subtitle_register": "注册之后可以拥有更多的权限...",
     "email": "邮箱",
@@ -40,5 +38,11 @@
   "Footer": {
     "en": "English",
     "zh-CN": "简体中文"
+  },
+  "Pokemon": {
+    "name": "pokemon",
+    "title": "宝可梦等级评定工具",
+    "description": "一个用于评定宝可梦等级的工具，可以根据宝可梦的主技能、副技能、性格等信息，计算出宝可梦的等级。",
+    "image": "/assets/images/pokemon.png"
   }
 }

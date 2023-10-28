@@ -3,7 +3,6 @@ import Provider from "@/components/Provider";
 import TheThemeProvider from "@/components/ThemeProvider";
 import { Analytics } from "@vercel/analytics/react";
 import { ReactNode } from "react";
-import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 
 export const metadata = {
@@ -21,22 +20,11 @@ type RootLayoutProps = {
   };
 };
 
-// export function generateStaticParams() {
-//   return [{ locale: "en" }, { locale: "zh-CN" }];
-// }
-
 const RootLayout = async ({
   children,
   session,
   params: { locale },
 }: RootLayoutProps) => {
-  // let messages;
-  // try {
-  //   messages = (await import(`../../../messages/${locale}.json`)).default;
-  // } catch (error) {
-  //   notFound();
-  // }
-
   // Validate that the incoming `locale` parameter is valid
   const isValidLocale = locales.some((cur) => cur === locale);
   if (!isValidLocale) notFound();
@@ -44,7 +32,6 @@ const RootLayout = async ({
   return (
     <html lang={locale}>
       <body>
-        {/* <NextIntlClientProvider locale={locale} messages={messages}> */}
         <TheThemeProvider>
           <Provider session={session}>
             <div className="main">
@@ -58,7 +45,6 @@ const RootLayout = async ({
             </main>
           </Provider>
         </TheThemeProvider>
-        {/* </NextIntlClientProvider> */}
       </body>
     </html>
   );

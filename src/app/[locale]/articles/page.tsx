@@ -1,12 +1,10 @@
 "use client";
 
 import AnimatedText from "@/components/AnimatedText";
-import Card from "@/components/Article/Card";
 import { useEffect, useState } from "react";
 import { getAllArticles } from "../../../../sanity/utils";
 import { Article } from "../../../../types/Article";
 import ArticleCard from "@/components/Home/ArticleCard";
-import Tags from "@/components/Tags";
 
 const Articles = () => {
   const [articles, setArticles] = useState<Article[]>([]);

@@ -3,15 +3,13 @@ import Link from "next/link";
 import { BsArrowRightCircle } from "react-icons/bs";
 
 type ToolCardProps = {
-  type: {
-    name: string;
-    title: string;
-    description: string;
-    image: string;
-  };
+  type: string;
+  title: string;
+  description: string;
+  image_url: string;
 };
 
-const ToolCard = ({ type }: ToolCardProps) => {
+const ToolCard = ({ type, title, description, image_url }: ToolCardProps) => {
   return (
     <div
       className={
@@ -19,7 +17,7 @@ const ToolCard = ({ type }: ToolCardProps) => {
       }
     >
       <Link
-        href={`/tools/${type.name}`}
+        href={`/tools/${type}`}
         className={
           "flex-start lg:flex-row flex-col sm:gap-4 md:gap-1 gap-2 lg:h-52 h-80"
         }
@@ -31,7 +29,7 @@ const ToolCard = ({ type }: ToolCardProps) => {
           }
         >
           <Image
-            src={type.image}
+            src={image_url}
             alt={"pokemon"}
             width={"200"}
             height={"200"}
@@ -46,8 +44,8 @@ const ToolCard = ({ type }: ToolCardProps) => {
             "h-full py-1 flex-start flex-col flex-1 gap-1 pr-1 relative px-2"
           }
         >
-          <span className={"font-semibold text-lg blue_gradient"}>
-            {type.title}
+          <span className={"font-semibold text-lg blue_gradient pt-4"}>
+            {title}
           </span>
 
           <span
@@ -55,7 +53,7 @@ const ToolCard = ({ type }: ToolCardProps) => {
               "sm:text-sm text-xs text-gray-700 dark:text-gray-300 overflow-hidden"
             }
           >
-            {type.description}
+            {description}
           </span>
 
           <BsArrowRightCircle
