@@ -36,6 +36,7 @@ const DropItems = ({ setToggleDropdown }) => {
   const items: item[] = [
     { name: "Tags", href: "/articles/tags" },
     { name: "Create Article", href: "/articles/create" },
+    { name: "Add Pokemon", href: "/tools/add-pokemon" },
     { name: "Pokemon Sleep", href: "/tools/pokemon-sleep" },
   ];
 
@@ -48,7 +49,11 @@ const DropItems = ({ setToggleDropdown }) => {
           if (user["role"] === "admin") {
             return true;
           } else {
-            return !(item.name === "Create Article" || item.name === "Tags");
+            return !(
+              item.name === "Create Article" ||
+              item.name === "Tags" ||
+              item.name === "Add Pokemon"
+            );
           }
         })
         .map((item, index) => (

@@ -39,6 +39,7 @@ const LoginOrRegister = () => {
         {/* Form */}
         <LoginOrRegisterForm formData={formData} />
       </div>
+
       {/* Back Button */}
       <div className="absolute top-8 left-8 w-12 h-12 flex-center border rounded-full p-2 group cursor-pointer hover:bg-blue-600 transition-colors shadow-md">
         <Link
