@@ -1,20 +1,33 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    appDir: true,
     serverComponentsExternalPackages: ["mongoose"],
   },
   images: {
-    domains: [
-      "lh3.googleusercontent.com",
-      "img.nga.178.com",
-      "avatars.githubusercontent.com",
-      "www.serebii.net",
-    ],
     remotePatterns: [
       {
         protocol: "https",
         hostname: "cdn.sanity.io",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "img.nga.178.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "www.serebii.net",
         port: "",
       },
     ],

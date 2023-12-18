@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import Link from "next-intl/link";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 type Props = {
