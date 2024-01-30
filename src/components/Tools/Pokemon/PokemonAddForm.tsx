@@ -66,6 +66,7 @@ const PokemonAddForm = () => {
     try {
       const response = await fetch(
         "https://django-api-topaz.vercel.app/pokemons/",
+        // "http://127.0.0.1:8000/pokemons/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
