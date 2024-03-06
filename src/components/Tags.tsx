@@ -45,7 +45,7 @@ const Tags = () => {
               activeIndex === index
                 ? "!bg-blue-600 !text-slate-100"
                 : "hover:bg-blue-600 hover:text-slate-100"
-            } border px-3 py-1 rounded-full transition-colors cursor-pointer inline-block capitalize mr-2 my-1 bg-transparent text-slate-500 border-gray-300 dark:shadow-gray-600/95 dark:border-gray-500 dark:hover:text-slate-300 dark:hover:border-gray-600`}
+            } border px-3 py-1 rounded-full transition-colors cursor-pointer inline-block capitalize mr-2 my-1 bg-transparent text-slate-500 border-gray-300 dark:shadow-gray-600/95 dark:border-gray-500 dark:hover:text-slate-300 dark:hover:border-gray-600 text-xs md:text-base lg:text-lg`}
           >
             {tag.title}
           </motion.span>

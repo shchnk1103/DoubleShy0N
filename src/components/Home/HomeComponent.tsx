@@ -43,10 +43,10 @@ const HomeComponent = ({ data }: Props) => {
           {data.subtitle_2}
         </span>
 
-        <div className="flex justify-start items-center flex-row mt-4 gap-4">
+        <div className="flex justify-start items-center flex-row mt-2 md:mt-4 mb-4 md:mb-0 gap-4">
           <a
             href="mailto:doubleshy0n@qq.com"
-            className="capitalize bg_blue_gradient text-slate-100 text-xl px-8 py-3 rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition active:scale-95"
+            className="capitalize bg_blue_gradient text-slate-100 text-sm md:text-xl px-4 md:px-8 py-1 md:py-3 rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition active:scale-95 whitespace-nowrap"
           >
             {data.contact_me}
           </a>

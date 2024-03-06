@@ -11,9 +11,9 @@ const NavBar = () => {
   const t = useTranslations("Tabs");
 
   return (
-    <nav className="flex-between pt-4 mb-4 w-full mx-auto z-50 h-16 top-0 sticky padding">
+    <nav className="flex-between pt-4 mb-4 w-full mx-auto z-50 h-16 top-0 sticky padding gap-1">
       {/* icon */}
-      <div className="flex-1 flex">
+      <div className="flex-1 hidden md:flex">
         <Icon />
       </div>
 

@@ -55,7 +55,7 @@ const ArticleDetail = ({ params }: Props) => {
   return (
     <>
       {article ? (
-        <div className="w-full flex-center flex-col gap-4 relative">
+        <div className="w-full flex-center flex-col gap-4 relative padding">
           <div className="relative w-full h-[500px] flex-center my-8">
             <Image
               src={article.mainImage}
